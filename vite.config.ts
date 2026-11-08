@@ -1,15 +1,27 @@
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import dts from 'vite-plugin-dts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const isStorybook = process.argv.some((arg) => arg.includes('storybook'));
 
+// Rollup удаляет module-level директивы, поэтому возвращаем 'use client'
+// в entry-чанки (ESM и CJS), чтобы библиотека работала в Next.js App Router.
+const preserveUseClient = (): Plugin => ({
+  name: 'sloi:preserve-use-client',
+  apply: 'build',
+  renderChunk(code, chunk) {
+    if (!chunk.isEntry) return null;
+    return { code: `'use client';\n${code}`, map: null };
+  }
+});
+
 export default defineConfig({
   plugins: [
     react(),
+    !isStorybook && preserveUseClient(),
     !isStorybook &&
       dts({
         include: ['src'],

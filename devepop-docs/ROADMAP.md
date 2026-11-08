@@ -1,0 +1,92 @@
+# ROADMAP: sloi-ui (план «по задаче в день»)
+
+Создан: 2026-11-08. Рабочий план после паузы (последняя активность ~2026-04-06).
+Старый `docs/backlog/design-system-execution-plan.md` считается завершённым; вся новая работа идёт здесь.
+
+## Как работаем
+
+1. Одна задача (D##) за сессию. Задача маленькая, с проверяемым критерием «Готово».
+2. После задачи: отметить `[x]`, добавить строку в «Журнал» внизу, прогнать `pnpm typecheck && pnpm lint && pnpm test` (если менялся код).
+3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
+4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
+
+Следующая задача: **D03**
+
+---
+
+## Фаза 0. Публикация пакета
+
+Цель: пакет можно поставить в чистый Next.js и он работает.
+
+- [x] **D00. Git.** `git init`, baseline-коммит (сделано 2026-11-08); remote на GitHub добавить позже.
+- [x] **D01. Путь к типам и мусор в dist.**
+  `vite.config.ts`: в `dts()` добавить `entryRoot: 'src'` и исключить `src/test/**`, `**/*.test.*`, `**/*.stories.*`.
+  Готово: после `pnpm build` есть `dist/index.d.ts`, нет `dist/src/test`, нет `*.test.d.ts` и `*.stories.d.ts`.
+- [x] **D02. Директива `'use client'` в бандле.**
+  Сохранить директиву в `dist/index.js` и `dist/index.cjs` (плагин preserve-directives или banner в Rollup).
+  Готово: первая строка `dist/index.js` содержит `'use client'`.
+- [ ] **D03. Чистка зависимостей.**
+  `@sloi/lit-wrappers` убрать из `dependencies`; `@sloi/headless-core` и `@sloi/tokens` проверить (вшиты в бандл → `devDependencies`); решить по `clsx`, `lucide-react`, `react-day-picker` (external + dependencies или вшить и убрать из dependencies).
+  Готово: `pnpm pack` проходит, в `package.json` нет `workspace:*` в `dependencies`.
+- [ ] **D04. publint и arethetypeswrong.**
+  Запустить `npx publint` и `npx @arethetypeswrong/cli --pack .`, исправить замечания.
+  Заодно исправить TS2742 в `primitives/menubar/menubar.tsx` (`MenubarMenu` без явного типа → непереносимый inferred type).
+  Готово: оба инструмента без ошибок, при `pnpm build` нет TS-ошибок от dts.
+- [ ] **D05. Smoke-тест в чистом Next.js.**
+  Создать приложение вне репозитория, поставить tarball из `pnpm pack`, отрендерить `Button` и `Select` в Server Component-странице с клиентским импортом.
+  Готово: `next build` проходит без ошибок и предупреждений про директивы.
+
+## Фаза 1. Реальный потребитель и зависимости
+
+- [ ] **D06. Реальное приложение.** Превратить smoke-приложение из D05 в небольшой настоящий проект (форма + таблица на `DataTableV2`), оставить вне репозитория.
+- [ ] **D07. Честный фидбек.** Записать всё, что неудобно, в `docs/adoption/pain-points.md` (заменить выдуманные `AD-FB-*`). Готово: минимум 5 реальных пунктов с примерами кода.
+- [ ] **D08. Зависимости, часть 1.** `pnpm outdated`; обновить TypeScript, Vite, Vitest. Готово: весь quality gate зелёный.
+- [ ] **D09. Зависимости, часть 2.** Обновить Storybook (проверить миграционный гайд), `pnpm storybook:build` проходит.
+- [ ] **D10. Зависимости, часть 3.** Обновить ESLint-плагины, `radix-ui`, `react-day-picker`, `lucide-react`. Проверить changelog Radix на изменения `unstable_*`.
+
+## Фаза 2. Качество компонентов
+
+- [ ] **D11. Combobox: структура ARIA.** Убрать промежуточный `li` между `listbox` и `option` (или поставить `role="presentation"`). Добавить `aria-haspopup="listbox"`.
+- [ ] **D12. Combobox: a11y-тест в открытом состоянии.** Тест открывает список и прогоняет axe. Готово: тест падает на старом коде и проходит на новом.
+- [ ] **D13. Tooltip: один Provider.** Убрать `TooltipProvider` из `Tooltip`, добавить общий Provider и документировать его в Storybook. Решить, как не ломать API (опциональный Provider или внутренний fallback).
+- [ ] **D14. Select: controlled/uncontrolled.** Проверить переход при отсутствии `defaultValue`; тест на предупреждение в консоли; исправить, если воспроизводится.
+- [ ] **D15. Pagination: тесты логики.** Диапазоны страниц, границы, смена размера страницы, controlled/uncontrolled.
+- [ ] **D16. Pagination: тексты и Select.** Вынести строки в props (`labels`), заменить нативный `<select>` на `Select` из библиотеки.
+- [ ] **D17. Modal: unit + a11y тесты.**
+- [ ] **D18. Table и Textarea: тесты.**
+- [ ] **D19. NumberField и PhoneField: тесты.**
+- [ ] **D20. SearchInput и FilterBar: тесты.**
+- [ ] **D21. Button: `loading`.** Состояние загрузки с `aria-busy`, блокировкой клика и stories.
+- [ ] **D22. Button: `danger` и слоты иконок.** Варианты и `startIcon`/`endIcon`, тесты, stories.
+- [ ] **D23. Иконки вместо глифов.** Заменить текстовые "▾", "✓", "▴" в `primitives/_internal/common` на `Icon` из библиотеки.
+- [ ] **D24. `unstable_*` в публичном API.** `OneTimePasswordField` и `PasswordToggleField` пометить experimental в JSDoc и stories или убрать из экспорта; записать решение в CHANGELOG.
+
+## Фаза 3. Дизайн-система как система
+
+- [ ] **D25. Аудит токенов.** Прочитать `colors.css` и `palette.css`, составить список семантических токенов, которым нужна тёмная версия.
+- [ ] **D26. Тёмная тема: токены.** `[data-theme="dark"]` (и `prefers-color-scheme`) в `@sloi/tokens`.
+- [ ] **D27. Storybook: переключатель темы.** Подключить токены из `@sloi/tokens` вместо compat-слоя `src/app/styles`.
+- [ ] **D28. Тёмная тема: Tier-1.** Пройти все 12 Tier-1 компонентов в тёмной теме, исправить контрасты.
+- [ ] **D29. Решение по подпутям экспорта.** Короткий документ: какие подпути (`/button`, `/data-table-v2`), что с CSS.
+- [ ] **D30. Подпути экспорта.** Реализация для `DataTableV2` и тяжёлых компонентов; проверка размеров бандла.
+- [ ] **D31. Changesets.** Настроить версионирование и генерацию changelog.
+- [ ] **D32. Визуальные регрессии: настройка.** Playwright или Chromatic, один компонент как пример.
+- [ ] **D33. Визуальные регрессии: Tier-1.** Базовые снимки для 12 компонентов в обеих темах.
+
+## Фаза 4. Упрощение процессов
+
+- [ ] **D34. `CONTRIBUTING.md`.** Свести DoD, semver и правила в один документ.
+- [ ] **D35. Актуализировать `UI_KIT_RULES.md`.** Источник токенов теперь `packages/tokens`; убрать вымышленных owners и лишний `CODEOWNERS`.
+- [ ] **D36. Заморозить мультифреймворк.** `lit-wrappers` и MF-гейт пометить как исследование; убрать «Adoption-proven» и завышенные статусы из старого плана.
+- [ ] **D37. Релиз.** Решение: публикация в npm или GitHub Packages, релиз `1.1.0` через Changesets.
+
+---
+
+## Журнал
+
+| Дата | Задача | Результат / заметки |
+| --- | --- | --- |
+| 2026-11-08 | — | План создан |
+| 2026-11-08 | D00 | git init + baseline-коммит `2037437` |
+| 2026-11-08 | D01 | `entryRoot: 'src'` + исключения в dts; `dist/index.d.ts` на месте, тестовых d.ts нет |
+| 2026-11-08 | D02 | плагин `preserveUseClient` в vite.config.ts; `"use client"` первой строкой в ESM и CJS |
