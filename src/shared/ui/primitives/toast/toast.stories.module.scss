@@ -1,0 +1,52 @@
+.stack {
+  width: min(24rem, 100%);
+  display: grid;
+  gap: 0.6rem;
+}
+
+.triggerButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 2.25rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-primary);
+  font: inherit;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.triggerButton:hover {
+  border-color: var(--sloi-border-strong);
+  background-color: color-mix(in srgb, var(--sloi-surface-elevated) 70%, transparent);
+}
+
+.triggerButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.date {
+  color: var(--sloi-text-secondary);
+}
+
+.viewportLeft {
+  left: 1rem;
+  right: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .triggerButton {
+    transition: none;
+  }
+}

@@ -1,0 +1,43 @@
+.stack {
+  display: grid;
+  gap: 14px;
+}
+
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  height: 2rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  background-color: var(--sloi-surface-elevated);
+  color: var(--sloi-text-primary);
+  padding: 0 0.75rem;
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.status {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.asChildButton {
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0;
+}

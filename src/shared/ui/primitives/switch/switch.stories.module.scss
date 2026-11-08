@@ -1,0 +1,36 @@
+.stack {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.status {
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.submitButton {
+  width: fit-content;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-primary);
+  padding: 0.35rem 0.65rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  border-color: var(--sloi-border-strong);
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.submitButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}

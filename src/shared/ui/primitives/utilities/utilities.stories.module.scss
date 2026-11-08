@@ -1,0 +1,125 @@
+.stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.row {
+  display: inline-flex;
+  gap: 0.65rem;
+}
+
+.iconRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.iconGlyph {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.rtlBox {
+  width: min(17.5rem, 100%);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  padding: 0.625rem;
+}
+
+.slotButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  min-height: 2.25rem;
+  padding: 0 0.75rem;
+  background: var(--sloi-surface-base);
+  color: var(--sloi-text-primary);
+  text-decoration: none;
+}
+
+.portalHost {
+  position: relative;
+  min-height: 1rem;
+}
+
+.portalBadge {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-floating);
+  padding: 0.5rem 0.625rem;
+  box-shadow: var(--sloi-shadow-floating);
+  z-index: 10;
+}
+
+.portalPanel {
+  position: relative;
+  min-height: 10rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-base);
+  padding: 0.75rem;
+}
+
+.portalBadgeInPanel {
+  position: absolute;
+  right: 0.75rem;
+  top: 2.2rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  background: var(--sloi-surface-floating);
+  padding: 0.45rem 0.55rem;
+  box-shadow: var(--sloi-shadow-floating);
+}
+
+.meta {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.directionCard {
+  width: min(18rem, 100%);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-base);
+  padding: 0.625rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.directionRow {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-start;
+}
+
+.directionTag {
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  background: var(--sloi-surface-elevated);
+  padding: 0.2rem 0.45rem;
+  font-size: 0.75rem;
+  color: var(--sloi-text-primary);
+}
+
+.slotCard {
+  width: min(24rem, 100%);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-base);
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.inlineAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: inherit;
+  text-decoration: none;
+}

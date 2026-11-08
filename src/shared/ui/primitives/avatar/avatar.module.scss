@@ -1,0 +1,44 @@
+.avatarRoot {
+  --sloi-avatar-size: 2.5rem;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sloi-avatar-size);
+  height: var(--sloi-avatar-size);
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--sloi-border-primary);
+  background-color: var(--sloi-surface-elevated);
+  color: var(--sloi-text-primary);
+  user-select: none;
+}
+
+.avatarRoot:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.avatarImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarFallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(0.72rem, calc(var(--sloi-avatar-size) * 0.33), 1rem);
+  font-weight: var(--sloi-font-weight-semibold);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-secondary);
+}

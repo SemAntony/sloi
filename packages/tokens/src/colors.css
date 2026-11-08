@@ -1,0 +1,140 @@
+@import './palette.css';
+
+:root {
+  --sloi-surface-canvas: var(--sloi-palette-neutral-1);
+  --sloi-surface-base: var(--sloi-palette-gray-1);
+  --sloi-surface-elevated: var(--sloi-palette-zinc-1);
+  --sloi-surface-overlay: color-mix(in srgb, var(--sloi-palette-neutral-1) 90%, transparent);
+
+  --sloi-text-primary: var(--sloi-palette-slate-11);
+  --sloi-text-secondary: var(--sloi-palette-slate-9);
+  --sloi-text-muted: var(--sloi-palette-gray-8);
+  --sloi-text-on-primary: var(--sloi-palette-neutral-1);
+  --sloi-text-on-danger: var(--sloi-palette-neutral-1);
+
+  --sloi-border-primary: var(--sloi-palette-slate-4);
+  --sloi-border-strong: var(--sloi-palette-slate-6);
+  --sloi-focus-ring: var(--sloi-palette-blue-7);
+
+  --sloi-interactive-primary-bg: var(--sloi-palette-blue-7);
+  --sloi-interactive-primary-bg-hover: var(--sloi-palette-blue-8);
+  --sloi-interactive-primary-bg-active: var(--sloi-palette-blue-9);
+  --sloi-interactive-primary-text: var(--sloi-text-on-primary);
+  --sloi-interactive-primary-shadow: color-mix(
+    in srgb,
+    var(--sloi-palette-blue-10) 48%,
+    transparent
+  );
+
+  --sloi-interactive-secondary-bg: var(--sloi-surface-elevated);
+  --sloi-interactive-secondary-text: var(--sloi-text-primary);
+  --sloi-interactive-secondary-border: var(--sloi-border-primary);
+  --sloi-interactive-secondary-border-hover: var(--sloi-palette-blue-6);
+  --sloi-interactive-secondary-text-hover: var(--sloi-palette-blue-8);
+
+  --sloi-interactive-ghost-text: var(--sloi-palette-blue-8);
+  --sloi-interactive-ghost-bg-hover: color-mix(
+    in srgb,
+    var(--sloi-palette-blue-3) 42%,
+    transparent
+  );
+
+  --sloi-field-bg: var(--sloi-surface-base);
+  --sloi-field-border: var(--sloi-border-primary);
+  --sloi-field-border-hover: var(--sloi-border-strong);
+  --sloi-field-border-focus: var(--sloi-focus-ring);
+  --sloi-field-border-invalid: var(--sloi-status-danger-border);
+  --sloi-field-placeholder: var(--sloi-text-muted);
+
+  --sloi-status-info-bg: var(--sloi-palette-cyan-2);
+  --sloi-status-info-text: var(--sloi-palette-cyan-10);
+  --sloi-status-info-border: var(--sloi-palette-cyan-5);
+
+  --sloi-status-success-bg: var(--sloi-palette-green-2);
+  --sloi-status-success-text: var(--sloi-palette-green-10);
+  --sloi-status-success-border: var(--sloi-palette-green-5);
+
+  --sloi-status-warning-bg: var(--sloi-palette-amber-2);
+  --sloi-status-warning-text: var(--sloi-palette-amber-10);
+  --sloi-status-warning-border: var(--sloi-palette-amber-5);
+
+  --sloi-status-danger-bg: var(--sloi-palette-red-2);
+  --sloi-status-danger-text: var(--sloi-palette-red-10);
+  --sloi-status-danger-border: var(--sloi-palette-red-5);
+
+  --sloi-accent-violet: var(--sloi-palette-violet-7);
+  --sloi-accent-cyan: var(--sloi-palette-cyan-7);
+  --sloi-accent-fuchsia: var(--sloi-palette-fuchsia-7);
+  --sloi-accent-rose: var(--sloi-palette-rose-7);
+
+  --sloi-overlay-backdrop: color-mix(in srgb, var(--sloi-palette-slate-11) 54%, transparent);
+  --sloi-surface-floating: var(--sloi-palette-zinc-1);
+  --sloi-surface-floating-border: var(--sloi-palette-slate-4);
+  --sloi-shadow-floating: 0 22px 50px -28px color-mix(in srgb, var(--sloi-palette-slate-10) 38%, transparent);
+}
+
+[data-theme='dark'] {
+  --sloi-surface-canvas: var(--sloi-palette-slate-11);
+  --sloi-surface-base: var(--sloi-palette-slate-10);
+  --sloi-surface-elevated: var(--sloi-palette-slate-9);
+  --sloi-surface-overlay: color-mix(
+    in srgb,
+    var(--sloi-palette-slate-8) 72%,
+    var(--sloi-palette-slate-11)
+  );
+
+  --sloi-text-primary: var(--sloi-palette-neutral-1);
+  --sloi-text-secondary: var(--sloi-palette-gray-2);
+  --sloi-text-muted: var(--sloi-palette-gray-4);
+  --sloi-text-on-primary: var(--sloi-palette-neutral-1);
+
+  --sloi-border-primary: var(--sloi-palette-slate-8);
+  --sloi-border-strong: var(--sloi-palette-slate-6);
+  --sloi-focus-ring: var(--sloi-palette-blue-5);
+
+  --sloi-interactive-primary-bg: var(--sloi-palette-blue-5);
+  --sloi-interactive-primary-bg-hover: var(--sloi-palette-blue-6);
+  --sloi-interactive-primary-bg-active: var(--sloi-palette-blue-7);
+  --sloi-interactive-primary-shadow: color-mix(
+    in srgb,
+    var(--sloi-palette-blue-11) 68%,
+    transparent
+  );
+
+  --sloi-interactive-secondary-bg: var(--sloi-surface-elevated);
+  --sloi-interactive-secondary-text: var(--sloi-palette-neutral-1);
+  --sloi-interactive-secondary-border: var(--sloi-border-primary);
+  --sloi-interactive-secondary-border-hover: var(--sloi-palette-blue-5);
+  --sloi-interactive-secondary-text-hover: var(--sloi-palette-blue-3);
+  --sloi-interactive-ghost-text: var(--sloi-palette-blue-3);
+  --sloi-interactive-ghost-bg-hover: color-mix(
+    in srgb,
+    var(--sloi-palette-blue-6) 30%,
+    transparent
+  );
+
+  --sloi-field-bg: var(--sloi-surface-elevated);
+  --sloi-field-border: var(--sloi-border-primary);
+  --sloi-field-border-hover: var(--sloi-border-strong);
+  --sloi-field-border-focus: var(--sloi-focus-ring);
+  --sloi-field-border-invalid: var(--sloi-status-danger-border);
+  --sloi-field-placeholder: var(--sloi-text-muted);
+
+  --sloi-status-info-bg: var(--sloi-palette-cyan-10);
+  --sloi-status-info-text: var(--sloi-palette-cyan-2);
+  --sloi-status-info-border: var(--sloi-palette-cyan-7);
+  --sloi-status-success-bg: var(--sloi-palette-green-10);
+  --sloi-status-success-text: var(--sloi-palette-green-2);
+  --sloi-status-success-border: var(--sloi-palette-green-7);
+  --sloi-status-warning-bg: var(--sloi-palette-amber-10);
+  --sloi-status-warning-text: var(--sloi-palette-amber-2);
+  --sloi-status-warning-border: var(--sloi-palette-amber-7);
+  --sloi-status-danger-bg: var(--sloi-palette-red-10);
+  --sloi-status-danger-text: var(--sloi-palette-red-2);
+  --sloi-status-danger-border: var(--sloi-palette-red-7);
+
+  --sloi-overlay-backdrop: color-mix(in srgb, var(--sloi-palette-slate-11) 74%, transparent);
+  --sloi-surface-floating: var(--sloi-palette-slate-9);
+  --sloi-surface-floating-border: var(--sloi-palette-slate-7);
+  --sloi-shadow-floating: 0 24px 56px -30px color-mix(in srgb, var(--sloi-palette-slate-11) 72%, transparent);
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-04-06T09:14:30.491Z",
+  "passed": true,
+  "checks": {
+    "bundle": {
+      "passed": true,
+      "entries": [
+        {
+          "id": "react-esm",
+          "relativePath": "dist/index.js",
+          "sizeBytes": 271193,
+          "maxBytes": 300000,
+          "passed": true
+        },
+        {
+          "id": "react-cjs",
+          "relativePath": "dist/index.cjs",
+          "sizeBytes": 204507,
+          "maxBytes": 230000,
+          "passed": true
+        },
+        {
+          "id": "ui-styles",
+          "relativePath": "dist/style.css",
+          "sizeBytes": 117021,
+          "maxBytes": 130000,
+          "passed": true
+        }
+      ],
+      "headlessSourceTotal": {
+        "relativePath": "packages/headless-core/src",
+        "sizeBytes": 13196,
+        "maxBytes": 25000,
+        "passed": true
+      }
+    },
+    "tsDx": {
+      "passed": true,
+      "requiredFiles": [
+        {
+          "relativePath": "src/shared/ui/index.ts",
+          "exists": true
+        },
+        {
+          "relativePath": "packages/headless-core/src/index.ts",
+          "exists": true
+        },
+        {
+          "relativePath": "packages/lit-wrappers/src/index.ts",
+          "exists": true
+        },
+        {
+          "relativePath": "src/test/fixtures/multi-framework/consumer.ts",
+          "exists": true
+        },
+        {
+          "relativePath": "src/test/fixtures/multi-framework/tsconfig.json",
+          "exists": true
+        }
+      ],
+      "packageTypeEntries": [
+        {
+          "relativePath": "package.json",
+          "packageName": "@sloi/ui-kit",
+          "hasTypes": true
+        },
+        {
+          "relativePath": "packages/headless-core/package.json",
+          "packageName": "@sloi/headless-core",
+          "hasTypes": true
+        },
+        {
+          "relativePath": "packages/lit-wrappers/package.json",
+          "packageName": "@sloi/lit-wrappers",
+          "hasTypes": true
+        }
+      ],
+      "smokeCheck": {
+        "command": "pnpm exec tsc --project src/test/fixtures/multi-framework/tsconfig.json --noEmit",
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    "a11yParity": {
+      "passed": true,
+      "manifestRelativePath": "docs/governance/multi-framework-a11y-parity.json",
+      "stableComponents": 0,
+      "parityValidatedComponents": 0,
+      "components": [
+        {
+          "name": "Dialog",
+          "stability": "experimental",
+          "reactStatus": "validated",
+          "litStatus": "planned",
+          "reactA11yTestExists": true,
+          "litA11yTestExists": false,
+          "stableParitySatisfied": true,
+          "passed": true
+        },
+        {
+          "name": "Select",
+          "stability": "experimental",
+          "reactStatus": "validated",
+          "litStatus": "planned",
+          "reactA11yTestExists": true,
+          "litA11yTestExists": false,
+          "stableParitySatisfied": true,
+          "passed": true
+        },
+        {
+          "name": "Tabs",
+          "stability": "experimental",
+          "reactStatus": "validated",
+          "litStatus": "planned",
+          "reactA11yTestExists": true,
+          "litA11yTestExists": false,
+          "stableParitySatisfied": true,
+          "passed": true
+        },
+        {
+          "name": "Tooltip",
+          "stability": "experimental",
+          "reactStatus": "validated",
+          "litStatus": "planned",
+          "reactA11yTestExists": true,
+          "litA11yTestExists": false,
+          "stableParitySatisfied": true,
+          "passed": true
+        },
+        {
+          "name": "Combobox",
+          "stability": "experimental",
+          "reactStatus": "validated",
+          "litStatus": "planned",
+          "reactA11yTestExists": true,
+          "litA11yTestExists": false,
+          "stableParitySatisfied": true,
+          "passed": true
+        }
+      ],
+      "warnings": [
+        "No stable multi-framework components yet; parity gate remains in experimental readiness mode."
+      ]
+    }
+  }
+}

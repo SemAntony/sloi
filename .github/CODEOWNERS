@@ -1,0 +1,50 @@
+# Replace placeholder team handles below with real GitHub teams in your org.
+
+* @sloi/frontend-platform
+
+# Design system core components
+/src/shared/ui/alert/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/badge/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/breadcrumb/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/button/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/card/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/combobox/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/date-picker/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/empty-state/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/field-message/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/file-uploader/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/input/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/input-group/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/modal/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/number-field/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/patterns/ @sloi/design-system-core @sloi/product-ux
+/src/shared/ui/phone-field/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/primitives/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/search-input/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/skeleton/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/textarea/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/tooltip/ @sloi/design-system-core @sloi/frontend-platform
+/src/shared/ui/foundations/ @sloi/design-system-core @sloi/brand-systems
+/src/shared/ui/icon/ @sloi/design-system-core @sloi/brand-systems
+/src/shared/ui/typography/ @sloi/design-system-core @sloi/brand-systems
+
+# Data experience surfaces
+/src/shared/ui/data-table/ @sloi/data-experience @sloi/design-system-core
+/src/shared/ui/filter-bar/ @sloi/data-experience @sloi/design-system-core
+/src/shared/ui/pagination/ @sloi/data-experience @sloi/design-system-core
+/src/shared/ui/table/ @sloi/data-experience @sloi/design-system-core
+
+# Style foundations
+/packages/tokens/src/palette.css @sloi/brand-systems @sloi/design-system-core
+/packages/tokens/src/tokens.css @sloi/design-system-core @sloi/brand-systems
+/packages/tokens/src/typography.css @sloi/design-system-core @sloi/brand-systems
+/src/app/styles/palette.css @sloi/brand-systems @sloi/design-system-core
+/src/app/styles/tokens.css @sloi/design-system-core @sloi/brand-systems
+/src/app/styles/typography.css @sloi/design-system-core @sloi/brand-systems
+
+# Governance and release docs
+/docs/governance/ @sloi/design-system-core @sloi/frontend-platform
+/docs/release/ @sloi/design-system-core @sloi/frontend-platform
+/docs/adoption/ @sloi/design-system-core @sloi/frontend-platform
+/docs/backlog/ @sloi/design-system-core @sloi/data-experience
+/CHANGELOG.md @sloi/design-system-core @sloi/frontend-platform

@@ -1,0 +1,105 @@
+.sloi-typography {
+  margin: 0;
+  color: var(--sloi-text-primary);
+  font-family: inherit;
+}
+
+.sloi-text-display-lg {
+  font-size: var(--sloi-font-size-800);
+  line-height: var(--sloi-font-line-tight);
+  font-weight: var(--sloi-font-weight-bold);
+}
+
+.sloi-text-display-md {
+  font-size: var(--sloi-font-size-700);
+  line-height: var(--sloi-font-line-tight);
+  font-weight: var(--sloi-font-weight-bold);
+}
+
+.sloi-text-heading-lg {
+  font-size: var(--sloi-font-size-600);
+  line-height: var(--sloi-font-line-snug);
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.sloi-text-heading-md {
+  font-size: var(--sloi-font-size-500);
+  line-height: var(--sloi-font-line-snug);
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.sloi-text-heading-sm {
+  font-size: var(--sloi-font-size-400);
+  line-height: var(--sloi-font-line-normal);
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.sloi-text-body-lg {
+  font-size: var(--sloi-font-size-400);
+  line-height: var(--sloi-font-line-relaxed);
+  font-weight: var(--sloi-font-weight-regular);
+}
+
+.sloi-text-body-md {
+  font-size: var(--sloi-font-size-300);
+  line-height: var(--sloi-font-line-normal);
+  font-weight: var(--sloi-font-weight-regular);
+}
+
+.sloi-text-body-sm {
+  font-size: var(--sloi-font-size-200);
+  line-height: var(--sloi-font-line-normal);
+  font-weight: var(--sloi-font-weight-regular);
+}
+
+.sloi-text-caption {
+  font-size: var(--sloi-font-size-100);
+  line-height: var(--sloi-font-line-normal);
+  font-weight: var(--sloi-font-weight-medium);
+}
+
+.sloi-text-primary {
+  color: var(--sloi-text-primary);
+}
+
+.sloi-text-secondary {
+  color: var(--sloi-text-secondary);
+}
+
+.sloi-text-muted {
+  color: var(--sloi-text-muted);
+}
+
+.sloi-font-regular {
+  font-weight: var(--sloi-font-weight-regular);
+}
+
+.sloi-font-medium {
+  font-weight: var(--sloi-font-weight-medium);
+}
+
+.sloi-font-semibold {
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.sloi-font-bold {
+  font-weight: var(--sloi-font-weight-bold);
+}
+
+.sloi-leading-tight {
+  line-height: var(--sloi-font-line-tight);
+}
+
+.sloi-leading-normal {
+  line-height: var(--sloi-font-line-normal);
+}
+
+.sloi-leading-relaxed {
+  line-height: var(--sloi-font-line-relaxed);
+}
+
+.sloi-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

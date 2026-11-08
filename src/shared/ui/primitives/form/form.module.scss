@@ -1,0 +1,103 @@
+.formRoot {
+  display: grid;
+  gap: 0.875rem;
+  width: 100%;
+}
+
+.formField {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--sloi-text-primary);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.label[data-invalid] {
+  color: var(--sloi-status-danger-text);
+}
+
+.control {
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-primary);
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.control::placeholder {
+  color: var(--sloi-text-muted);
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.control:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.control[data-invalid],
+.control:invalid {
+  border-color: var(--sloi-status-danger-border);
+}
+
+.control[data-valid] {
+  border-color: color-mix(in srgb, var(--sloi-interactive-primary-bg) 40%, var(--sloi-border-primary));
+}
+
+.control:is(textarea) {
+  min-height: 6.5rem;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.formMessage {
+  min-height: 1rem;
+  color: var(--sloi-status-danger-text);
+  font-size: 0.75rem;
+}
+
+.formSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 2.5rem;
+  border: 1px solid var(--sloi-interactive-secondary-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-interactive-secondary-bg);
+  color: var(--sloi-interactive-secondary-text);
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, background-color 120ms ease;
+}
+
+.formSubmit:hover:not(:disabled) {
+  border-color: var(--sloi-interactive-secondary-border-hover);
+  color: var(--sloi-interactive-secondary-text-hover);
+}
+
+.formSubmit:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.formSubmit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

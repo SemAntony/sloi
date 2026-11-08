@@ -1,0 +1,78 @@
+.scrollAreaRoot {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--sloi-radius-md);
+}
+
+.scrollAreaViewport {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.scrollAreaScrollbar {
+  display: flex;
+  user-select: none;
+  touch-action: none;
+  padding: 2px;
+  background: color-mix(in srgb, var(--sloi-surface-elevated) 78%, transparent);
+  opacity: 1;
+  transition: opacity 150ms ease, background-color 150ms ease;
+}
+
+.scrollAreaScrollbar[data-state='hidden'] {
+  opacity: 0;
+}
+
+.scrollAreaScrollbar[data-state='visible'] {
+  opacity: 1;
+}
+
+.scrollAreaScrollbar:hover {
+  background: color-mix(in srgb, var(--sloi-surface-elevated) 90%, transparent);
+}
+
+.scrollAreaScrollbar[data-orientation='vertical'] {
+  width: 10px;
+}
+
+.scrollAreaScrollbar[data-orientation='horizontal'] {
+  flex-direction: column;
+  height: 10px;
+}
+
+.scrollAreaThumb {
+  position: relative;
+  flex: 1;
+  min-width: 18px;
+  min-height: 18px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--sloi-border-strong) 88%, transparent);
+  background-color: color-mix(in srgb, var(--sloi-border-strong) 86%, transparent);
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.scrollAreaThumb[data-state='visible'] {
+  background-color: var(--sloi-border-strong);
+}
+
+.scrollAreaThumb:hover {
+  background-color: color-mix(in srgb, var(--sloi-interactive-primary-bg) 70%, var(--sloi-border-strong));
+  border-color: color-mix(in srgb, var(--sloi-interactive-primary-bg) 55%, var(--sloi-border-strong));
+}
+
+.scrollAreaThumb:active {
+  background-color: var(--sloi-interactive-primary-bg);
+  border-color: var(--sloi-interactive-primary-bg);
+}
+
+.scrollAreaCorner {
+  background: color-mix(in srgb, var(--sloi-surface-elevated) 78%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollAreaScrollbar,
+  .scrollAreaThumb {
+    transition: none;
+  }
+}

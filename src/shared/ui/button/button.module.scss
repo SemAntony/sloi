@@ -1,0 +1,95 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--sloi-radius-md);
+  font-size: var(--sloi-font-size-label);
+  line-height: var(--sloi-font-line-label);
+  font-weight: var(--sloi-font-weight-semibold);
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform var(--sloi-motion-duration-sm) var(--sloi-motion-easing-standard),
+    box-shadow var(--sloi-motion-duration-sm) var(--sloi-motion-easing-standard),
+    background-color var(--sloi-motion-duration-sm) var(--sloi-motion-easing-standard),
+    border-color var(--sloi-motion-duration-sm) var(--sloi-motion-easing-standard),
+    color var(--sloi-motion-duration-sm) var(--sloi-motion-easing-standard);
+  &:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+}
+
+.sizeSm {
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.sizeMd {
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.sizeLg {
+  min-height: 3rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.variantPrimary {
+  color: var(--sloi-interactive-primary-text);
+  background: linear-gradient(
+    130deg,
+    var(--sloi-interactive-primary-bg),
+    var(--sloi-interactive-primary-bg-hover)
+  );
+  box-shadow: 0 8px 18px -12px var(--sloi-interactive-primary-shadow);
+  &:not(:disabled):hover {
+    background: linear-gradient(
+      130deg,
+      var(--sloi-interactive-primary-bg-hover),
+      var(--sloi-interactive-primary-bg-active)
+    );
+    box-shadow: 0 14px 24px -14px var(--sloi-interactive-primary-shadow);
+  }
+}
+
+.variantSecondary {
+  color: var(--sloi-interactive-secondary-text);
+  background-color: var(--sloi-interactive-secondary-bg);
+  border-color: var(--sloi-interactive-secondary-border);
+
+  &:not(:disabled):hover {
+    border-color: var(--sloi-interactive-secondary-border-hover);
+    color: var(--sloi-interactive-secondary-text-hover);
+  }
+}
+
+.variantGhost {
+  color: var(--sloi-interactive-ghost-text);
+  background-color: transparent;
+
+  &:not(:disabled):hover {
+    background-color: var(--sloi-interactive-ghost-bg-hover);
+  }
+}

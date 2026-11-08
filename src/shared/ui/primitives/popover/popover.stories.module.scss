@@ -1,0 +1,126 @@
+.iconButton {
+  display: inline-flex;
+  width: 2.3rem;
+  height: 2.3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-elevated);
+  color: var(--sloi-text-primary);
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  border-color: var(--sloi-border-strong);
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.popoverLayout {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.heading {
+  margin: 0 0 0.15rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.fieldset {
+  display: grid;
+  grid-template-columns: 6.2rem 1fr;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.label {
+  color: var(--sloi-text-secondary);
+  font-size: 0.78rem;
+}
+
+.input {
+  min-height: 1.9rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-primary);
+  padding: 0.28rem 0.55rem;
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.controlledContent {
+  display: grid;
+  gap: 0.65rem;
+  width: min(20rem, calc(100vw - 2rem));
+}
+
+.helperText {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.stack {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.status {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.anchorRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  padding: 0.5rem 0.65rem;
+  background-color: var(--sloi-surface-base);
+}
+
+.anchorTrigger {
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  background-color: var(--sloi-surface-elevated);
+  color: var(--sloi-text-primary);
+  padding: 0.25rem 0.55rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.anchorTrigger:hover {
+  border-color: var(--sloi-border-strong);
+}
+
+.containerPanel {
+  width: min(420px, 100%);
+  min-height: 210px;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  display: grid;
+  place-items: center;
+  position: relative;
+  background-color: var(--sloi-surface-base);
+}

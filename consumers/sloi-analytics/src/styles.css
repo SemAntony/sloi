@@ -1,0 +1,33 @@
+.analyticsSurface {
+  background: var(--sloi-surface-canvas);
+  color: var(--sloi-text-primary);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  padding: var(--sloi-space-6);
+  display: grid;
+  gap: var(--sloi-space-4);
+}
+
+.analyticsHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sloi-space-3);
+}
+
+.analyticsHeader h1 {
+  margin: 0;
+  font-size: var(--sloi-font-size-500);
+  line-height: var(--sloi-font-line-tight);
+}
+
+.analyticsHeader p {
+  margin: var(--sloi-space-1) 0 0;
+  color: var(--sloi-text-secondary);
+}
+
+.analyticsFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sloi-space-2);
+}

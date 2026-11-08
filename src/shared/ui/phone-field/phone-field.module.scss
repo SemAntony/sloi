@@ -1,0 +1,38 @@
+.phoneField {
+  width: 100%;
+  min-height: var(--sloi-size-control-md);
+  border: 1px solid var(--sloi-field-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-field-bg);
+  color: var(--sloi-text-primary);
+  padding: 0 var(--sloi-space-3);
+  font: inherit;
+  font-size: var(--sloi-font-size-300);
+  line-height: var(--sloi-font-line-normal);
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.phoneField::placeholder {
+  color: var(--sloi-field-placeholder);
+}
+
+.phoneField:hover:not(:disabled):not([aria-invalid='true']) {
+  border-color: var(--sloi-field-border-hover);
+}
+
+.phoneField:focus-visible {
+  border-color: var(--sloi-field-border-focus);
+  outline: 2px solid color-mix(in srgb, var(--sloi-focus-ring) 35%, transparent);
+  outline-offset: 1px;
+}
+
+.phoneField[aria-invalid='true'],
+.phoneField[data-invalid] {
+  border-color: var(--sloi-field-border-invalid);
+}
+
+.phoneField:disabled,
+.phoneField:read-only {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

@@ -1,0 +1,65 @@
+.checkboxRoot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: 0.35rem;
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-interactive-primary-text);
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    opacity 120ms ease;
+}
+
+.checkboxRoot:hover:not([data-disabled]) {
+  border-color: var(--sloi-border-strong);
+}
+
+.checkboxRoot:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.checkboxRoot[data-state='checked'],
+.checkboxRoot[data-state='indeterminate'] {
+  background-color: var(--sloi-interactive-primary-bg);
+  border-color: var(--sloi-interactive-primary-bg);
+}
+
+.checkboxRoot[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.checkboxIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  pointer-events: none;
+}
+
+.checkboxIndicator[data-state='unchecked'] {
+  opacity: 0;
+}
+
+.checkboxCheckIcon,
+.checkboxIndeterminateIcon {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.checkboxIndicator[data-state='checked'] .checkboxIndeterminateIcon {
+  display: none;
+}
+
+.checkboxIndicator[data-state='indeterminate'] .checkboxCheckIcon {
+  display: none;
+}

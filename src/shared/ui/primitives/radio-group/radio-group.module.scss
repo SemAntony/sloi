@@ -1,0 +1,71 @@
+.radioGroupRoot {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.radioGroupRoot[data-disabled] {
+  opacity: 0.7;
+}
+
+.radioItem {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: 999px;
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-interactive-primary-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.radioItem:hover:not([data-disabled]) {
+  border-color: var(--sloi-border-strong);
+}
+
+.radioItem:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.radioItem[data-state='checked'] {
+  border-color: var(--sloi-interactive-primary-bg);
+  background-color: color-mix(in srgb, var(--sloi-interactive-primary-bg) 10%, var(--sloi-surface-base));
+}
+
+.radioItem[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.radioIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.radioIndicator[data-state='checked'] {
+  animation: radio-indicator-in 140ms ease-out;
+}
+
+@keyframes radio-indicator-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radioIndicator[data-state='checked'] {
+    animation: none;
+  }
+}

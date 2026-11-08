@@ -1,0 +1,292 @@
+.surfaceFloating {
+  border: 1px solid var(--sloi-surface-floating-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-floating);
+  color: var(--sloi-text-primary);
+  box-shadow: var(--sloi-shadow-floating);
+}
+
+.navigationMenuRoot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.navigationMenuSub {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.navigationMenuList {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem;
+  margin: 0;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-base);
+}
+
+.navigationMenuList[data-orientation='vertical'] {
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 12rem;
+}
+
+.navigationMenuItem {
+  list-style: none;
+}
+
+.navigationMenuTrigger,
+.navigationMenuLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: calc(var(--sloi-radius-sm) - 1px);
+  color: var(--sloi-text-primary);
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.navigationMenuTrigger {
+  gap: 0.4rem;
+}
+
+.navigationMenuTrigger:hover,
+.navigationMenuLink:hover,
+.navigationMenuTrigger[data-state='open'] {
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.navigationMenuContent {
+  width: max-content;
+  min-width: min(22rem, calc(100vw - 2rem));
+  max-width: min(30rem, calc(100vw - 2rem));
+  padding: 0.8rem;
+  transform-origin: var(--radix-navigation-menu-content-transform-origin, top center);
+}
+
+.navigationMenuContent[data-motion='from-start'] {
+  animation: sloi-navigation-menu-in-from-left 220ms ease;
+}
+
+.navigationMenuContent[data-motion='from-end'] {
+  animation: sloi-navigation-menu-in-from-right 220ms ease;
+}
+
+.navigationMenuContent[data-motion='to-start'] {
+  animation: sloi-navigation-menu-out-to-left 180ms ease;
+}
+
+.navigationMenuContent[data-motion='to-end'] {
+  animation: sloi-navigation-menu-out-to-right 180ms ease;
+}
+
+.navigationMenuContent[data-state='open']:not([data-motion]) {
+  animation: sloi-fade-in 140ms ease;
+}
+
+.navigationMenuTrigger:focus-visible,
+.navigationMenuLink:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.navigationMenuTrigger[data-disabled],
+.navigationMenuLink[data-disabled] {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.triggerChevron {
+  color: var(--sloi-text-muted);
+  transition: transform 160ms ease, color 120ms ease;
+}
+
+.navigationMenuTrigger[data-state='open'] .triggerChevron {
+  transform: rotate(180deg);
+  color: var(--sloi-text-secondary);
+}
+
+.navigationMenuIndicator {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 10px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.navigationMenuIndicator[data-orientation='vertical'] {
+  width: 10px;
+  height: auto;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.navigationMenuIndicator[data-state='visible'] {
+  animation: sloi-fade-in 140ms ease;
+}
+
+.navigationMenuIndicator[data-state='hidden'] {
+  animation: sloi-fade-out 140ms ease;
+}
+
+.navigationMenuIndicator::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg) translateY(50%);
+  border: 1px solid var(--sloi-surface-floating-border);
+  border-top: none;
+  border-left: none;
+  background-color: var(--sloi-surface-floating);
+}
+
+.navigationMenuIndicator[data-orientation='vertical']::after {
+  transform: rotate(45deg) translateX(-50%);
+}
+
+.navigationMenuViewport {
+  margin-top: 0.65rem;
+  overflow: hidden;
+  width: var(--radix-navigation-menu-viewport-width);
+  height: var(--radix-navigation-menu-viewport-height);
+  min-width: min(22rem, calc(100vw - 2rem));
+  max-width: min(30rem, calc(100vw - 2rem));
+  transform-origin: top center;
+}
+
+.navigationMenuViewport[data-orientation='vertical'] {
+  margin-top: 0;
+  margin-left: 0.65rem;
+  transform-origin: left center;
+}
+
+.navigationMenuViewport[data-state='open'] {
+  animation: sloi-scale-in 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navigationMenuViewport[data-state='closed'] {
+  animation: sloi-scale-out 150ms ease-in;
+}
+
+@keyframes sloi-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sloi-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sloi-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sloi-scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes sloi-navigation-menu-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sloi-navigation-menu-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sloi-navigation-menu-out-to-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes sloi-navigation-menu-out-to-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigationMenuContent[data-state='open'],
+  .navigationMenuContent[data-state='closed'],
+  .navigationMenuContent[data-motion='from-start'],
+  .navigationMenuContent[data-motion='from-end'],
+  .navigationMenuContent[data-motion='to-start'],
+  .navigationMenuContent[data-motion='to-end'],
+  .navigationMenuIndicator[data-state='visible'],
+  .navigationMenuIndicator[data-state='hidden'],
+  .navigationMenuViewport[data-state='open'],
+  .navigationMenuViewport[data-state='closed'] {
+    animation: none;
+  }
+}

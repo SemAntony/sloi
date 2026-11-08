@@ -1,0 +1,138 @@
+.surfaceFloating {
+  border: 1px solid var(--sloi-surface-floating-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-floating);
+  color: var(--sloi-text-primary);
+  box-shadow: var(--sloi-shadow-floating);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: var(--sloi-overlay-backdrop);
+  backdrop-filter: blur(1.5px);
+}
+
+.overlay[data-state='open'] {
+  animation: sloi-fade-in var(--sloi-motion-duration-lg) var(--sloi-motion-easing-standard);
+}
+
+.overlay[data-state='closed'] {
+  animation: sloi-fade-out var(--sloi-motion-duration-md) var(--sloi-motion-easing-exit);
+}
+
+.dialogContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 51;
+  width: min(34rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1.25rem;
+  transform: translate(-50%, -50%);
+  outline: none;
+}
+
+.dialogContent[data-state='open'] {
+  animation: sloi-content-in var(--sloi-motion-duration-xl) var(--sloi-motion-easing-standard);
+}
+
+.dialogContent[data-state='closed'] {
+  animation: sloi-content-out var(--sloi-motion-duration-md) var(--sloi-motion-easing-exit);
+}
+
+.dialogTitle {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.dialogDescription {
+  margin: 0.5rem 0 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.dialogCloseButton {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  display: inline-flex;
+  width: 1.8rem;
+  height: 1.8rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--sloi-radius-sm);
+  background: transparent;
+  color: var(--sloi-text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.dialogCloseButton:hover {
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+  color: var(--sloi-text-primary);
+}
+
+.dialogCloseButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+@keyframes sloi-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sloi-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sloi-content-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes sloi-content-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay[data-state='open'],
+  .overlay[data-state='closed'],
+  .dialogContent[data-state='open'],
+  .dialogContent[data-state='closed'] {
+    animation: none;
+  }
+}

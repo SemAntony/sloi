@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-04-06T09:15:17.167Z",
+  "sources": {
+    "uiKitRoot": "/Users/sem/WebstormProjects/sloi-ui",
+    "consumers": [
+      "/Users/sem/WebstormProjects/sloi-ui/consumers/sloi-pilot",
+      "/Users/sem/WebstormProjects/sloi-ui/consumers/sloi-analytics",
+      "/Users/sem/WebstormProjects/sloi-ui/consumers/sloi-operations"
+    ]
+  },
+  "metrics": {
+    "uiKit": {
+      "components_total": 56,
+      "components_with_stories": 56,
+      "components_with_tests": 18,
+      "components_with_a11y_tests": 18,
+      "tokens_total": 97,
+      "tokens_used_in_ui": 80
+    },
+    "consumers": {
+      "imports_by_component": {
+        "Badge": 3,
+        "Button": 2,
+        "DataTableV2": 3,
+        "Input": 3,
+        "Select": 2,
+        "ToggleGroup": 1,
+        "Tooltip": 3
+      },
+      "token_usage_by_name": {
+        "--sloi-border-primary": 3,
+        "--sloi-font-line-tight": 3,
+        "--sloi-font-size-500": 3,
+        "--sloi-radius-lg": 3,
+        "--sloi-space-1": 3,
+        "--sloi-space-2": 3,
+        "--sloi-space-3": 3,
+        "--sloi-space-4": 3,
+        "--sloi-space-6": 3,
+        "--sloi-surface-canvas": 3,
+        "--sloi-text-primary": 3,
+        "--sloi-text-secondary": 3
+      },
+      "unknown_local_overrides": {}
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.stack {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.status {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.containerPanel {
+  width: min(420px, 100%);
+  min-height: 220px;
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  border: 1px dashed var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  background: color-mix(in srgb, var(--sloi-surface-elevated) 82%, var(--sloi-surface-base));
+  padding: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.helper {
+  margin: 0;
+  color: var(--sloi-text-muted);
+  font-size: 0.75rem;
+}

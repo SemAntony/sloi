@@ -1,0 +1,192 @@
+.surfaceFloating {
+  border: 1px solid var(--sloi-surface-floating-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-floating);
+  color: var(--sloi-text-primary);
+  box-shadow: var(--sloi-shadow-floating);
+}
+
+.menubarRoot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-elevated);
+  padding: 0.2rem;
+}
+
+.menubarTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  border: 0;
+  border-radius: calc(var(--sloi-radius-sm) - 1px);
+  background-color: transparent;
+  color: var(--sloi-text-primary);
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.menubarTrigger[data-state='open'],
+.menubarTrigger[data-highlighted] {
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.menubarTrigger[data-disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.menubarTrigger:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.menuContent,
+.menuSubContent {
+  min-width: 12rem;
+  max-height: min(
+    var(--radix-menubar-content-available-height, 20rem),
+    22rem
+  );
+  overflow: auto;
+  padding: 0.25rem;
+  transform-origin: var(--radix-menubar-content-transform-origin);
+}
+
+.menuContent[data-state='open'],
+.menuSubContent[data-state='open'] {
+  animation: sloi-menubar-in 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menuContent[data-state='closed'],
+.menuSubContent[data-state='closed'] {
+  animation: sloi-menubar-out 120ms ease-in;
+}
+
+.menuItem,
+.menuCheckboxItem,
+.menuRadioItem,
+.menuSubTrigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 2rem;
+  border: 0;
+  border-radius: calc(var(--sloi-radius-sm) - 1px);
+  padding: 0.35rem 0.5rem;
+  font: inherit;
+  color: var(--sloi-text-primary);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menuItem[data-highlighted],
+.menuCheckboxItem[data-highlighted],
+.menuRadioItem[data-highlighted],
+.menuSubTrigger[data-highlighted] {
+  outline: none;
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.menuItem:focus-visible,
+.menuCheckboxItem:focus-visible,
+.menuRadioItem:focus-visible,
+.menuSubTrigger:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.menuItem[data-disabled],
+.menuCheckboxItem[data-disabled],
+.menuRadioItem[data-disabled],
+.menuSubTrigger[data-disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.menuInset {
+  padding-left: 1.75rem;
+}
+
+.menuLabel {
+  padding: 0.35rem 0.5rem;
+  color: var(--sloi-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.menuSeparator {
+  height: 1px;
+  margin: 0.25rem;
+  background-color: var(--sloi-border-primary);
+}
+
+.menuItemIndicatorSlot {
+  position: absolute;
+  left: 0.45rem;
+  display: inline-flex;
+  width: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuItemIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  color: var(--sloi-interactive-primary-bg);
+  line-height: 1;
+}
+
+.menuShortcut {
+  margin-left: auto;
+  color: var(--sloi-text-muted);
+  font-size: 0.75rem;
+}
+
+.menuArrow {
+  fill: var(--sloi-surface-floating);
+}
+
+@keyframes sloi-menubar-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sloi-menubar-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuContent[data-state='open'],
+  .menuSubContent[data-state='open'],
+  .menuContent[data-state='closed'],
+  .menuSubContent[data-state='closed'] {
+    animation: none;
+  }
+}

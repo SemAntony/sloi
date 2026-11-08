@@ -1,0 +1,36 @@
+.group {
+  width: min(22rem, 100%);
+}
+
+.groupHorizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.95rem;
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.label {
+  color: var(--sloi-text-primary);
+  font-size: 0.875rem;
+}
+
+.stack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.status {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.customIndicator {
+  font-size: 0.5rem;
+  line-height: 1;
+}

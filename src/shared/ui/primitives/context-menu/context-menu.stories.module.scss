@@ -1,0 +1,32 @@
+.triggerArea {
+  width: min(360px, 100%);
+  min-height: 150px;
+  border: 1px dashed var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  display: grid;
+  place-items: center;
+  color: var(--sloi-text-secondary);
+  background:
+    radial-gradient(
+      circle at 12% 20%,
+      color-mix(in srgb, var(--sloi-palette-cyan-2) 70%, transparent),
+      transparent 45%
+    ),
+    var(--sloi-surface-elevated);
+}
+
+.hint {
+  font-size: 0.875rem;
+}
+
+.containerPanel {
+  width: min(420px, 100%);
+  min-height: 190px;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  display: grid;
+  place-items: center;
+  position: relative;
+  color: var(--sloi-text-secondary);
+  background-color: var(--sloi-surface-base);
+}

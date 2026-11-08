@@ -1,0 +1,17 @@
+.message {
+  margin: 0;
+  font-size: var(--sloi-font-size-200);
+  line-height: var(--sloi-font-line-normal);
+}
+
+.toneDefault {
+  color: var(--sloi-text-secondary);
+}
+
+.toneError {
+  color: var(--sloi-status-danger-text);
+}
+
+.toneSuccess {
+  color: var(--sloi-status-success-text);
+}

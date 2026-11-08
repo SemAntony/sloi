@@ -1,0 +1,166 @@
+name: Icon/Token Change Request
+description: Запрос на добавление или изменение иконок и color-токенов в дизайн-системе
+title: "[Foundations] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Используйте этот шаблон для изменений в `Icon` и token foundations.
+
+        Полезные ссылки:
+        - Policy: `docs/governance/iconography-color-token-policy.md`
+        - Request template: `docs/governance/icon-token-change-request-template.md`
+
+  - type: checkboxes
+    id: request_type
+    attributes:
+      label: Тип запроса
+      options:
+        - label: New icon
+        - label: Icon update/deprecate
+        - label: New color token
+        - label: Token update/deprecate
+    validations:
+      required: true
+
+  - type: input
+    id: product_consumer
+    attributes:
+      label: Product/consumer
+      description: Какой продукт/consumer инициирует запрос
+      placeholder: consumers/sloi-pilot
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use-case
+      description: Где используется изменение и какую проблему решает
+      placeholder: |
+        Scenario:
+        Blocking pain:
+    validations:
+      required: true
+
+  - type: input
+    id: ticket_link
+    attributes:
+      label: Link to ticket/issue
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: input
+    id: component_or_screen
+    attributes:
+      label: Tier-1 component or consumer screen
+      placeholder: DataTableV2 / Analytics billing table
+    validations:
+      required: true
+
+  - type: textarea
+    id: reuse_rationale
+    attributes:
+      label: Why existing icon/token cannot be reused
+      placeholder: Короткое обоснование, почему текущие assets не подходят
+    validations:
+      required: true
+
+  - type: input
+    id: candidate_icon_name
+    attributes:
+      label: Candidate icon name (if applicable)
+      placeholder: table-columns
+    validations:
+      required: false
+
+  - type: input
+    id: candidate_token_name
+    attributes:
+      label: Candidate token name (if applicable)
+      placeholder: --sloi-status-neutral-border
+    validations:
+      required: false
+
+  - type: textarea
+    id: semantic_role
+    attributes:
+      label: Semantic role
+      description: Смысл токена/иконки, а не hue-описание
+      placeholder: token controls neutral info border in readonly states
+    validations:
+      required: true
+
+  - type: input
+    id: light_mapping
+    attributes:
+      label: Light theme mapping
+      placeholder: --sloi-palette-slate-6
+    validations:
+      required: false
+
+  - type: input
+    id: dark_mapping
+    attributes:
+      label: Dark theme mapping
+      placeholder: --sloi-palette-slate-4
+    validations:
+      required: false
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Затронутые компоненты, a11y-риск, миграция
+      placeholder: |
+        Affected components:
+        A11y impact:
+        Migration needed:
+    validations:
+      required: true
+
+  - type: textarea
+    id: icon_accessibility_contract
+    attributes:
+      label: Icon accessibility contract (for icon changes)
+      description: Обязательно для всех изменений иконок
+      placeholder: |
+        Icon intent: decorative | informative
+        Accessible label (if informative):
+        Icon-only control naming source: Icon label | control aria-label
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: validation_plan
+    attributes:
+      label: Validation plan
+      options:
+        - label: Storybook updated
+        - label: Unit tests updated
+        - label: A11y tests updated
+        - label: Changelog updated for user-visible changes
+        - label: `pnpm run typecheck`
+        - label: `pnpm run lint`
+        - label: `pnpm run test`
+        - label: `pnpm run test:a11y`
+        - label: `pnpm run storybook:build`
+        - label: `pnpm run adoption:metrics:ci`
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: definition_of_done
+    attributes:
+      label: Definition of Done
+      description: Подтвердите, что минимальные условия выполнены
+      options:
+        - label: Use-case validated by owner
+          required: true
+        - label: No raw HEX introduced in `src/shared/ui/*`
+          required: true
+        - label: Docs/story/tests updated
+          required: true
+        - label: RFC will be created if change affects foundation model/API
+          required: true

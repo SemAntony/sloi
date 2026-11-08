@@ -1,0 +1,152 @@
+.surfaceFloating {
+  border: 1px solid var(--sloi-surface-floating-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-floating);
+  color: var(--sloi-text-primary);
+  box-shadow: var(--sloi-shadow-floating);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--sloi-overlay-backdrop);
+  backdrop-filter: blur(1.5px);
+}
+
+.overlay[data-state='open'] {
+  animation: sloi-fade-in 160ms ease;
+}
+
+.overlay[data-state='closed'] {
+  animation: sloi-fade-out 140ms ease;
+}
+
+.dialogContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(34rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1.25rem;
+  transform: translate(-50%, -50%);
+}
+
+.dialogContent[data-state='open'] {
+  animation: sloi-content-in 180ms ease;
+}
+
+.dialogContent[data-state='closed'] {
+  animation: sloi-content-out 140ms ease;
+}
+
+.dialogTitle {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.dialogDescription {
+  margin: 0.5rem 0 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.baseButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  border-radius: calc(var(--sloi-radius-sm) - 1px);
+  padding: 0.35rem 0.75rem;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.baseButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.baseButton:disabled,
+.baseButton[data-disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.cancelButton {
+  border: 1px solid var(--sloi-border-primary);
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-primary);
+}
+
+.cancelButton:hover {
+  border-color: var(--sloi-interactive-secondary-border-hover);
+  color: var(--sloi-interactive-secondary-text-hover);
+}
+
+.actionButton {
+  border: 1px solid var(--sloi-status-danger-border);
+  background-color: var(--sloi-status-danger-bg);
+  color: var(--sloi-status-danger-text);
+}
+
+.actionButton:hover {
+  background-color: color-mix(in srgb, var(--sloi-status-danger-bg) 86%, var(--sloi-status-danger-border));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay[data-state='open'],
+  .overlay[data-state='closed'],
+  .dialogContent[data-state='open'],
+  .dialogContent[data-state='closed'] {
+    animation-duration: 0ms;
+  }
+}
+
+@keyframes sloi-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sloi-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sloi-content-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes sloi-content-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.98);
+  }
+}

@@ -1,0 +1,205 @@
+.toastViewport {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(22rem, calc(100vw - 2rem));
+  max-width: 100%;
+  max-height: calc(100vh - 2rem);
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+  outline: none;
+}
+
+.toastRoot {
+  border: 1px solid var(--sloi-surface-floating-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-floating);
+  color: var(--sloi-text-primary);
+  box-shadow: var(--sloi-shadow-floating);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 0.35rem 0.55rem;
+  padding: 0.75rem;
+  user-select: none;
+  touch-action: none;
+}
+
+.toastRoot[data-state='open'] {
+  animation: sloi-toast-in 200ms ease;
+}
+
+.toastRoot[data-state='closed'] {
+  animation: sloi-toast-out 160ms ease;
+}
+
+.toastRoot[data-swipe='move'] {
+  transform: translate(
+    var(--radix-toast-swipe-move-x, 0),
+    var(--radix-toast-swipe-move-y, 0)
+  );
+}
+
+.toastRoot[data-swipe='cancel'] {
+  transform: translate(0, 0);
+  transition: transform 150ms ease-out;
+}
+
+.toastRoot[data-swipe='end'][data-swipe-direction='right'] {
+  animation: sloi-toast-swipe-right 160ms ease-out;
+}
+
+.toastRoot[data-swipe='end'][data-swipe-direction='left'] {
+  animation: sloi-toast-swipe-left 160ms ease-out;
+}
+
+.toastRoot[data-swipe='end'][data-swipe-direction='up'] {
+  animation: sloi-toast-swipe-up 160ms ease-out;
+}
+
+.toastRoot[data-swipe='end'][data-swipe-direction='down'] {
+  animation: sloi-toast-swipe-down 160ms ease-out;
+}
+
+.toastTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.toastDescription {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.toastAction,
+.toastClose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border: 0;
+  border-radius: calc(var(--sloi-radius-sm) - 1px);
+  font: inherit;
+  color: var(--sloi-text-primary);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  width: auto;
+  min-height: 1.8rem;
+  padding: 0.2rem 0.55rem;
+}
+
+.toastAction:hover,
+.toastClose:hover {
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.toastAction:focus-visible,
+.toastClose:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.toastAction[data-disabled],
+.toastClose[data-disabled],
+.toastAction:disabled,
+.toastClose:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.toastAction {
+  justify-self: start;
+}
+
+.toastClose {
+  justify-self: end;
+}
+
+@keyframes sloi-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sloi-toast-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes sloi-toast-swipe-right {
+  from {
+    transform: translateX(var(--radix-toast-swipe-end-x));
+  }
+
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes sloi-toast-swipe-left {
+  from {
+    transform: translateX(var(--radix-toast-swipe-end-x));
+  }
+
+  to {
+    transform: translateX(-120%);
+  }
+}
+
+@keyframes sloi-toast-swipe-up {
+  from {
+    transform: translateY(var(--radix-toast-swipe-end-y));
+  }
+
+  to {
+    transform: translateY(-120%);
+  }
+}
+
+@keyframes sloi-toast-swipe-down {
+  from {
+    transform: translateY(var(--radix-toast-swipe-end-y));
+  }
+
+  to {
+    transform: translateY(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toastRoot[data-state='open'],
+  .toastRoot[data-state='closed'],
+  .toastRoot[data-swipe='end'][data-swipe-direction='right'],
+  .toastRoot[data-swipe='end'][data-swipe-direction='left'],
+  .toastRoot[data-swipe='end'][data-swipe-direction='up'],
+  .toastRoot[data-swipe='end'][data-swipe-direction='down'] {
+    animation: none;
+  }
+
+  .toastRoot[data-swipe='cancel'],
+  .toastAction,
+  .toastClose {
+    transition: none;
+  }
+}

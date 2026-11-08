@@ -1,0 +1,49 @@
+.container {
+  width: min(40rem, 100%);
+  display: grid;
+  gap: var(--sloi-space-4);
+  padding: var(--sloi-space-5);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  background: var(--sloi-surface-base);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--sloi-font-size-500);
+  line-height: var(--sloi-font-line-tight);
+}
+
+.description {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+}
+
+.form {
+  display: grid;
+  gap: var(--sloi-space-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--sloi-space-2);
+}
+
+.label {
+  font-size: var(--sloi-font-size-200);
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.success {
+  margin: 0;
+  padding: var(--sloi-space-3);
+  border: 1px solid var(--sloi-status-success-border);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-status-success-bg);
+  color: var(--sloi-status-success-text);
+}

@@ -1,0 +1,150 @@
+.surfaceFloating {
+  border: 1px solid var(--sloi-surface-floating-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-floating);
+  color: var(--sloi-text-primary);
+  box-shadow: var(--sloi-shadow-floating);
+}
+
+.popoverTrigger {
+  display: inline-flex;
+}
+
+.popoverAnchor {
+  display: inline-flex;
+}
+
+.popoverContent {
+  z-index: 50;
+  max-width: min(24rem, calc(100vw - 1rem));
+  max-height: min(var(--radix-popover-content-available-height, 28rem), 28rem);
+  overflow: auto;
+  padding: 0.75rem;
+  transform-origin: var(--radix-popover-content-transform-origin);
+}
+
+.popoverContent[data-state='open'] {
+  animation-duration: 180ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popoverContent[data-state='open'][data-side='top'] {
+  animation-name: popover-slide-up;
+}
+
+.popoverContent[data-state='open'][data-side='bottom'] {
+  animation-name: popover-slide-down;
+}
+
+.popoverContent[data-state='open'][data-side='left'] {
+  animation-name: popover-slide-left;
+}
+
+.popoverContent[data-state='open'][data-side='right'] {
+  animation-name: popover-slide-right;
+}
+
+.popoverContent[data-state='closed'] {
+  animation: popover-fade-out 120ms ease-in;
+}
+
+.closeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.95rem;
+  height: 1.95rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-secondary);
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, background-color 120ms ease;
+}
+
+.closeButton:hover:not(:disabled) {
+  border-color: var(--sloi-border-strong);
+  color: var(--sloi-text-primary);
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.closeButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.popoverArrow {
+  fill: var(--sloi-surface-floating);
+  stroke: var(--sloi-surface-floating-border);
+  stroke-width: 1px;
+}
+
+@keyframes popover-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes popover-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes popover-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes popover-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes popover-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popoverContent[data-state='open'],
+  .popoverContent[data-state='closed'] {
+    animation: none;
+  }
+}

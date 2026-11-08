@@ -1,0 +1,33 @@
+.stack {
+  display: grid;
+  gap: 14px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.avatarSm {
+  --sloi-avatar-size: 2rem;
+}
+
+.avatarMd {
+  --sloi-avatar-size: 2.5rem;
+}
+
+.avatarLg {
+  --sloi-avatar-size: 3.25rem;
+}
+
+.avatarButton {
+  cursor: pointer;
+}
+
+.status {
+  min-height: 1.3rem;
+  color: var(--sloi-text-secondary);
+  font-size: 0.875rem;
+}

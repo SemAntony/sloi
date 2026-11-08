@@ -1,0 +1,81 @@
+.root {
+  display: inline-flex;
+  align-items: stretch;
+  width: min(18rem, 100%);
+  min-height: var(--sloi-size-control-md);
+  border: 1px solid var(--sloi-field-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-field-bg);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.root:hover:not([data-invalid]) {
+  border-color: var(--sloi-field-border-hover);
+}
+
+.root:focus-within {
+  border-color: var(--sloi-field-border-focus);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sloi-focus-ring) 35%, transparent);
+}
+
+.root[data-invalid] {
+  border-color: var(--sloi-field-border-invalid);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--sloi-text-primary);
+  font: inherit;
+  font-size: var(--sloi-font-size-300);
+  line-height: var(--sloi-font-line-normal);
+  padding: 0 var(--sloi-space-3);
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input[type='number'] {
+  appearance: textfield;
+}
+
+.stepper {
+  display: inline-grid;
+  grid-template-rows: 1fr 1fr;
+  border-left: 1px solid var(--sloi-field-border);
+}
+
+.stepButton {
+  border: 0;
+  background: transparent;
+  color: var(--sloi-text-secondary);
+  min-width: 2rem;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.stepButton:hover:not(:disabled) {
+  color: var(--sloi-text-primary);
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.stepButton:first-child {
+  border-bottom: 1px solid var(--sloi-field-border);
+}
+
+.stepButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: -2px;
+}
+
+.stepButton:disabled,
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

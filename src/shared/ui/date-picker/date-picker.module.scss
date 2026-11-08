@@ -1,0 +1,55 @@
+.root {
+  display: inline-flex;
+  width: min(22rem, 100%);
+}
+
+.trigger {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.content {
+  padding: var(--sloi-space-3);
+}
+
+.calendar {
+  :global(.rdp-root) {
+    --rdp-accent-color: var(--sloi-interactive-primary-bg);
+    --rdp-accent-background-color: color-mix(
+      in srgb,
+      var(--sloi-interactive-primary-bg) 20%,
+      transparent
+    );
+    --rdp-day-width: 2rem;
+    --rdp-day-height: 2rem;
+    --rdp-day_button-border-radius: var(--sloi-radius-sm);
+    margin: 0;
+  }
+
+  :global(.rdp-day_button) {
+    font: inherit;
+    color: var(--sloi-text-primary);
+  }
+
+  :global(.rdp-day_button:hover:not([disabled])) {
+    background-color: var(--sloi-interactive-ghost-bg-hover);
+  }
+
+  :global(.rdp-selected .rdp-day_button) {
+    color: var(--sloi-text-on-primary);
+  }
+
+  :global(.rdp-caption_label) {
+    font-size: var(--sloi-font-size-200);
+    font-weight: var(--sloi-font-weight-semibold);
+  }
+
+  :global(.rdp-dropdown),
+  :global(.rdp-nav_button) {
+    border-color: var(--sloi-border-primary);
+    border-radius: var(--sloi-radius-sm);
+    color: var(--sloi-text-secondary);
+    background: var(--sloi-surface-base);
+  }
+}

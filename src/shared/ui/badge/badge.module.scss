@@ -1,0 +1,64 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: var(--sloi-font-weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.sizeSm {
+  min-height: 1.25rem;
+  padding: 0 var(--sloi-space-2);
+  font-size: var(--sloi-font-size-100);
+}
+
+.sizeMd {
+  min-height: 1.5rem;
+  padding: 0 var(--sloi-space-3);
+  font-size: var(--sloi-font-size-200);
+}
+
+.toneNeutral {
+  --badge-bg: var(--sloi-surface-elevated);
+  --badge-fg: var(--sloi-text-secondary);
+  --badge-border: var(--sloi-border-primary);
+}
+
+.toneInfo {
+  --badge-bg: var(--sloi-status-info-bg);
+  --badge-fg: var(--sloi-status-info-text);
+  --badge-border: var(--sloi-status-info-border);
+}
+
+.toneSuccess {
+  --badge-bg: var(--sloi-status-success-bg);
+  --badge-fg: var(--sloi-status-success-text);
+  --badge-border: var(--sloi-status-success-border);
+}
+
+.toneWarning {
+  --badge-bg: var(--sloi-status-warning-bg);
+  --badge-fg: var(--sloi-status-warning-text);
+  --badge-border: var(--sloi-status-warning-border);
+}
+
+.toneDanger {
+  --badge-bg: var(--sloi-status-danger-bg);
+  --badge-fg: var(--sloi-status-danger-text);
+  --badge-border: var(--sloi-status-danger-border);
+}
+
+.appearanceSubtle {
+  background-color: var(--badge-bg);
+  color: var(--badge-fg);
+  border-color: var(--badge-border);
+}
+
+.appearanceSolid {
+  background-color: var(--badge-border);
+  color: var(--sloi-text-on-primary);
+  border-color: var(--badge-border);
+}

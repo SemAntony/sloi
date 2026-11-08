@@ -1,0 +1,25 @@
+.stack {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.meta {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.metaLink {
+  color: var(--sloi-text-secondary);
+  text-decoration: none;
+  font-size: 0.82rem;
+}
+
+.pushRight {
+  margin-left: auto;
+}
+
+.verticalToolbar {
+  width: min(13rem, 100%);
+  align-items: stretch;
+}

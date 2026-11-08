@@ -1,0 +1,41 @@
+.root {
+  display: block;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--sloi-surface-elevated) 85%, transparent) 0%,
+    color-mix(in srgb, var(--sloi-surface-elevated) 55%, var(--sloi-surface-base)) 50%,
+    color-mix(in srgb, var(--sloi-surface-elevated) 85%, transparent) 100%
+  );
+  background-size: 180% 100%;
+}
+
+.shapeText {
+  height: 1rem;
+  border-radius: var(--sloi-radius-sm);
+}
+
+.shapeRect {
+  height: 6rem;
+  border-radius: var(--sloi-radius-md);
+}
+
+.shapeCircle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+}
+
+.animated {
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 180% 0;
+  }
+
+  100% {
+    background-position: -40% 0;
+  }
+}

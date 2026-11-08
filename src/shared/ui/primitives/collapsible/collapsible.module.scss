@@ -1,0 +1,90 @@
+.collapsibleRoot {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.collapsibleRoot[data-disabled] {
+  opacity: 0.72;
+}
+
+.collapsibleTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 2rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  padding: 0.375rem 0.625rem;
+  color: var(--sloi-text-primary);
+  background-color: var(--sloi-surface-base);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.collapsibleTrigger:hover:not([data-disabled]) {
+  border-color: var(--sloi-border-strong);
+}
+
+.collapsibleTrigger:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.collapsibleTrigger[data-disabled] {
+  cursor: not-allowed;
+}
+
+.collapsibleChevron {
+  flex-shrink: 0;
+  transition: transform 160ms ease;
+}
+
+.collapsibleTrigger[data-state='open'] .collapsibleChevron {
+  transform: rotate(180deg);
+}
+
+.collapsibleContent {
+  overflow: hidden;
+}
+
+.collapsibleContent[data-state='open'] {
+  animation: sloi-collapsible-down 180ms ease-out;
+}
+
+.collapsibleContent[data-state='closed'] {
+  animation: sloi-collapsible-up 180ms ease-out;
+}
+
+@keyframes sloi-collapsible-down {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes sloi-collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collapsibleChevron {
+    transition: none;
+  }
+
+  .collapsibleContent[data-state='open'],
+  .collapsibleContent[data-state='closed'] {
+    animation: none;
+  }
+}

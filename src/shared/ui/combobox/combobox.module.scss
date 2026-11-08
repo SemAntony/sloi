@@ -1,0 +1,71 @@
+.root {
+  position: relative;
+  display: grid;
+  gap: var(--sloi-space-2);
+}
+
+.control {
+  position: relative;
+}
+
+.input {
+  padding-right: calc(var(--sloi-space-8) + var(--sloi-space-2));
+}
+
+.clearButton {
+  position: absolute;
+  top: 50%;
+  right: var(--sloi-space-2);
+  transform: translateY(-50%);
+  min-height: 1.75rem;
+  width: 1.75rem;
+  padding: 0;
+}
+
+.content {
+  width: var(--radix-popover-trigger-width);
+  max-height: 16rem;
+  overflow: auto;
+  padding: var(--sloi-space-2);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--sloi-space-1);
+}
+
+.option {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--sloi-radius-sm);
+  background: transparent;
+  color: var(--sloi-text-primary);
+  text-align: left;
+  padding: var(--sloi-space-2) var(--sloi-space-3);
+  font: inherit;
+  cursor: pointer;
+}
+
+.option:hover:not(:disabled),
+.option[data-active='true'] {
+  background: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.option[data-selected='true'] {
+  border-color: var(--sloi-focus-ring);
+}
+
+.option:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.empty {
+  margin: 0;
+  padding: var(--sloi-space-2) var(--sloi-space-3);
+  color: var(--sloi-text-secondary);
+  font-size: var(--sloi-font-size-200);
+}

@@ -1,0 +1,67 @@
+.formGrid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.label {
+  color: var(--sloi-text-secondary);
+  font-size: 0.875rem;
+}
+
+.input {
+  height: 2.25rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  padding: 0 0.625rem;
+  font: inherit;
+  color: var(--sloi-text-primary);
+  background-color: var(--sloi-surface-base);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.footer {
+  display: flex;
+  margin-top: 0.25rem;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.containerPanel {
+  min-height: 280px;
+  width: min(460px, 100%);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.localOverlay {
+  position: absolute;
+}
+
+.localContent {
+  position: absolute;
+  width: min(32rem, calc(100% - 1.5rem));
+  max-height: calc(100% - 1.5rem);
+}
+
+.status {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.875rem;
+}

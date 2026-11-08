@@ -1,0 +1,25 @@
+.stack {
+  width: min(22rem, 100%);
+  display: grid;
+  gap: 0.65rem;
+}
+
+.sliderWide {
+  width: 100%;
+}
+
+.verticalWrap {
+  display: inline-grid;
+  justify-items: center;
+  gap: 0.65rem;
+}
+
+.sliderTall {
+  height: 11rem;
+}
+
+.meta {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@sloi/headless-core",
+  "version": "0.1.0",
+  "description": "Headless state controllers for complex Sloi UI components",
+  "type": "module",
+  "types": "./src/index.ts",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0"
+  }
+}

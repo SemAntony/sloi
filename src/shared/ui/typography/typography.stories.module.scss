@@ -1,0 +1,29 @@
+.stack {
+  display: grid;
+  gap: var(--sloi-space-4);
+  width: min(60rem, 100%);
+}
+
+.row {
+  display: grid;
+  gap: var(--sloi-space-2);
+  padding: var(--sloi-space-4);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-base);
+}
+
+.meta {
+  margin: 0;
+  font-size: var(--sloi-font-size-200);
+  color: var(--sloi-text-secondary);
+}
+
+.rules {
+  margin: 0;
+  padding-left: var(--sloi-space-4);
+  color: var(--sloi-text-secondary);
+  font-size: var(--sloi-font-size-200);
+  display: grid;
+  gap: var(--sloi-space-2);
+}

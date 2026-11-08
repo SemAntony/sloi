@@ -1,0 +1,72 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  width: min(28rem, 100%);
+  min-height: var(--sloi-size-control-md);
+  border: 1px solid var(--sloi-field-border);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-field-bg);
+  color: var(--sloi-text-primary);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.root:hover:not([data-invalid]) {
+  border-color: var(--sloi-field-border-hover);
+}
+
+.root:focus-within {
+  border-color: var(--sloi-field-border-focus);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sloi-focus-ring) 35%, transparent);
+}
+
+.root[data-invalid] {
+  border-color: var(--sloi-field-border-invalid);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  min-height: calc(var(--sloi-size-control-md) - 2px);
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--sloi-font-size-300);
+  line-height: var(--sloi-font-line-normal);
+  padding: 0 var(--sloi-space-3);
+}
+
+.input::placeholder {
+  color: var(--sloi-field-placeholder);
+}
+
+.input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.clearButton {
+  border: 0;
+  border-left: 1px solid var(--sloi-field-border);
+  background: transparent;
+  color: var(--sloi-text-secondary);
+  min-width: var(--sloi-size-control-sm);
+  min-height: calc(var(--sloi-size-control-md) - 2px);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.clearButton:hover:not(:disabled) {
+  color: var(--sloi-text-primary);
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.clearButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: -2px;
+}
+
+.clearButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}

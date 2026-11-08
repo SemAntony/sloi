@@ -1,0 +1,38 @@
+.trigger {
+  width: min(15rem, 100%);
+}
+
+.triggerWide {
+  width: min(17rem, 100%);
+}
+
+.content {
+  width: min(18rem, calc(100vw - 1rem));
+}
+
+.contentMatchTrigger {
+  width: var(--radix-select-trigger-width);
+  max-height: min(var(--radix-select-content-available-height), 16rem);
+}
+
+.stack {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.status {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.containerPanel {
+  width: min(22rem, 100%);
+  min-height: 14rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  display: grid;
+  place-items: center;
+  position: relative;
+  background-color: var(--sloi-surface-base);
+}

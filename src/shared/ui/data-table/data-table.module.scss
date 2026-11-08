@@ -1,0 +1,117 @@
+.root {
+  display: grid;
+  gap: var(--sloi-space-3);
+}
+
+.bulkActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sloi-space-3);
+  flex-wrap: wrap;
+  padding: var(--sloi-space-2) var(--sloi-space-3);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-muted);
+}
+
+.bulkMeta {
+  color: var(--sloi-text-primary);
+  font-size: var(--sloi-font-size-200);
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.bulkControls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+  flex-wrap: wrap;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.columnsPopover {
+  min-width: 14rem;
+  padding: var(--sloi-space-3);
+}
+
+.columnsFieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sloi-space-2);
+}
+
+.columnsLegend {
+  margin: 0 0 var(--sloi-space-1) 0;
+  padding: 0;
+  font-size: var(--sloi-font-size-200);
+  color: var(--sloi-text-secondary);
+}
+
+.columnOption {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+  color: var(--sloi-text-primary);
+  font-size: var(--sloi-font-size-200);
+}
+
+.selectionHeader {
+  width: 3rem;
+}
+
+.selectionCell {
+  width: 3rem;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sortButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--sloi-radius-sm);
+}
+
+.sortButtonActive {
+  color: var(--sloi-text-primary);
+}
+
+.sortIndicator {
+  color: var(--sloi-text-muted);
+  font-size: var(--sloi-font-size-100);
+  line-height: 1;
+}
+
+.stateCell {
+  text-align: center;
+  color: var(--sloi-text-secondary);
+  padding: var(--sloi-space-8) var(--sloi-space-4);
+}
+
+.clickableRow {
+  cursor: pointer;
+}
+
+.clickableRow:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: -2px;
+}
+
+.selectedRow {
+  background: color-mix(in srgb, var(--sloi-interactive-primary-bg) 8%, transparent);
+}

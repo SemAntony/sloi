@@ -1,0 +1,249 @@
+.root {
+  display: grid;
+  gap: var(--sloi-space-3);
+}
+
+.bulkActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sloi-space-3);
+  flex-wrap: wrap;
+  padding: var(--sloi-space-2) var(--sloi-space-3);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-muted);
+}
+
+.bulkMeta {
+  color: var(--sloi-text-primary);
+  font-size: var(--sloi-font-size-200);
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.bulkControls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+  flex-wrap: wrap;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tableHeaderControls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+}
+
+.columnsPopover {
+  min-width: 14rem;
+  padding: var(--sloi-space-3);
+}
+
+.pinningPopover {
+  min-width: 18rem;
+  padding: var(--sloi-space-3);
+}
+
+.pinningList {
+  display: grid;
+  gap: var(--sloi-space-2);
+}
+
+.pinningLegend {
+  margin: 0 0 var(--sloi-space-1) 0;
+  padding: 0;
+  font-size: var(--sloi-font-size-200);
+  color: var(--sloi-text-secondary);
+}
+
+.pinningRow {
+  display: grid;
+  gap: var(--sloi-space-2);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  padding: var(--sloi-space-2);
+}
+
+.pinningRowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sloi-space-2);
+}
+
+.pinningLabel {
+  color: var(--sloi-text-primary);
+  font-size: var(--sloi-font-size-200);
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.pinningState {
+  color: var(--sloi-text-secondary);
+  font-size: var(--sloi-font-size-100);
+}
+
+.pinningActions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-1);
+  flex-wrap: wrap;
+}
+
+.columnsFieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sloi-space-2);
+}
+
+.columnsLegend {
+  margin: 0 0 var(--sloi-space-1) 0;
+  padding: 0;
+  font-size: var(--sloi-font-size-200);
+  color: var(--sloi-text-secondary);
+}
+
+.columnOption {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+  color: var(--sloi-text-primary);
+  font-size: var(--sloi-font-size-200);
+}
+
+.selectionHeader {
+  width: 3rem;
+}
+
+.selectionCell {
+  width: 3rem;
+}
+
+.virtualViewport {
+  max-height: min(65vh, 28rem);
+  overflow-y: auto;
+}
+
+.virtualSpacerCell {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.headerContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sloi-space-2);
+  width: 100%;
+}
+
+.resizableHeader {
+  padding-right: var(--sloi-space-2);
+}
+
+.resizeHandle {
+  position: absolute;
+  top: 0;
+  right: calc(var(--sloi-space-2) * -1);
+  width: var(--sloi-size-control-sm);
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--sloi-text-muted);
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.resizeGrip {
+  display: inline-flex;
+  width: 2px;
+  height: 1.2rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.resizeHandle:hover,
+.resizeHandle:focus-visible {
+  color: var(--sloi-interactive-primary-bg);
+}
+
+.resizeHandle:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--sloi-radius-sm);
+}
+
+.sortButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--sloi-radius-sm);
+}
+
+.sortButtonActive {
+  color: var(--sloi-text-primary);
+}
+
+.sortIndicator {
+  color: var(--sloi-text-muted);
+  font-size: var(--sloi-font-size-100);
+  line-height: 1;
+}
+
+.stateCell {
+  text-align: center;
+  color: var(--sloi-text-secondary);
+  padding: var(--sloi-space-8) var(--sloi-space-4);
+}
+
+.clickableRow {
+  cursor: pointer;
+}
+
+.clickableRow:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: -2px;
+}
+
+.selectedRow {
+  background: color-mix(in srgb, var(--sloi-interactive-primary-bg) 8%, transparent);
+}
+
+.pinnedCell {
+  position: sticky;
+}
+
+.pinnedHeaderCell {
+  z-index: 4;
+  background-color: var(--sloi-surface-elevated);
+}
+
+.pinnedBodyCell {
+  z-index: 2;
+}
+
+.pinnedLeft {
+  box-shadow: 1px 0 0 var(--sloi-border-primary);
+}
+
+.pinnedRight {
+  box-shadow: -1px 0 0 var(--sloi-border-primary);
+}

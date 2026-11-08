@@ -1,0 +1,133 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--sloi-overlay-backdrop);
+  backdrop-filter: blur(1.5px);
+}
+
+.overlay[data-state='open'] {
+  animation: sloi-dialog-overlay-in 160ms ease;
+}
+
+.overlay[data-state='closed'] {
+  animation: sloi-dialog-overlay-out 140ms ease;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(34rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  border: 1px solid var(--sloi-surface-floating-border);
+  border-radius: var(--sloi-radius-lg);
+  background-color: var(--sloi-surface-floating);
+  box-shadow: var(--sloi-shadow-floating);
+  color: var(--sloi-text-primary);
+  transform: translate(-50%, -50%);
+  padding: 1.25rem;
+}
+
+.content[data-state='open'] {
+  animation: sloi-dialog-content-in 180ms ease;
+}
+
+.content[data-state='closed'] {
+  animation: sloi-dialog-content-out 140ms ease;
+}
+
+.title {
+  margin: 0;
+  padding-right: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.hiddenTitle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+  width: 1.875rem;
+  height: 1.875rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: 50%;
+  background: var(--sloi-surface-base);
+  color: var(--sloi-text-secondary);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.closeButton:hover {
+  border-color: var(--sloi-interactive-secondary-border-hover);
+  color: var(--sloi-interactive-secondary-text-hover);
+  transform: translateY(-1px);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.body {
+  margin-top: 0.75rem;
+}
+
+@keyframes sloi-dialog-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sloi-dialog-overlay-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sloi-dialog-content-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes sloi-dialog-content-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.98);
+  }
+}

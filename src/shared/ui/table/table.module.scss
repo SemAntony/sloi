@@ -1,0 +1,73 @@
+.container {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-base);
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--sloi-text-primary);
+  font-size: var(--sloi-font-size-200);
+  line-height: var(--sloi-font-line-normal);
+}
+
+.head {
+  background-color: var(--sloi-surface-elevated);
+}
+
+.headerCell,
+.cell {
+  padding: var(--sloi-space-3) var(--sloi-space-4);
+  border-bottom: 1px solid var(--sloi-border-primary);
+  vertical-align: middle;
+}
+
+.headerCell {
+  font-weight: var(--sloi-font-weight-semibold);
+  color: var(--sloi-text-primary);
+  white-space: nowrap;
+}
+
+.cell {
+  color: var(--sloi-text-secondary);
+}
+
+.row:last-child .cell {
+  border-bottom: 0;
+}
+
+.body .row:hover .cell {
+  background-color: color-mix(in srgb, var(--sloi-interactive-ghost-bg-hover) 62%, transparent);
+}
+
+.striped .body .row:nth-child(even) .cell {
+  background-color: color-mix(in srgb, var(--sloi-surface-elevated) 55%, transparent);
+}
+
+.stickyHeader .headerCell {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--sloi-surface-elevated);
+}
+
+.compact .headerCell,
+.compact .cell {
+  padding: var(--sloi-space-2) var(--sloi-space-3);
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignRight {
+  text-align: right;
+}

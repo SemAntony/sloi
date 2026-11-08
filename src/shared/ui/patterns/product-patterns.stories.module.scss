@@ -1,0 +1,156 @@
+.patternCard {
+  display: grid;
+  gap: var(--sloi-space-4);
+  width: min(60rem, 100%);
+  padding: var(--sloi-space-5);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  background: var(--sloi-surface-base);
+}
+
+.patternHeader {
+  display: grid;
+  gap: var(--sloi-space-2);
+}
+
+.title {
+  margin: 0;
+  color: var(--sloi-text-primary);
+  font-size: var(--sloi-font-size-500);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: var(--sloi-font-size-200);
+}
+
+.form {
+  display: grid;
+  gap: var(--sloi-space-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--sloi-space-2);
+}
+
+.label {
+  font-size: var(--sloi-font-size-200);
+  font-weight: var(--sloi-font-weight-semibold);
+}
+
+.inlineControl {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+  font-size: var(--sloi-font-size-200);
+  color: var(--sloi-text-secondary);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sloi-space-2);
+  flex-wrap: wrap;
+}
+
+.filterControl {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sloi-space-2);
+  font-size: var(--sloi-font-size-200);
+  color: var(--sloi-text-secondary);
+}
+
+.filterControl select {
+  min-height: 2rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  padding: 0.125rem 0.5rem;
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-primary);
+}
+
+.filterControl select:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.meta {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: var(--sloi-font-size-200);
+}
+
+.list {
+  display: grid;
+  gap: var(--sloi-space-3);
+}
+
+.listItem {
+  display: grid;
+  gap: var(--sloi-space-2);
+  padding: var(--sloi-space-3);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-raised);
+}
+
+.itemTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sloi-space-2);
+}
+
+.itemTitle {
+  margin: 0;
+  color: var(--sloi-text-primary);
+  font-size: var(--sloi-font-size-300);
+}
+
+.itemMeta {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: var(--sloi-font-size-200);
+}
+
+.toolbarWrap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.workflowBody {
+  display: grid;
+  gap: var(--sloi-space-3);
+}
+
+.workflowSection {
+  display: grid;
+  gap: var(--sloi-space-3);
+}
+
+.summary {
+  display: grid;
+  gap: var(--sloi-space-2);
+  padding: var(--sloi-space-3);
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background: var(--sloi-surface-raised);
+}
+
+.summary p {
+  margin: 0;
+  color: var(--sloi-text-primary);
+}
+
+@media (max-width: 960px) {
+  .patternCard {
+    padding: var(--sloi-space-4);
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+}

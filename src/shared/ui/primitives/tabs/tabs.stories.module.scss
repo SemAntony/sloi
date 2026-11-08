@@ -1,0 +1,31 @@
+.stack {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.container {
+  width: min(28rem, 100%);
+}
+
+.containerWide {
+  width: min(36rem, 100%);
+}
+
+.panel {
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-md);
+  background-color: var(--sloi-surface-base);
+  padding: 0.75rem 0.85rem;
+}
+
+.text {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.status {
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}

@@ -1,0 +1,125 @@
+.profileTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-pill);
+  background-color: var(--sloi-surface-elevated);
+  padding: 0.3rem 0.6rem 0.3rem 0.35rem;
+  color: var(--sloi-text-primary);
+  text-decoration: none;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.profileTrigger:hover {
+  border-color: var(--sloi-border-strong);
+  background-color: color-mix(in srgb, var(--sloi-surface-elevated) 70%, var(--sloi-surface-floating));
+}
+
+.profileTriggerAvatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--sloi-radius-pill);
+  object-fit: cover;
+}
+
+.profileTriggerText {
+  font-size: 0.875rem;
+}
+
+.profileCard {
+  width: min(18rem, calc(100vw - 2rem));
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.profileAvatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--sloi-radius-md);
+  object-fit: cover;
+}
+
+.profileMeta {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.profileHeader {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.profileName {
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.profileHandle {
+  color: var(--sloi-text-muted);
+  font-size: 0.8rem;
+}
+
+.profileBio {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.profileStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--sloi-text-secondary);
+  font-size: 0.75rem;
+}
+
+.profileStats strong {
+  color: var(--sloi-text-primary);
+}
+
+.stack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.controlsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.status {
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.constrainedContent {
+  width: var(--radix-hover-card-trigger-width);
+  max-width: 20rem;
+  max-height: var(--radix-hover-card-content-available-height);
+}
+
+.instantText {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.containerPanel {
+  width: min(420px, 100%);
+  min-height: 210px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  background: color-mix(in srgb, var(--sloi-surface-elevated) 82%, var(--sloi-surface-base));
+  padding: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}

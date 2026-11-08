@@ -1,0 +1,25 @@
+{
+  "name": "@sloi/tokens",
+  "version": "0.1.0",
+  "description": "Sloi design tokens package (CSS + JSON + JS)",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./src/tokens.js",
+    "./tokens.json": "./src/tokens.json",
+    "./css/styles.css": "./src/styles.css",
+    "./css/palette.css": "./src/palette.css",
+    "./css/colors.css": "./src/colors.css",
+    "./css/tokens.css": "./src/tokens.css",
+    "./css/typography.css": "./src/typography.css"
+  },
+  "scripts": {
+    "sync": "node ./scripts/sync-artifacts.mjs"
+  }
+}

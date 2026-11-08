@@ -1,0 +1,52 @@
+.root {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.sizeSm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sizeMd {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.sizeLg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.toneCurrent {
+  color: currentColor;
+}
+
+.tonePrimary {
+  color: var(--sloi-text-primary);
+}
+
+.toneSecondary {
+  color: var(--sloi-text-secondary);
+}
+
+.toneMuted {
+  color: var(--sloi-text-muted);
+}
+
+.toneInfo {
+  color: var(--sloi-status-info-text);
+}
+
+.toneSuccess {
+  color: var(--sloi-status-success-text);
+}
+
+.toneWarning {
+  color: var(--sloi-status-warning-text);
+}
+
+.toneDanger {
+  color: var(--sloi-status-danger-text);
+}

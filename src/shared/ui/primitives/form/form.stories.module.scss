@@ -1,0 +1,73 @@
+.demoRoot {
+  width: min(430px, 100%);
+  display: grid;
+  gap: 0.875rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-lg);
+  padding: 0.875rem;
+  background-color: var(--sloi-surface-elevated);
+}
+
+.fieldHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+}
+
+.textarea {
+  min-height: 7.5rem;
+}
+
+.helperText {
+  margin: 0;
+  color: var(--sloi-text-muted);
+  font-size: 0.75rem;
+}
+
+.status {
+  margin: 0;
+  color: var(--sloi-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.statusSuccess {
+  color: color-mix(in srgb, var(--sloi-interactive-primary-bg) 72%, var(--sloi-text-primary));
+}
+
+.validityPill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.4rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-pill);
+  padding: 0.1rem 0.5rem;
+  color: var(--sloi-text-secondary);
+  font-size: 0.75rem;
+}
+
+.validityPillValid {
+  border-color: color-mix(in srgb, var(--sloi-interactive-primary-bg) 50%, var(--sloi-border-primary));
+  color: color-mix(in srgb, var(--sloi-interactive-primary-bg) 75%, var(--sloi-text-primary));
+}
+
+.validityPillInvalid {
+  border-color: var(--sloi-status-danger-border);
+  color: var(--sloi-status-danger-text);
+}
+
+.validityList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.25rem;
+  color: var(--sloi-text-secondary);
+  font-size: 0.75rem;
+}
+
+.validityListItemActive {
+  color: var(--sloi-status-danger-text);
+  font-weight: 600;
+}

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0",
+  "components": [
+    {
+      "name": "Dialog",
+      "stability": "experimental",
+      "react": {
+        "status": "validated",
+        "a11yTestPath": "src/shared/ui/primitives/dialog/dialog.a11y.test.tsx"
+      },
+      "lit": {
+        "status": "planned"
+      }
+    },
+    {
+      "name": "Select",
+      "stability": "experimental",
+      "react": {
+        "status": "validated",
+        "a11yTestPath": "src/shared/ui/primitives/select/select.a11y.test.tsx"
+      },
+      "lit": {
+        "status": "planned"
+      }
+    },
+    {
+      "name": "Tabs",
+      "stability": "experimental",
+      "react": {
+        "status": "validated",
+        "a11yTestPath": "src/shared/ui/primitives/tabs/tabs.a11y.test.tsx"
+      },
+      "lit": {
+        "status": "planned"
+      }
+    },
+    {
+      "name": "Tooltip",
+      "stability": "experimental",
+      "react": {
+        "status": "validated",
+        "a11yTestPath": "src/shared/ui/tooltip/tooltip.a11y.test.tsx"
+      },
+      "lit": {
+        "status": "planned"
+      }
+    },
+    {
+      "name": "Combobox",
+      "stability": "experimental",
+      "react": {
+        "status": "validated",
+        "a11yTestPath": "src/shared/ui/combobox/combobox.a11y.test.tsx"
+      },
+      "lit": {
+        "status": "planned"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@sloi/lit-wrappers",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lit thin wrappers for Sloi headless contracts",
+  "type": "module",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "README.md",
+    "src"
+  ]
+}

@@ -1,0 +1,5 @@
+packages:
+  - 'packages/*'
+  - 'consumers/*'
+
+storeDir: /Users/sem/Library/pnpm/store/v10

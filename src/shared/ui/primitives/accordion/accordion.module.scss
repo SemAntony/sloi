@@ -1,0 +1,119 @@
+.accordionItem {
+  overflow: hidden;
+  border-bottom: 1px solid var(--sloi-border-primary);
+}
+
+.accordionItem[data-orientation='horizontal'] {
+  border-bottom: 0;
+  border-right: 1px solid var(--sloi-border-primary);
+}
+
+.accordionHeader {
+  margin: 0;
+}
+
+.accordionTrigger {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: none;
+  border: 0;
+  color: var(--sloi-text-primary);
+  font: inherit;
+  text-align: left;
+  padding: 0.9rem 0;
+  cursor: pointer;
+}
+
+.accordionTrigger:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.accordionChevron {
+  color: var(--sloi-text-secondary);
+  transition: transform 140ms ease;
+}
+
+.accordionTrigger[data-state='open'] .accordionChevron {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  overflow: hidden;
+  padding: 0 0 1rem;
+  color: var(--sloi-text-secondary);
+}
+
+.accordionContent[data-orientation='vertical'][data-state='open'] {
+  animation: sloi-accordion-down 200ms ease;
+}
+
+.accordionContent[data-orientation='vertical'][data-state='closed'] {
+  animation: sloi-accordion-up 180ms ease;
+}
+
+.accordionContent[data-orientation='horizontal'] {
+  padding: 0 1rem 0 0;
+}
+
+.accordionContent[data-orientation='horizontal'][data-state='open'] {
+  animation: sloi-accordion-right 200ms ease;
+}
+
+.accordionContent[data-orientation='horizontal'][data-state='closed'] {
+  animation: sloi-accordion-left 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordionChevron {
+    transition-duration: 0ms;
+  }
+
+  .accordionContent[data-state='open'],
+  .accordionContent[data-state='closed'] {
+    animation-duration: 0ms;
+  }
+}
+
+@keyframes sloi-accordion-down {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes sloi-accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+@keyframes sloi-accordion-right {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--radix-accordion-content-width);
+  }
+}
+
+@keyframes sloi-accordion-left {
+  from {
+    width: var(--radix-accordion-content-width);
+  }
+
+  to {
+    width: 0;
+  }
+}

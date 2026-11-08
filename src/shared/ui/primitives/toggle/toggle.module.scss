@@ -1,0 +1,48 @@
+.toggleRoot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border: 1px solid var(--sloi-border-primary);
+  border-radius: var(--sloi-radius-sm);
+  padding: 0.35rem 0.55rem;
+  background-color: var(--sloi-surface-base);
+  color: var(--sloi-text-secondary);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.toggleRoot:hover:not([data-disabled]) {
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.toggleRoot:focus-visible {
+  outline: 2px solid var(--sloi-focus-ring);
+  outline-offset: 2px;
+}
+
+.toggleRoot[data-state='on'] {
+  color: var(--sloi-text-primary);
+  border-color: var(--sloi-interactive-secondary-border-hover);
+  background-color: var(--sloi-interactive-ghost-bg-hover);
+}
+
+.toggleRoot[data-disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.toggleRoot > svg,
+.toggleRoot > span[aria-hidden] {
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleRoot {
+    transition: none;
+  }
+}

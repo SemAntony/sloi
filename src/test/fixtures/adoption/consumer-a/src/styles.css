@@ -1,0 +1,8 @@
+.card {
+  color: var(--sloi-color-primary);
+  border-color: var(--sloi-color-border);
+}
+
+:root {
+  --sloi-color-brand: #ff00aa;
+}
