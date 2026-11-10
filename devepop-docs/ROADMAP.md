@@ -15,7 +15,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D06**
+Следующая задача: **D07**
 
 ---
 
@@ -44,8 +44,13 @@
 
 ## Фаза 1. Реальный потребитель и зависимости
 
-- [ ] **D06. Реальное приложение.** Превратить smoke-приложение из D05 (`/Users/sem/WebstormProjects/sloi-smoke`, Next 16 + React 19; tarball брать не из /tmp, а копировать в папку приложения) в небольшой настоящий проект (форма + таблица на `DataTableV2`), оставить вне репозитория.
+- [x] **D06. Реальное приложение.** Превратить smoke-приложение из D05 (`/Users/sem/WebstormProjects/sloi-smoke`, Next 16 + React 19; tarball брать не из /tmp, а копировать в папку приложения) в небольшой настоящий проект (форма + таблица на `DataTableV2`), оставить вне репозитория.
 - [ ] **D07. Честный фидбек.** Записать всё, что неудобно, в `docs/adoption/pain-points.md` (заменить выдуманные `AD-FB-*`). Готово: минимум 5 реальных пунктов с примерами кода.
+  Уже найдено в D06 (проверено в `sloi-smoke`):
+  1. `DataTable`/`DataTableV2` требуют `T extends Record<string, unknown>`: строки, объявленные как `interface`, не проходят (нужно `type`). Ослабить ограничение до `object`.
+  2. Нет единого `Field` (Label + Input + FieldMessage + aria-describedby собираются руками); при этом есть и `FieldMessage`, и `FormMessage` из Radix Form: два пути для одного и того же.
+  3. Типы V2 (колонки, сортировка, selection) отдельными именами не экспортируются (в d.ts это `*_2`), достаются только через `DataTableV2Props<T>[...]`.
+  4. Не проверено руками в браузере: открытие Select, сортировка, выбор строк, пагинация (см. запись в журнале D06).
 - [ ] **D08. Зависимости, часть 1.** `pnpm outdated`; обновить TypeScript, Vite, Vitest. Готово: весь quality gate зелёный.
 - [ ] **D09. Зависимости, часть 2.** Обновить Storybook (проверить миграционный гайд), `pnpm storybook:build` проходит.
 - [ ] **D10. Зависимости, часть 3.** Обновить ESLint-плагины, `radix-ui`, `react-day-picker`, `lucide-react`. Проверить changelog Radix на изменения `unstable_*`.
@@ -99,3 +104,4 @@
 | 2026-11-08 | D03 | deps: из `dependencies` убраны `@sloi/*`, `clsx`, `react-day-picker`; `lucide-react` теперь external; `index.js` 271→242 КБ; `pnpm pack` без `workspace:*`. Случайно снёс `node_modules` pnpm 8, восстановил из lockfile (162 теста зелёные при NODE_ENV=test) |
 | 2026-11-08 | D04 | publint и attw чистые. `rollupTypes: true` (один `dist/index.d.ts` + копия `index.d.cts`), `exports` разделён на import/require с типами, `engines.node >=18`. Типы больше не ссылаются на `@sloi/headless-core` и `react-day-picker` (`ComboboxOption` и `DatePickerDateRange` объявлены локально). TS2742 в menubar исправлен |
 | 2026-11-08 | D05 | Smoke-приложение `~/WebstormProjects/sloi-smoke` (Next 16.4.6, React 19.3.1, TS 7.0.2) ставит tarball; `next build` без ошибок и предупреждений; Button/Card/Badge в Server Component, Select в клиентском; типы реальные (ошибки на неверных props). **Фаза 0 завершена** |
+| 2026-11-08 | D06 | `sloi-smoke` превращён в форму (Input, Textarea, Select, Label, FieldMessage, Button) + `DataTableV2` (сортировка, пагинация, выбор строк); `tsc` и `next build` чистые, SSR отдаёт таблицу. Найдены 3 проблемы API (см. D07). Ручной проход в браузере (`pnpm dev`) ждёт результата от владельца |
