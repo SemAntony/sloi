@@ -15,7 +15,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D07**
+Следующая задача: **D08**
 
 ---
 
@@ -45,7 +45,7 @@
 ## Фаза 1. Реальный потребитель и зависимости
 
 - [x] **D06. Реальное приложение.** Превратить smoke-приложение из D05 (`/Users/sem/WebstormProjects/sloi-smoke`, Next 16 + React 19; tarball брать не из /tmp, а копировать в папку приложения) в небольшой настоящий проект (форма + таблица на `DataTableV2`), оставить вне репозитория.
-- [ ] **D07. Честный фидбек.** Записать всё, что неудобно, в `docs/adoption/pain-points.md` (заменить выдуманные `AD-FB-*`). Готово: минимум 5 реальных пунктов с примерами кода.
+- [x] **D07. Честный фидбек.** Записать всё, что неудобно, в `docs/adoption/pain-points.md` (заменить выдуманные `AD-FB-*`). Готово: минимум 5 реальных пунктов с примерами кода.
   Уже найдено в D06 (проверено в `sloi-smoke`):
   1. `DataTable`/`DataTableV2` требуют `T extends Record<string, unknown>`: строки, объявленные как `interface`, не проходят (нужно `type`). Ослабить ограничение до `object`.
   2. Нет единого `Field` (Label + Input + FieldMessage + aria-describedby собираются руками); при этом есть и `FieldMessage`, и `FormMessage` из Radix Form: два пути для одного и того же.
@@ -71,6 +71,15 @@
 - [ ] **D22. Button: `danger` и слоты иконок.** Варианты и `startIcon`/`endIcon`, тесты, stories.
 - [ ] **D23. Иконки вместо глифов.** Заменить текстовые "▾", "✓", "▴" в `primitives/_internal/common` на `Icon` из библиотеки.
 - [ ] **D24. `unstable_*` в публичном API.** `OneTimePasswordField` и `PasswordToggleField` пометить experimental в JSDoc и stories или убрать из экспорта; записать решение в CHANGELOG.
+
+### Фаза 2b. Задачи из D07 (делать сразу после Фазы 1, перед D11)
+
+Подробности и примеры кода: `docs/adoption/pain-points.md`.
+
+- [ ] **D38. Поля ввода: `box-sizing: border-box` (P1).** Input, Textarea, SearchInput, NumberField, PhoneField. Story «в узком контейнере». Готово: поле не вылезает за Card без внешнего reset.
+- [ ] **D39. `DataTable`/`DataTableV2`: `T extends object` (P3).** Тест со строками-`interface`; экспортировать V2-типы под своими именами (P7).
+- [ ] **D40. Компонент `Field` (P2, P4).** Label + control + hint + message, сам проставляет `id` и `aria-describedby`/`aria-invalid`; `SelectTrigger` с `fullWidth`; решить судьбу `FormMessage`.
+- [ ] **D41. Base-слой или документация подключения (P5).** `base.css` (reset + font-family из токенов) либо раздел README; проверить в `sloi-smoke` без собственных глобальных стилей.
 
 ## Фаза 3. Дизайн-система как система
 
@@ -105,3 +114,4 @@
 | 2026-11-08 | D04 | publint и attw чистые. `rollupTypes: true` (один `dist/index.d.ts` + копия `index.d.cts`), `exports` разделён на import/require с типами, `engines.node >=18`. Типы больше не ссылаются на `@sloi/headless-core` и `react-day-picker` (`ComboboxOption` и `DatePickerDateRange` объявлены локально). TS2742 в menubar исправлен |
 | 2026-11-08 | D05 | Smoke-приложение `~/WebstormProjects/sloi-smoke` (Next 16.4.6, React 19.3.1, TS 7.0.2) ставит tarball; `next build` без ошибок и предупреждений; Button/Card/Badge в Server Component, Select в клиентском; типы реальные (ошибки на неверных props). **Фаза 0 завершена** |
 | 2026-11-08 | D06 | `sloi-smoke` превращён в форму (Input, Textarea, Select, Label, FieldMessage, Button) + `DataTableV2` (сортировка, пагинация, выбор строк); `tsc` и `next build` чистые, SSR отдаёт таблицу. Найдены 3 проблемы API (см. D07). Ручной проход в браузере (`pnpm dev`) ждёт результата от владельца |
+| 2026-11-10 | D07 | `docs/adoption/pain-points.md` (9 пунктов, из них 3 серьёзных: поля вылезают из контейнера, Label/Select в одной строке, таблица не принимает `interface`). В план добавлены D38–D41 |
