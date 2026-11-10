@@ -44,7 +44,10 @@ export default defineConfig({
       fileName: (format) => (format === 'es' ? 'index.js' : 'index.cjs')
     },
     rollupOptions: {
-      external: (id) => /^react(?:\/.*)?$/.test(id) || id === 'radix-ui',
+      // external = пакеты, которые потребитель получает через dependencies/peerDependencies.
+      // Всё остальное (clsx, react-day-picker вместе с его CSS, @sloi/*) вшивается в бандл.
+      external: (id) =>
+        /^react(?:\/.*)?$/.test(id) || id === 'radix-ui' || id === 'lucide-react',
       output: {
         globals: {
           react: 'React',

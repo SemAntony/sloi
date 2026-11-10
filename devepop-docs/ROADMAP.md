@@ -3,6 +3,11 @@
 Создан: 2026-11-08. Рабочий план после паузы (последняя активность ~2026-04-06).
 Старый `docs/backlog/design-system-execution-plan.md` считается завершённым; вся новая работа идёт здесь.
 
+## Окружение (важно)
+
+- На этом Mac в PATH стоит pnpm 8.15.4, а проект требует 10.11.1 (lockfile v9). Запускать так: `corepack pnpm@10.11.1 <команда>` или исправить PATH. Старый pnpm 8 при `install` сносит `node_modules`.
+- В shell Desktop Commander выставлен `NODE_ENV=production`: тесты падают с `React.act is not a function`. Запускать `NODE_ENV=test corepack pnpm@10.11.1 test`.
+
 ## Как работаем
 
 1. Одна задача (D##) за сессию. Задача маленькая, с проверяемым критерием «Готово».
@@ -10,7 +15,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D03**
+Следующая задача: **D04**
 
 ---
 
@@ -25,9 +30,10 @@
 - [x] **D02. Директива `'use client'` в бандле.**
   Сохранить директиву в `dist/index.js` и `dist/index.cjs` (плагин preserve-directives или banner в Rollup).
   Готово: первая строка `dist/index.js` содержит `'use client'`.
-- [ ] **D03. Чистка зависимостей.**
+- [x] **D03. Чистка зависимостей.**
   `@sloi/lit-wrappers` убрать из `dependencies`; `@sloi/headless-core` и `@sloi/tokens` проверить (вшиты в бандл → `devDependencies`); решить по `clsx`, `lucide-react`, `react-day-picker` (external + dependencies или вшить и убрать из dependencies).
   Готово: `pnpm pack` проходит, в `package.json` нет `workspace:*` в `dependencies`.
+  Итог: `dependencies` = только `lucide-react` и `radix-ui` (external); `clsx`, `react-day-picker` (его CSS уходит в `style.css`) и `@sloi/*` вшиты и лежат в `devDependencies`.
 - [ ] **D04. publint и arethetypeswrong.**
   Запустить `npx publint` и `npx @arethetypeswrong/cli --pack .`, исправить замечания.
   Заодно исправить TS2742 в `primitives/menubar/menubar.tsx` (`MenubarMenu` без явного типа → непереносимый inferred type).
@@ -90,3 +96,4 @@
 | 2026-11-08 | D00 | git init + baseline-коммит `2037437` |
 | 2026-11-08 | D01 | `entryRoot: 'src'` + исключения в dts; `dist/index.d.ts` на месте, тестовых d.ts нет |
 | 2026-11-08 | D02 | плагин `preserveUseClient` в vite.config.ts; `"use client"` первой строкой в ESM и CJS |
+| 2026-11-08 | D03 | deps: из `dependencies` убраны `@sloi/*`, `clsx`, `react-day-picker`; `lucide-react` теперь external; `index.js` 271→242 КБ; `pnpm pack` без `workspace:*`. Случайно снёс `node_modules` pnpm 8, восстановил из lockfile (162 теста зелёные при NODE_ENV=test) |
