@@ -20,7 +20,7 @@ export const Menubar = forwardRef<
 Menubar.displayName = 'Menubar';
 
 export const MenubarRoot = Menubar;
-export const MenubarMenu = MenubarPrimitive.Menu;
+export const MenubarMenu: typeof MenubarPrimitive.Menu = MenubarPrimitive.Menu;
 export const MenubarPortal = MenubarPrimitive.Portal;
 export const MenubarGroup = MenubarPrimitive.Group;
 export const MenubarSub = MenubarPrimitive.Sub;

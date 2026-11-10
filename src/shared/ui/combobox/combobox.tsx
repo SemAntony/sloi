@@ -3,14 +3,21 @@ import {
   useId,
   type InputHTMLAttributes,
 } from 'react';
-import { type ComboboxOption as HeadlessComboboxOption, useComboboxController } from '@sloi/headless-core';
+import { useComboboxController } from '@sloi/headless-core';
 import { Button } from '../button';
 import { Input } from '../input';
 import { Popover, PopoverAnchor, PopoverContent, PopoverPortal } from '../primitives/popover';
 import { cn } from '../../lib/cn/cn';
 import styles from './combobox.module.scss';
 
-export type ComboboxOption = HeadlessComboboxOption;
+// Объявлен локально (структурно совпадает с типом из headless-core),
+// чтобы публичные d.ts не ссылались на непубликуемый @sloi/headless-core.
+export type ComboboxOption = {
+  value: string;
+  label: string;
+  disabled?: boolean;
+  keywords?: string[];
+};
 
 export interface ComboboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue' | 'onChange'> {
   options: ComboboxOption[];

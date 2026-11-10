@@ -26,6 +26,7 @@ export default defineConfig({
       dts({
         include: ['src'],
         entryRoot: 'src',
+        rollupTypes: true,
         exclude: [
           'src/dev/**',
           'src/test/**',

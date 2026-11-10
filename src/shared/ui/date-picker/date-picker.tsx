@@ -1,4 +1,4 @@
-import { DayPicker, type DateRange, type Matcher } from 'react-day-picker';
+import { DayPicker, type Matcher } from 'react-day-picker';
 import { forwardRef, useMemo, useState, type InputHTMLAttributes } from 'react';
 import { Button } from '../button';
 import {
@@ -14,7 +14,14 @@ import 'react-day-picker/style.css';
 export type DatePickerMode = 'single' | 'multiple' | 'range';
 export type DatePickerSingleValue = Date | undefined;
 export type DatePickerMultipleValue = Date[] | undefined;
-export type DatePickerRangeValue = DateRange | undefined;
+// Структурно совпадает с DateRange из react-day-picker; объявлен локально,
+// чтобы публичные d.ts не зависели от react-day-picker.
+export type DatePickerDateRange = {
+  from: Date | undefined;
+  to?: Date | undefined;
+};
+
+export type DatePickerRangeValue = DatePickerDateRange | undefined;
 export type DatePickerValue =
   | DatePickerSingleValue
   | DatePickerMultipleValue

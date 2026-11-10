@@ -15,7 +15,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D04**
+Следующая задача: **D05**
 
 ---
 
@@ -34,7 +34,7 @@
   `@sloi/lit-wrappers` убрать из `dependencies`; `@sloi/headless-core` и `@sloi/tokens` проверить (вшиты в бандл → `devDependencies`); решить по `clsx`, `lucide-react`, `react-day-picker` (external + dependencies или вшить и убрать из dependencies).
   Готово: `pnpm pack` проходит, в `package.json` нет `workspace:*` в `dependencies`.
   Итог: `dependencies` = только `lucide-react` и `radix-ui` (external); `clsx`, `react-day-picker` (его CSS уходит в `style.css`) и `@sloi/*` вшиты и лежат в `devDependencies`.
-- [ ] **D04. publint и arethetypeswrong.**
+- [x] **D04. publint и arethetypeswrong.**
   Запустить `npx publint` и `npx @arethetypeswrong/cli --pack .`, исправить замечания.
   Заодно исправить TS2742 в `primitives/menubar/menubar.tsx` (`MenubarMenu` без явного типа → непереносимый inferred type).
   Готово: оба инструмента без ошибок, при `pnpm build` нет TS-ошибок от dts.
@@ -97,3 +97,4 @@
 | 2026-11-08 | D01 | `entryRoot: 'src'` + исключения в dts; `dist/index.d.ts` на месте, тестовых d.ts нет |
 | 2026-11-08 | D02 | плагин `preserveUseClient` в vite.config.ts; `"use client"` первой строкой в ESM и CJS |
 | 2026-11-08 | D03 | deps: из `dependencies` убраны `@sloi/*`, `clsx`, `react-day-picker`; `lucide-react` теперь external; `index.js` 271→242 КБ; `pnpm pack` без `workspace:*`. Случайно снёс `node_modules` pnpm 8, восстановил из lockfile (162 теста зелёные при NODE_ENV=test) |
+| 2026-11-08 | D04 | publint и attw чистые. `rollupTypes: true` (один `dist/index.d.ts` + копия `index.d.cts`), `exports` разделён на import/require с типами, `engines.node >=18`. Типы больше не ссылаются на `@sloi/headless-core` и `react-day-picker` (`ComboboxOption` и `DatePickerDateRange` объявлены локально). TS2742 в menubar исправлен |
