@@ -42,6 +42,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'SloiUI',
       formats: ['es', 'cjs'],
+      cssFileName: 'style',
       fileName: (format) => (format === 'es' ? 'index.js' : 'index.cjs')
     },
     rollupOptions: {
