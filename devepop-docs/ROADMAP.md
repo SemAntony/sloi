@@ -15,7 +15,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D05**
+Следующая задача: **D06**
 
 ---
 
@@ -38,13 +38,13 @@
   Запустить `npx publint` и `npx @arethetypeswrong/cli --pack .`, исправить замечания.
   Заодно исправить TS2742 в `primitives/menubar/menubar.tsx` (`MenubarMenu` без явного типа → непереносимый inferred type).
   Готово: оба инструмента без ошибок, при `pnpm build` нет TS-ошибок от dts.
-- [ ] **D05. Smoke-тест в чистом Next.js.**
+- [x] **D05. Smoke-тест в чистом Next.js.**
   Создать приложение вне репозитория, поставить tarball из `pnpm pack`, отрендерить `Button` и `Select` в Server Component-странице с клиентским импортом.
   Готово: `next build` проходит без ошибок и предупреждений про директивы.
 
 ## Фаза 1. Реальный потребитель и зависимости
 
-- [ ] **D06. Реальное приложение.** Превратить smoke-приложение из D05 в небольшой настоящий проект (форма + таблица на `DataTableV2`), оставить вне репозитория.
+- [ ] **D06. Реальное приложение.** Превратить smoke-приложение из D05 (`/Users/sem/WebstormProjects/sloi-smoke`, Next 16 + React 19; tarball брать не из /tmp, а копировать в папку приложения) в небольшой настоящий проект (форма + таблица на `DataTableV2`), оставить вне репозитория.
 - [ ] **D07. Честный фидбек.** Записать всё, что неудобно, в `docs/adoption/pain-points.md` (заменить выдуманные `AD-FB-*`). Готово: минимум 5 реальных пунктов с примерами кода.
 - [ ] **D08. Зависимости, часть 1.** `pnpm outdated`; обновить TypeScript, Vite, Vitest. Готово: весь quality gate зелёный.
 - [ ] **D09. Зависимости, часть 2.** Обновить Storybook (проверить миграционный гайд), `pnpm storybook:build` проходит.
@@ -98,3 +98,4 @@
 | 2026-11-08 | D02 | плагин `preserveUseClient` в vite.config.ts; `"use client"` первой строкой в ESM и CJS |
 | 2026-11-08 | D03 | deps: из `dependencies` убраны `@sloi/*`, `clsx`, `react-day-picker`; `lucide-react` теперь external; `index.js` 271→242 КБ; `pnpm pack` без `workspace:*`. Случайно снёс `node_modules` pnpm 8, восстановил из lockfile (162 теста зелёные при NODE_ENV=test) |
 | 2026-11-08 | D04 | publint и attw чистые. `rollupTypes: true` (один `dist/index.d.ts` + копия `index.d.cts`), `exports` разделён на import/require с типами, `engines.node >=18`. Типы больше не ссылаются на `@sloi/headless-core` и `react-day-picker` (`ComboboxOption` и `DatePickerDateRange` объявлены локально). TS2742 в menubar исправлен |
+| 2026-11-08 | D05 | Smoke-приложение `~/WebstormProjects/sloi-smoke` (Next 16.4.6, React 19.3.1, TS 7.0.2) ставит tarball; `next build` без ошибок и предупреждений; Button/Card/Badge в Server Component, Select в клиентском; типы реальные (ошибки на неверных props). **Фаза 0 завершена** |
