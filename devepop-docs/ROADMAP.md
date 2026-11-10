@@ -17,7 +17,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D08c**
+Следующая задача: **D08d**
 
 ---
 
@@ -60,9 +60,11 @@
   - TypeScript 7 не пройдёт: `typescript-eslint` допускает TS `<6.1`. Остаёмся на 5.9.3.
 - [x] **D08b. Node 24 LTS.** `nvm install 24`, `.nvmrc`, `engines.node` в корневом `package.json`, `node-version` в CI. Готово: `node -v` в проекте ≥ 22.12, gate зелёный.
   Сделано: Node 24.22.2 (nvm), `.nvmrc` = 24, CI `node-version: 24`. `engines.node` в `package.json` оставлен `>=18`: это требование к потребителям пакета, а не к разработке.
-- [ ] **D08c. Сборочный стек.** После D08b: Vite 8, Vitest 5 (+ `@vitest/coverage-v8`), `@vitejs/plugin-react` 6, jsdom 31, `vite-plugin-dts` 5 (проверить `rollupTypes`), `@types/node`. По одному пакету за раз, gate после каждого.
+- [x] **D08c. Сборочный стек (частично, до пределов Storybook 8).**
+  Сделано: `vite-plugin-dts` 5.1.2 (опция `rollupTypes` стала `bundleTypes`, `@microsoft/api-extractor` теперь нужно ставить явно; `d.ts` совпадает с прежним с точностью до пробелов), Vite 6.4.6 (в Vite 6 CSS библиотеки получил имя `ui-kit.css`, вернули `style.css` через `build.lib.cssFileName: 'style'`), Vitest 5.1.0, `@vitest/coverage-v8` 5.1.0, jsdom 31.0.0. Gate зелёный: 162 теста, 34 a11y-теста, `publint`/`attw` чистые, `storybook:build` проходит.
+  Остаётся (перенесено в D09): Vite 7/8 и `@vitejs/plugin-react` 6 заблокированы Storybook 8.6 (его peer: Vite `<=6`). Сначала Storybook 10, потом Vite 8.
 - [ ] **D08d. Perf-тест вынести из общего прогона.** `data-table-v2.perf.test.tsx` измеряет FPS по часам и падает при параллельной нагрузке (48.2 < 50), отдельно проходит 3/3. Отдельный скрипт `test:perf` и запуск вне `pnpm test`.
-- [ ] **D09. Зависимости, часть 2.** Обновить Storybook (проверить миграционный гайд), `pnpm storybook:build` проходит.
+- [ ] **D09. Зависимости, часть 2.** Storybook 8.6 → 10 (миграционный гайд; Storybook 10 поддерживает Vite 5–8), затем Vite 8 + `@vitejs/plugin-react` 6. `pnpm storybook:build` проходит.
 - [ ] **D10. Зависимости, часть 3.** Обновить ESLint-плагины, `radix-ui`, `react-day-picker`, `lucide-react`. Проверить changelog Radix на изменения `unstable_*`.
 
 ## Фаза 2. Качество компонентов
@@ -127,3 +129,4 @@
 | 2026-11-10 | D07 | `docs/adoption/pain-points.md` (9 пунктов, из них 3 серьёзных: поля вылезают из контейнера, Label/Select в одной строке, таблица не принимает `interface`). В план добавлены D38–D41 |
 | 2026-11-10 | D08 | Безопасные обновления (testing-library, @types/react, typescript-eslint). Vite 8 / Vitest 5 / jsdom 31 заблокированы версией Node (shell: 20.10.0), TS 7 заблокирован typescript-eslint. Найден флакующий perf-тест. Добавлены D08b-d |
 | 2026-11-10 | D08b | Node 24.22.2: typecheck, lint, 162 теста, build зелёные; добавлен `.nvmrc`, CI переведён на Node 24 |
+| 2026-11-10 | D08c | dts 5, Vite 6.4, Vitest 5, jsdom 31: gate зелёный (162 + 34 a11y теста, publint, attw, storybook build). Vite 8 ждёт Storybook 10 (D09) |
