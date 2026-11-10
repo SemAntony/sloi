@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
+    "@microsoft/api-extractor": "^7.60.1",
     "@sloi/headless-core": "workspace:*",
     "@sloi/lit-wrappers": "workspace:*",
     "@sloi/tokens": "workspace:*",
@@ -83,7 +84,7 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.72.2",
     "vite": "^5.4.14",
-    "vite-plugin-dts": "^4.5.3",
+    "vite-plugin-dts": "^5.1.2",
     "vitest": "^3.2.4",
     "vitest-axe": "^0.1.0"
   },
