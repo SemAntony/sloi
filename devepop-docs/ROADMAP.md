@@ -15,7 +15,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D08**
+Следующая задача: **D08b**
 
 ---
 
@@ -51,7 +51,14 @@
   2. Нет единого `Field` (Label + Input + FieldMessage + aria-describedby собираются руками); при этом есть и `FieldMessage`, и `FormMessage` из Radix Form: два пути для одного и того же.
   3. Типы V2 (колонки, сортировка, selection) отдельными именами не экспортируются (в d.ts это `*_2`), достаются только через `DataTableV2Props<T>[...]`.
   4. Не проверено руками в браузере: открытие Select, сортировка, выбор строк, пагинация (см. запись в журнале D06).
-- [ ] **D08. Зависимости, часть 1.** `pnpm outdated`; обновить TypeScript, Vite, Vitest. Готово: весь quality gate зелёный.
+- [x] **D08. Зависимости, часть 1 (безопасные обновления).** `pnpm outdated` показал большие разрывы. Обновлено то, что не требует новой версии Node: `@testing-library/react` 16.3.3, `user-event` 14.6.9, `@types/react(-dom)` 19.3.0, `typescript-eslint` 8.72.2. Quality gate зелёный.
+  Заблокировано (причины проверены по `engines`/`peerDependencies`):
+  - Vite 8 требует Node `^20.19 || >=22.12`, Vitest 5 это `>=22.12`, jsdom 31 это `>=22.22`; в shell Desktop Commander Node 20.10.0.
+  - `@vitejs/plugin-react` 6 работает только с Vite 8.
+  - TypeScript 7 не пройдёт: `typescript-eslint` допускает TS `<6.1`. Остаёмся на 5.9.3.
+- [ ] **D08b. Node 24 LTS.** `nvm install 24`, `.nvmrc`, `engines.node` в корневом `package.json`, `node-version` в CI. Готово: `node -v` в проекте ≥ 22.12, gate зелёный.
+- [ ] **D08c. Сборочный стек.** После D08b: Vite 8, Vitest 5 (+ `@vitest/coverage-v8`), `@vitejs/plugin-react` 6, jsdom 31, `vite-plugin-dts` 5 (проверить `rollupTypes`), `@types/node`. По одному пакету за раз, gate после каждого.
+- [ ] **D08d. Perf-тест вынести из общего прогона.** `data-table-v2.perf.test.tsx` измеряет FPS по часам и падает при параллельной нагрузке (48.2 < 50), отдельно проходит 3/3. Отдельный скрипт `test:perf` и запуск вне `pnpm test`.
 - [ ] **D09. Зависимости, часть 2.** Обновить Storybook (проверить миграционный гайд), `pnpm storybook:build` проходит.
 - [ ] **D10. Зависимости, часть 3.** Обновить ESLint-плагины, `radix-ui`, `react-day-picker`, `lucide-react`. Проверить changelog Radix на изменения `unstable_*`.
 
@@ -115,3 +122,4 @@
 | 2026-11-08 | D05 | Smoke-приложение `~/WebstormProjects/sloi-smoke` (Next 16.4.6, React 19.3.1, TS 7.0.2) ставит tarball; `next build` без ошибок и предупреждений; Button/Card/Badge в Server Component, Select в клиентском; типы реальные (ошибки на неверных props). **Фаза 0 завершена** |
 | 2026-11-08 | D06 | `sloi-smoke` превращён в форму (Input, Textarea, Select, Label, FieldMessage, Button) + `DataTableV2` (сортировка, пагинация, выбор строк); `tsc` и `next build` чистые, SSR отдаёт таблицу. Найдены 3 проблемы API (см. D07). Ручной проход в браузере (`pnpm dev`) ждёт результата от владельца |
 | 2026-11-10 | D07 | `docs/adoption/pain-points.md` (9 пунктов, из них 3 серьёзных: поля вылезают из контейнера, Label/Select в одной строке, таблица не принимает `interface`). В план добавлены D38–D41 |
+| 2026-11-10 | D08 | Безопасные обновления (testing-library, @types/react, typescript-eslint). Vite 8 / Vitest 5 / jsdom 31 заблокированы версией Node (shell: 20.10.0), TS 7 заблокирован typescript-eslint. Найден флакующий perf-тест. Добавлены D08b-d |
