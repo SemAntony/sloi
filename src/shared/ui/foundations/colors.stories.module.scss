@@ -110,6 +110,9 @@
   border: 1px solid var(--sloi-border-primary);
   border-radius: var(--sloi-radius-sm);
   background: var(--sloi-surface-elevated);
+  // цвет должен идти из токенов темы карточки, иначе в data-theme='dark'
+  // заголовок наследует тёмный цвет страницы (контраст 1.37:1)
+  color: var(--sloi-text-primary);
   padding: var(--sloi-space-4);
   display: grid;
   gap: var(--sloi-space-3);
