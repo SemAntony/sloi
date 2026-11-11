@@ -7,7 +7,8 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.test.{ts,tsx}'],
-    exclude: ['src/test/fixtures/**'],
+    // perf-тесты меряют время по часам и флакают при параллельной нагрузке: см. test:perf
+    exclude: ['src/test/fixtures/**', 'src/**/*.perf.test.{ts,tsx}'],
     css: true,
     globals: false
   }
