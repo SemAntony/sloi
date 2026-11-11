@@ -17,7 +17,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D09**
+Следующая задача: **D09b**
 
 ---
 
@@ -65,7 +65,8 @@
   Остаётся (перенесено в D09): Vite 7/8 и `@vitejs/plugin-react` 6 заблокированы Storybook 8.6 (его peer: Vite `<=6`). Сначала Storybook 10, потом Vite 8.
 - [x] **D08d. Perf-тест вынести из общего прогона.** `data-table-v2.perf.test.tsx` измеряет FPS по часам и падает при параллельной нагрузке (48.2 < 50), отдельно проходит 3/3. Отдельный скрипт `test:perf` и запуск вне `pnpm test`.
   Сделано: `vitest.perf.config.ts` (без параллелизма файлов), perf-тест исключён из `vitest.config.ts`; `pnpm test` теперь 42 файла/161 тест, `pnpm test:perf` 1/1. В CI не подключён намеренно (общие раннеры флакают так же): запускать локально перед релизом.
-- [ ] **D09. Зависимости, часть 2.** Storybook 8.6 → 10 (миграционный гайд; Storybook 10 поддерживает Vite 5–8), затем Vite 8 + `@vitejs/plugin-react` 6. `pnpm storybook:build` проходит.
+- [x] **D09. Зависимости, часть 2: Storybook 10.** Storybook 8.6 → 10.6.7 (`storybook`, `@storybook/react`, `react-vite`, `addon-a11y`, новый `addon-docs`). `addon-essentials` и `@storybook/test` удалены (встроены в ядро); импорты `@storybook/test` → `storybook/test` в 13 файлах; `main.ts`: `addons: ['@storybook/addon-docs', '@storybook/addon-a11y']`. Результат: `storybook:build` проходит, 293 записи (230 stories + 63 docs), typecheck, lint, 161 тест зелёные.
+- [ ] **D09b. Vite 8 + `@vitejs/plugin-react` 6.** Теперь Storybook 10 это разрешает. Проверить: плагины `preserveUseClient` (hook `renderChunk` в Rolldown), `cssFileName`, `bundleTypes`, `external`, `storybook:build`, 161 + 34 теста, publint/attw, smoke в `sloi-smoke`. При проблемах откат через git.
 - [ ] **D10. Зависимости, часть 3.** Обновить ESLint-плагины, `radix-ui`, `react-day-picker`, `lucide-react`. Проверить changelog Radix на изменения `unstable_*`.
 
 ## Фаза 2. Качество компонентов
@@ -132,3 +133,4 @@
 | 2026-11-10 | D08b | Node 24.22.2: typecheck, lint, 162 теста, build зелёные; добавлен `.nvmrc`, CI переведён на Node 24 |
 | 2026-11-10 | D08c | dts 5, Vite 6.4, Vitest 5, jsdom 31: gate зелёный (162 + 34 a11y теста, publint, attw, storybook build). Vite 8 ждёт Storybook 10 (D09) |
 | 2026-11-10 | D08d | perf-тест вынесен: `pnpm test` (161) без него, `pnpm test:perf` отдельно (проходит) |
+| 2026-11-10 | D09 | Storybook 10.6.7: build зелёный (293 записи), @storybook/test → storybook/test, addon-essentials убран, addon-docs добавлен. Vite 8 вынесен в D09b |

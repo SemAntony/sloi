@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent, waitFor } from '@storybook/test';
+import { expect, userEvent, waitFor } from 'storybook/test';
 import { useState } from 'react';
 import { Button } from '../button';
 import { Tooltip } from './tooltip';

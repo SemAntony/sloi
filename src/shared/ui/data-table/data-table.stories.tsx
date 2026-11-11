@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, screen, userEvent, waitFor } from '@storybook/test';
+import { expect, screen, userEvent, waitFor } from 'storybook/test';
 import { useEffect, useMemo, useState, type ComponentType } from 'react';
 import { DataTable, type DataTableColumn, type DataTableSortState } from './data-table';
 import { Button } from '../button';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent } from '@storybook/test';
+import { expect, userEvent } from 'storybook/test';
 import { forwardRef, useState, type ComponentPropsWithoutRef } from 'react';
 import { Label } from '../label';
 import { Checkbox, CheckboxIndicator } from './checkbox';

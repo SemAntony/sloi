@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent } from '@storybook/test';
+import { expect, userEvent } from 'storybook/test';
 import { useState } from 'react';
 import { Label } from '../label';
 import { Switch, SwitchThumb } from './switch';

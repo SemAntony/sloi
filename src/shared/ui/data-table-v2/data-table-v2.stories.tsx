@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { type ComponentType, useState } from 'react';
-import { expect, fireEvent, screen, userEvent } from '@storybook/test';
+import { expect, fireEvent, screen, userEvent } from 'storybook/test';
 import { type DataTableColumn } from '../data-table';
 import {
   DataTableV2,
