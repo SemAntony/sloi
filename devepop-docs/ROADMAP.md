@@ -17,7 +17,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D09b**
+Следующая задача: **D10**
 
 ---
 
@@ -66,7 +66,7 @@
 - [x] **D08d. Perf-тест вынести из общего прогона.** `data-table-v2.perf.test.tsx` измеряет FPS по часам и падает при параллельной нагрузке (48.2 < 50), отдельно проходит 3/3. Отдельный скрипт `test:perf` и запуск вне `pnpm test`.
   Сделано: `vitest.perf.config.ts` (без параллелизма файлов), perf-тест исключён из `vitest.config.ts`; `pnpm test` теперь 42 файла/161 тест, `pnpm test:perf` 1/1. В CI не подключён намеренно (общие раннеры флакают так же): запускать локально перед релизом.
 - [x] **D09. Зависимости, часть 2: Storybook 10.** Storybook 8.6 → 10.6.7 (`storybook`, `@storybook/react`, `react-vite`, `addon-a11y`, новый `addon-docs`). `addon-essentials` и `@storybook/test` удалены (встроены в ядро); импорты `@storybook/test` → `storybook/test` в 13 файлах; `main.ts`: `addons: ['@storybook/addon-docs', '@storybook/addon-a11y']`. Результат: `storybook:build` проходит, 293 записи (230 stories + 63 docs), typecheck, lint, 161 тест зелёные.
-- [ ] **D09b. Vite 8 + `@vitejs/plugin-react` 6.** Теперь Storybook 10 это разрешает. Проверить: плагины `preserveUseClient` (hook `renderChunk` в Rolldown), `cssFileName`, `bundleTypes`, `external`, `storybook:build`, 161 + 34 теста, publint/attw, smoke в `sloi-smoke`. При проблемах откат через git.
+- [x] **D09b. Vite 8 + `@vitejs/plugin-react` 6.** Vite 8.3.8, plugin-react 6.3.0. Vite 8 (Rolldown) сам сохраняет `'use client'`, поэтому мой плагин `preserveUseClient` удалён (иначе директива дублировалась). `cssFileName`, `bundleTypes`, `external` работают без изменений; `d.ts` совпадает с прежним. Gate: 161 + 34 теста, typecheck, lint, publint, attw, `storybook:build` (293 записи) и smoke в `sloi-smoke` (`next build` + `tsc`) зелёные. Бандл: `index.js` 244→229 КБ, `style.css` 117→116 КБ.
 - [ ] **D10. Зависимости, часть 3.** Обновить ESLint-плагины, `radix-ui`, `react-day-picker`, `lucide-react`. Проверить changelog Radix на изменения `unstable_*`.
 
 ## Фаза 2. Качество компонентов
@@ -137,3 +137,4 @@
 | 2026-11-10 | D09 | Storybook 10.6.7: build зелёный (293 записи), @storybook/test → storybook/test, addon-essentials убран, addon-docs добавлен. Vite 8 вынесен в D09b |
 | 2026-11-10 | fix | Story `Foundations/Colors`: заголовок «Dark» имел контраст 1.37:1 (наследовал тёмный цвет страницы). `color: var(--sloi-text-primary)` на `.themeCard` даёт ~14:1. Попутно выяснилось, что тёмная тема в токенах уже существует; D25–D28 переформулированы |
 | 2026-11-10 | fix | Story `Foundations/Design System`: hero-градиент давал в axe «фон не определён» (needs review), а в тёмной теме реально контраст ~2.4:1 (светлые палитровые пятна под светлым текстом). Заменён на сплошной `color-mix(--sloi-focus-ring 12%, --sloi-surface-base)`: ≥11.8:1 в обеих темах. Компоненты используют семантические токены; сырую палитру используют только 2 story-файла |
+| 2026-11-10 | D09b | Vite 8.3.8 + plugin-react 6.3.0; плагин 'use client' удалён (Rolldown сохраняет директиву сам); всё зелёное, smoke-приложение собирается с новым tarball |
