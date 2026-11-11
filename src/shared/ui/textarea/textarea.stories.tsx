@@ -33,7 +33,7 @@ const ControlledPreview = () => {
 
   return (
     <div className={styles.stack}>
-      <Textarea value={value} onChange={(event) => setValue(event.target.value)} />
+      <Textarea aria-label='Controlled textarea' value={value} onChange={(event) => setValue(event.target.value)} />
       <p className={styles.meta}>Length: {value.length}</p>
     </div>
   );

@@ -47,3 +47,14 @@ Label, Input, FieldMessage и `aria-describedby` собираются рукам
 
 ## P9 (L, проверить). Focus ring у SelectTrigger остаётся виден после выбора
 На скриншоте у триггера толстая синяя рамка. Нужно убедиться, что это `:focus-visible`, а не `:focus`.
+
+## P10 (M). Pagination: подпись `<nav>` зашита в код
+`<nav aria-label='Pagination'>` нельзя переопределить: две пагинации на странице дают повторяющиеся landmark'и (axe `landmark-unique`), а локализовать подпись нельзя.
+Исправлено: проп `navigationLabel` (по умолчанию 'Pagination'), в `DataTable` проп `paginationLabel`. Осталось проверить `DataTableV2`.
+
+## P11 (L). `FormValidityState` с `name` вне `FormField` падает
+В Radix Form 0.1.8 `FormValidityState` всегда читает контекст поля, поэтому проп `name` вне `FormField` не работает (ошибка «must be used within FormField»); story ValidityState была сломана. Исправлено в story (блок перенесён внутрь поля). Стоит либо закрыть проп `name` в обёртке, либо документировать.
+
+## P12 (L). Progress не имеет имени по умолчанию
+`Progress` (Radix) не получает accessible name: потребитель обязан передавать `aria-label`/`aria-labelledby`. Story исправлены; в документации компонента отметить как обязательное.
+

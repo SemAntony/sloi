@@ -27,8 +27,9 @@ export const Default: Story = {};
 export const States: Story = {
   render: () => (
     <div className={styles.stack}>
-      <Breadcrumb items={items} />
+      <Breadcrumb label='Default path' items={items} />
       <Breadcrumb
+        label='Path with disabled item'
         items={[
           { label: 'Home', href: '#' },
           { label: 'Library', href: '#' },
@@ -37,6 +38,7 @@ export const States: Story = {
         ]}
       />
       <Breadcrumb
+        label='Path with custom separator'
         items={[
           { label: 'Dashboard', href: '#' },
           { label: 'Reports', href: '#' },

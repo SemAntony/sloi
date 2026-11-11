@@ -38,7 +38,7 @@ export const States: Story = {
 export const Controlled: Story = {
   render: () => (
     <InputGroup startElement='https://' endElement='.sloi.app'>
-      <input value='docs' readOnly />
+      <input aria-label='Subdomain' value='docs' readOnly />
     </InputGroup>
   )
 };

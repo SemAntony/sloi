@@ -64,6 +64,9 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test:a11y
+      - run: pnpm run test:stories-a11y
+        env:
+          STORIES_A11Y_STRICT: '1'
 
   storybook-build:
     name: storybook-build

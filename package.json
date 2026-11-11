@@ -38,6 +38,7 @@
     "test:watch": "vitest",
     "test:a11y": "vitest run --config vitest.a11y.config.ts",
     "test:perf": "vitest run --config vitest.perf.config.ts",
+    "test:stories-a11y": "vitest run --config vitest.stories-a11y.config.ts",
     "mf:validate": "pnpm run build && node --experimental-strip-types scripts/multi-framework-readiness.ts --out reports/multi-framework/latest.json",
     "tokens:sync": "pnpm --filter @sloi/tokens run sync",
     "adoption:metrics": "node --experimental-strip-types scripts/adoption-metrics.ts",

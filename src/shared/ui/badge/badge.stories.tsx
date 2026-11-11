@@ -41,7 +41,7 @@ const ControlledPreview = () => {
 
   return (
     <div className={storyStyles.stack}>
-      <select value={tone} onChange={(event) => setTone(event.target.value as BadgeTone)}>
+      <select aria-label='Badge tone' value={tone} onChange={(event) => setTone(event.target.value as BadgeTone)}>
         <option value='neutral'>neutral</option>
         <option value='info'>info</option>
         <option value='success'>success</option>

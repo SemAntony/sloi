@@ -101,6 +101,8 @@ interface DataTableCommonProps<T extends Record<string, unknown>>
   pageSizeOptions?: number[];
   showPagination?: boolean;
   showPageSizeSelector?: boolean;
+  /** Accessible name of the pagination <nav>; make it unique when several tables share a page. */
+  paginationLabel?: string;
   sort?: DataTableSortState;
   defaultSort?: DataTableSortState;
   onSortChange?: (sort: DataTableSortState | undefined) => void;
@@ -230,6 +232,7 @@ function DataTableInner<T extends Record<string, unknown>>(
     pageSizeOptions = [10, 20, 50],
     showPagination = true,
     showPageSizeSelector = true,
+    paginationLabel,
     processingMode = 'client',
     totalItems,
     sort,
@@ -793,6 +796,7 @@ function DataTableInner<T extends Record<string, unknown>>(
           onPageSizeChange={handlePageSizeChange}
           pageSizeOptions={pageSizeOptions}
           showPageSizeSelector={showPageSizeSelector}
+          navigationLabel={paginationLabel}
         />
       ) : null}
     </div>

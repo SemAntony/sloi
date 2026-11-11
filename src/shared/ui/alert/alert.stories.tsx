@@ -40,7 +40,7 @@ const ControlledPreview = () => {
 
   return (
     <div className={storyStyles.stack} style={{ width: '100%' }}>
-      <select value={tone} onChange={(event) => setTone(event.target.value as AlertTone)}>
+      <select aria-label='Alert tone' value={tone} onChange={(event) => setTone(event.target.value as AlertTone)}>
         <option value='info'>info</option>
         <option value='success'>success</option>
         <option value='warning'>warning</option>

@@ -34,7 +34,7 @@ const ProgressRow = ({
       <span>{label}</span>
       <span>{value == null ? 'indeterminate' : `${Math.round((value / max) * 100)}%`}</span>
     </div>
-    <Progress value={value} max={max} getValueLabel={getValueLabel}>
+    <Progress aria-label={label} value={value} max={max} getValueLabel={getValueLabel}>
       <ProgressIndicator style={getIndicatorStyle(value, max)} />
     </Progress>
   </div>

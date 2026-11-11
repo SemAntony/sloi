@@ -117,9 +117,9 @@ export const Default: Story = {
 export const States: Story = {
   render: () => (
     <div className={storyStyles.stack} style={{ width: '100%' }}>
-      <DataTable data={rows} columns={columns} rowKey='id' loading />
-      <DataTable data={[]} columns={columns} rowKey='id' emptyMessage='No invoices for this period.' />
-      <DataTable data={rows} columns={columns} rowKey='id' striped density='compact' />
+      <DataTable data={rows} columns={columns} rowKey='id' loading paginationLabel='Loading table pagination' />
+      <DataTable data={[]} columns={columns} rowKey='id' emptyMessage='No invoices for this period.' paginationLabel='Empty table pagination' />
+      <DataTable data={rows} columns={columns} rowKey='id' striped density='compact' paginationLabel='Compact table pagination' />
     </div>
   )
 };

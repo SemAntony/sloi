@@ -36,7 +36,7 @@ const ControlledPreview = () => {
   return (
     <div className={styles.stack}>
       <div className={styles.row}>
-        <Input value={value} onChange={(event) => setValue(event.target.value)} />
+        <Input aria-label='Controlled input' value={value} onChange={(event) => setValue(event.target.value)} />
         <p className={styles.meta}>Current value: {value || '(empty)'}</p>
       </div>
     </div>

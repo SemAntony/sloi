@@ -7,6 +7,7 @@ const meta = {
   title: 'UI/NumberField',
   component: NumberField,
   args: {
+    'aria-label': 'Quantity',
     min: 0,
     max: 100,
     step: 1,
@@ -23,9 +24,9 @@ export const Default: Story = {};
 export const States: Story = {
   render: () => (
     <div className={styles.stack}>
-      <NumberField defaultValue={12} />
-      <NumberField invalid defaultValue={-3} min={0} />
-      <NumberField disabled defaultValue={20} />
+      <NumberField aria-label='Quantity' defaultValue={12} />
+      <NumberField aria-label='Quantity (invalid)' invalid defaultValue={-3} min={0} />
+      <NumberField aria-label='Quantity (disabled)' disabled defaultValue={20} />
     </div>
   )
 };
@@ -35,7 +36,7 @@ const ControlledPreview = () => {
 
   return (
     <div className={styles.stack}>
-      <NumberField value={value} onValueChange={setValue} min={0} max={10} />
+      <NumberField aria-label='Controlled quantity' value={value} onValueChange={setValue} min={0} max={10} />
       <p className={styles.meta}>Current value: {value ?? '(empty)'}</p>
     </div>
   );

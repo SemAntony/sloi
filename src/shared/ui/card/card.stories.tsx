@@ -59,7 +59,7 @@ const ControlledPreview = () => {
 
   return (
     <div className={storyStyles.stack} style={{ width: '100%' }}>
-      <select value={variant} onChange={(event) => setVariant(event.target.value as CardVariant)}>
+      <select aria-label='Card variant' value={variant} onChange={(event) => setVariant(event.target.value as CardVariant)}>
         <option value='elevated'>elevated</option>
         <option value='outlined'>outlined</option>
       </select>

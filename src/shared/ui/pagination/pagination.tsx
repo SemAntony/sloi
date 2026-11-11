@@ -47,6 +47,8 @@ export interface PaginationProps extends HTMLAttributes<HTMLDivElement> {
   onPageSizeChange?: (pageSize: number) => void;
   pageSizeOptions?: number[];
   showPageSizeSelector?: boolean;
+  /** Accessible name of the <nav>; make it unique when several paginations share a page. */
+  navigationLabel?: string;
   showSummary?: boolean;
   siblingCount?: number;
   disabled?: boolean;
@@ -64,6 +66,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((rawProps,
     onPageSizeChange,
     pageSizeOptions = [10, 20, 50],
     showPageSizeSelector = true,
+    navigationLabel = 'Pagination',
     showSummary = true,
     siblingCount = 1,
     disabled = false,
@@ -126,7 +129,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((rawProps,
         </p>
       ) : null}
 
-      <nav className={styles.navigation} aria-label='Pagination'>
+      <nav className={styles.navigation} aria-label={navigationLabel}>
         <Button
           type='button'
           variant='secondary'

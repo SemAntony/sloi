@@ -201,23 +201,22 @@ const ValidityStatePreview = () => (
       <FormControl type="url" required placeholder="https://example.com" />
       <FormMessage match="valueMissing">Please enter a URL</FormMessage>
       <FormMessage match="typeMismatch">URL must include protocol (https://...)</FormMessage>
+      <FormValidityState>
+        {(validity) => (
+          <ul className={styles.validityList}>
+            <li className={cn(validity?.valueMissing && styles.validityListItemActive)}>
+              `valueMissing`: {String(validity?.valueMissing ?? false)}
+            </li>
+            <li className={cn(validity?.typeMismatch && styles.validityListItemActive)}>
+              `typeMismatch`: {String(validity?.typeMismatch ?? false)}
+            </li>
+            <li className={cn(validity?.valid && styles.validityListItemActive)}>
+              `valid`: {String(validity?.valid ?? false)}
+            </li>
+          </ul>
+        )}
+      </FormValidityState>
     </FormField>
-
-    <FormValidityState name="projectUrl">
-      {(validity) => (
-        <ul className={styles.validityList}>
-          <li className={cn(validity?.valueMissing && styles.validityListItemActive)}>
-            `valueMissing`: {String(validity?.valueMissing ?? false)}
-          </li>
-          <li className={cn(validity?.typeMismatch && styles.validityListItemActive)}>
-            `typeMismatch`: {String(validity?.typeMismatch ?? false)}
-          </li>
-          <li className={cn(validity?.valid && styles.validityListItemActive)}>
-            `valid`: {String(validity?.valid ?? false)}
-          </li>
-        </ul>
-      )}
-    </FormValidityState>
 
     <FormSubmit>Submit</FormSubmit>
   </Form>

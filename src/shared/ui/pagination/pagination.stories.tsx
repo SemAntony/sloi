@@ -21,9 +21,9 @@ export const Default: Story = {};
 export const States: Story = {
   render: () => (
     <div className={storyStyles.stack} style={{ width: '100%' }}>
-      <Pagination totalItems={24} defaultPage={2} defaultPageSize={5} showPageSizeSelector={false} />
-      <Pagination totalItems={0} showPageSizeSelector={false} />
-      <Pagination totalItems={94} disabled />
+      <Pagination navigationLabel='Pagination, page 2' totalItems={24} defaultPage={2} defaultPageSize={5} showPageSizeSelector={false} />
+      <Pagination navigationLabel='Pagination, empty' totalItems={0} showPageSizeSelector={false} />
+      <Pagination navigationLabel='Pagination, disabled' totalItems={94} disabled />
     </div>
   )
 };
