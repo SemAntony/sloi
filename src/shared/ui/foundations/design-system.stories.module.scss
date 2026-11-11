@@ -12,10 +12,9 @@
   border: 1px solid var(--sloi-border-primary);
   border-radius: var(--sloi-radius-lg);
   padding: var(--sloi-space-6);
-  background:
-    radial-gradient(70% 100% at 0% 0%, color-mix(in srgb, var(--sloi-palette-blue-3) 45%, transparent), transparent),
-    radial-gradient(70% 100% at 100% 0%, color-mix(in srgb, var(--sloi-palette-cyan-3) 45%, transparent), transparent),
-    var(--sloi-surface-base);
+  // Сплошной тон из семантических токенов: axe не умеет считать контраст по градиенту,
+  // а светлые палитровые пятна в тёмной теме давали контраст ~2.4:1.
+  background: color-mix(in srgb, var(--sloi-focus-ring) 12%, var(--sloi-surface-base));
 }
 
 .heroTitle {
