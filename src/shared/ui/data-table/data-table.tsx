@@ -339,7 +339,7 @@ function DataTableInner<T extends Record<string, unknown>>(
         const leftValue = normalizeSortValue(getSortValue(targetColumn, leftItem.row));
         const rightValue = normalizeSortValue(getSortValue(targetColumn, rightItem.row));
 
-        let compareResult = 0;
+        let compareResult: number;
         if (typeof leftValue === 'number' && typeof rightValue === 'number') {
           compareResult = leftValue - rightValue;
         } else {

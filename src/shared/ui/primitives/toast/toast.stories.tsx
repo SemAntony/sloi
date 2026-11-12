@@ -35,7 +35,7 @@ const formatDate = (date: Date) =>
 
 const ToastPreview = () => {
   const [open, setOpen] = useState(false);
-  const eventDateRef = useRef(new Date());
+  const [eventDate, setEventDate] = useState(() => new Date());
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
@@ -59,7 +59,7 @@ const ToastPreview = () => {
               clearTimeout(timerRef.current);
             }
             timerRef.current = setTimeout(() => {
-              eventDateRef.current = oneWeekAway();
+              setEventDate(oneWeekAway());
               setOpen(true);
             }, 100);
           }}
@@ -71,8 +71,8 @@ const ToastPreview = () => {
       <Toast open={open} onOpenChange={setOpen}>
         <ToastTitle>Scheduled: Catch up</ToastTitle>
         <ToastDescription asChild>
-          <time className={styles.date} dateTime={eventDateRef.current.toISOString()}>
-            {formatDate(eventDateRef.current)}
+          <time className={styles.date} dateTime={eventDate.toISOString()}>
+            {formatDate(eventDate)}
           </time>
         </ToastDescription>
         <ToastAction altText="Go to schedule to undo">Undo</ToastAction>

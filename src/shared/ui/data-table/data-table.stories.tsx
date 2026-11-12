@@ -279,6 +279,8 @@ const ServerControlledPreview = () => {
   const [totalItems, setTotalItems] = useState(rows.length);
 
   useEffect(() => {
+    // Story имитирует серверный запрос: «loading» включается на время фейковой задержки.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
 
     const timeoutId = window.setTimeout(() => {
