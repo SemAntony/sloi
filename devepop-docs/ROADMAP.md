@@ -5,6 +5,7 @@
 
 ## Окружение (важно)
 
+- ВАЖНО: любая команда «голым» `pnpm` в терминале запускает pnpm 8.15.4 (из /usr/local/bin), который не понимает lockfile v9 и пересоздаёт/опустошает `node_modules`. Лечение: `corepack enable` (тогда `pnpm` возьмёт версию из `packageManager`) или всегда `corepack pnpm@10.11.1 ...`. Если `node_modules` оказался пустым: `NODE_ENV=development corepack pnpm@10.11.1 install --frozen-lockfile`.
 - На этом Mac в PATH стоит pnpm 8.15.4, а проект требует 10.11.1 (lockfile v9). Запускать так: `corepack pnpm@10.11.1 <команда>` или исправить PATH. Старый pnpm 8 при `install` сносит `node_modules`.
 - В shell Desktop Commander выставлен `NODE_ENV=production`: тесты падают с `React.act is not a function`. Запускать `NODE_ENV=test corepack pnpm@10.11.1 test`.
 
@@ -17,7 +18,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D10**
+Следующая задача: **D10b**
 
 ---
 
@@ -67,7 +68,9 @@
   Сделано: `vitest.perf.config.ts` (без параллелизма файлов), perf-тест исключён из `vitest.config.ts`; `pnpm test` теперь 42 файла/161 тест, `pnpm test:perf` 1/1. В CI не подключён намеренно (общие раннеры флакают так же): запускать локально перед релизом.
 - [x] **D09. Зависимости, часть 2: Storybook 10.** Storybook 8.6 → 10.6.7 (`storybook`, `@storybook/react`, `react-vite`, `addon-a11y`, новый `addon-docs`). `addon-essentials` и `@storybook/test` удалены (встроены в ядро); импорты `@storybook/test` → `storybook/test` в 13 файлах; `main.ts`: `addons: ['@storybook/addon-docs', '@storybook/addon-a11y']`. Результат: `storybook:build` проходит, 293 записи (230 stories + 63 docs), typecheck, lint, 161 тест зелёные.
 - [x] **D09b. Vite 8 + `@vitejs/plugin-react` 6.** Vite 8.3.8, plugin-react 6.3.0. Vite 8 (Rolldown) сам сохраняет `'use client'`, поэтому мой плагин `preserveUseClient` удалён (иначе директива дублировалась). `cssFileName`, `bundleTypes`, `external` работают без изменений; `d.ts` совпадает с прежним. Gate: 161 + 34 теста, typecheck, lint, publint, attw, `storybook:build` (293 записи) и smoke в `sloi-smoke` (`next build` + `tsc`) зелёные. Бандл: `index.js` 244→229 КБ, `style.css` 117→116 КБ.
-- [ ] **D10. Зависимости, часть 3.** Обновить ESLint-плагины, `radix-ui`, `react-day-picker`, `lucide-react`. Проверить changelog Radix на изменения `unstable_*`.
+- [x] **D10. Зависимости, часть 3: runtime и React.** `radix-ui` 1.4.3→1.8.1, `lucide-react` 1.7→1.72, dev `react`/`react-dom` 19.3.1, `sass` 1.108. Пришлось поправить: `Slottable` (новые типы Radix, `utilities.tsx`) и story `PasswordToggleField`: в Radix unstable API проп переименован `onVisiblityChange` → `onVisibilityChange` (внимание: при обновлении `radix-ui` у потребителей это ломающее изменение; записать в CHANGELOG, см. D24). Если после `pnpm update` падают тесты с «Invalid hook call»: в `node_modules` осталось две копии React; помогает чистая переустановка (`rm -rf node_modules && pnpm install --frozen-lockfile`). Gate зелёный: 161 + 34 теста, 229 stories (strict), perf, typecheck, lint, publint, attw, storybook build.
+- [ ] **D10b. Линтер.** `eslint` 9→10 вместе с `@eslint/js`, `eslint-plugin-react-hooks` 5→7, `eslint-plugin-react-refresh` 0.5, `globals` 17 (сначала проверить peer-совместимость плагинов с ESLint 10; hooks 7 добавляет новые правила, возможны новые предупреждения).
+- [ ] **D10c. Остальное.** `@testing-library/jest-dom` 7, `@types/node` в пределах 24.x, `react-day-picker` 9→10 (вшит в бандл: проверить DatePicker руками и по тестам, CSS `react-day-picker/style.css`, тип `Matcher`).
 
 ## Фаза 2. Качество компонентов
 
@@ -139,3 +142,4 @@
 | 2026-11-10 | fix | Story `Foundations/Design System`: hero-градиент давал в axe «фон не определён» (needs review), а в тёмной теме реально контраст ~2.4:1 (светлые палитровые пятна под светлым текстом). Заменён на сплошной `color-mix(--sloi-focus-ring 12%, --sloi-surface-base)`: ≥11.8:1 в обеих темах. Компоненты используют семантические токены; сырую палитру используют только 2 story-файла |
 | 2026-11-10 | D09b | Vite 8.3.8 + plugin-react 6.3.0; плагин 'use client' удалён (Rolldown сохраняет директиву сам); всё зелёное, smoke-приложение собирается с новым tarball |
 | 2026-11-11 | D07b | Аудит a11y по всем stories: 18 нарушений → 0 (`test:stories-a11y`, в CI). Новые API: `Pagination.navigationLabel`, `DataTable.paginationLabel`. Проверить `DataTableV2` на то же |
+| 2026-11-12 | D10 | radix-ui 1.8.1, lucide-react 1.72, react 19.3.1, sass 1.108; правки Slottable и PasswordToggleField (`onVisibilityChange`); node_modules один раз оказался пустым (вероятно, запуск pnpm 8), восстановлен frozen install |

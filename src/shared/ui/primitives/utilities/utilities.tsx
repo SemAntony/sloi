@@ -43,9 +43,7 @@ export const SlotRoot = Slot;
 export type SlotProps = ComponentPropsWithoutRef<typeof SlotPrimitive.Root>;
 export type SlottableProps = ComponentPropsWithoutRef<typeof SlotPrimitive.Slottable>;
 
-export const Slottable = ({ children }: SlottableProps) => (
-  <SlotPrimitive.Slottable>{children}</SlotPrimitive.Slottable>
-);
+export const Slottable = (props: SlottableProps) => <SlotPrimitive.Slottable {...props} />;
 export const SlotSlottable = Slottable;
 
 export type VisuallyHiddenProps = ComponentPropsWithoutRef<typeof VisuallyHiddenPrimitive.Root>;

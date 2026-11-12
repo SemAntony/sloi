@@ -53,7 +53,7 @@ const ControlledPreview = () => {
 
   return (
     <div className={styles.stack}>
-      <PasswordToggleField visible={visible} onVisiblityChange={setVisible} className={styles.field}>
+      <PasswordToggleField visible={visible} onVisibilityChange={setVisible} className={styles.field}>
         <PasswordToggleFieldInput placeholder="Controlled visibility" />
         <PasswordToggleFieldToggle>
           <PasswordToggleFieldSlot visible="SHOW" hidden="HIDE" />
