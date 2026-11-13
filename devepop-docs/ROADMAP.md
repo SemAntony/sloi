@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D10c**, затем A1, A3, A2 (Фаза 5, группа 1), потом Фаза 2b/2
+Следующая задача: **A1**, затем A3, A2 (Фаза 5, группа 1), потом Фаза 2b/2 (Фаза 1 закончена)
 
 ---
 
@@ -82,7 +82,7 @@
 - [x] **D10. Зависимости, часть 3: runtime и React.** `radix-ui` 1.4.3→1.8.1, `lucide-react` 1.7→1.72, dev `react`/`react-dom` 19.3.1, `sass` 1.108. Пришлось поправить: `Slottable` (новые типы Radix, `utilities.tsx`) и story `PasswordToggleField`: в Radix unstable API проп переименован `onVisiblityChange` → `onVisibilityChange` (внимание: при обновлении `radix-ui` у потребителей это ломающее изменение; записать в CHANGELOG, см. D24). Если после `pnpm update` падают тесты с «Invalid hook call»: в `node_modules` осталось две копии React; помогает чистая переустановка (`rm -rf node_modules && pnpm install --frozen-lockfile`). Gate зелёный: 161 + 34 теста, 229 stories (strict), perf, typecheck, lint, publint, attw, storybook build.
 - [x] **D10b. Линтер.** `eslint` 10.14, `@eslint/js` 10, `eslint-plugin-react-hooks` 7.1.1, `eslint-plugin-react-refresh` 0.5.7, `globals` 17. Совместимость по peer проверена заранее. Результат: 15 новых замечаний. Исправлено 7: `no-useless-assignment` в `data-table(-v2)` (`let compareResult: number`), story `toast` (ref → state), две stories с имитацией серверного запроса (`eslint-disable-next-line` с причиной). Остальные 8 (новые правила React Compiler `set-state-in-effect` и `refs` в `data-table-v2.tsx`, `data-table.tsx`, `headless-core/combobox.ts`) оставлены предупреждениями через override в `eslint.config.js` и вынесены в D10e. Gate зелёный: 0 ошибок линтера.
 - [ ] **D10e. Рефакторинг эффектов (8 предупреждений линтера).** `DataTableV2` (восстановление состояния из storage, нормализация pinned/column sizes, сброс виртуального скролла, чтение ref во время рендера), `DataTable` (восстановление состояния), `useComboboxController` (сброс `activeIndex`). Варианты: derived state, `key`-сброс, обработчики вместо эффектов. Критерий: override в `eslint.config.js` удалён, тесты и perf-тест зелёные. Делать вместе с Фазой 2 (тесты на DataTable).
-- [ ] **D10c. Остальное.** `@testing-library/jest-dom` 7, `@types/node` в пределах 24.x, `react-day-picker` 9→10 (вшит в бандл: проверить DatePicker руками и по тестам, CSS `react-day-picker/style.css`, тип `Matcher`).
+- [x] **D10c. Остальное.** `@testing-library/jest-dom` 6.9→7.0.1, `react-day-picker` 9.14→10.0.2 (вшит в бандл: DatePicker-тесты, 80 классов `rdp-*` в `style.css`, `index.js` 229→231 КБ, `style.css` 116→115.5 КБ). `@types/node` оставлен на 24.x (соответствует Node 24; 26.x не нужен). Исправлено: в `input.stories.tsx` аргумент `type: {}` (мусор, новые типы React его не принимают). Gate, smoke-приложение, `publint`/`attw`, storybook зелёные. Руками DatePicker в браузере не смотрел: открой story DatePicker и проверь календарь визуально.
 
 ## Фаза 2. Качество компонентов
 
@@ -193,3 +193,4 @@
 | 2026-11-12 | D10 | radix-ui 1.8.1, lucide-react 1.72, react 19.3.1, sass 1.108; правки Slottable и PasswordToggleField (`onVisibilityChange`); node_modules один раз оказался пустым (вероятно, запуск pnpm 8), восстановлен frozen install |
 | 2026-11-12 | plan | Добавлены принципы Sloi и Фаза 5 (A1–A8): токены в DTCG, проверка контраста по токенам, component tokens на Button, модель тем; RN и выбор ядра только при потребности. Порядок: D10b, D10c, A1, A3, A2 |
 | 2026-11-12 | D10b | ESLint 10 + react-hooks 7 + refresh 0.5 + globals 17: исправлено 7 из 15 новых замечаний, 8 (эффекты в DataTable/Combobox) оставлены предупреждениями и вынесены в D10e |
+| 2026-11-12 | D10c | jest-dom 7, react-day-picker 10 (вшит), мусорный `type: {}` в Input story убран; всё зелёное. **Фаза 1 закончена** |

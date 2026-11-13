@@ -1,0 +1,28 @@
+cat > .npmignore <<'EOF'
+# Next.js build output
+.next/
+
+# Dependencies
+node_modules/
+
+# Package archives
+*.tgz
+
+# Local build caches
+*.tsbuildinfo
+.turbo/
+.cache/
+
+# Coverage and build artifacts
+coverage/
+dist/
+build/
+
+# OS files
+.DS_Store
+
+# Environment files
+.env
+.env.*
+!.env.example
+EOF
