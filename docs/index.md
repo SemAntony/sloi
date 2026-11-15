@@ -1,5 +1,9 @@
 # Stable Core Docs Map
 
+## Architecture
+
+- [Vision & Principles (draft)](./architecture/VISION.md)
+
 ## Governance
 
 - [Governance overview](./governance/index.md)
