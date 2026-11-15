@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **A1**, затем A3, A2 (Фаза 5, группа 1), потом Фаза 2b/2 (Фаза 1 закончена)
+Следующая задача: **D41** (Фаза 2b, base-слой или документация подключения) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
 
 ---
 
@@ -99,20 +99,21 @@
 - [ ] **D21. Button: `loading`.** Состояние загрузки с `aria-busy`, блокировкой клика и stories.
 - [ ] **D22. Button: `danger` и слоты иконок.** Варианты и `startIcon`/`endIcon`, тесты, stories.
 - [ ] **D23. Иконки вместо глифов.** Заменить текстовые "▾", "✓", "▴" в `primitives/_internal/common` на `Icon` из библиотеки.
+- [ ] **D42. RTL: аудит физических свойств.** Найти `left`/`right`, `margin-left`/`padding-right`, `text-align: left`, `translateX` и стрелки-иконки в `*.module.scss` и компонентах; заменить на логические (`inline-start/end`, `margin-inline`) там, где это безопасно. Одна story в `dir="rtl"` для Tier-1. Готово: список найденного в `docs/adoption/rtl-audit.md`, исправления для Tier-1, остальное записано как остаток.
 - [ ] **D24. `unstable_*` в публичном API.** `OneTimePasswordField` и `PasswordToggleField` пометить experimental в JSDoc и stories или убрать из экспорта; записать решение в CHANGELOG.
 
 ### Фаза 2b. Задачи из D07 (делать сразу после Фазы 1, перед D11)
 
 Подробности и примеры кода: `docs/adoption/pain-points.md`.
 
-- [ ] **D38. Поля ввода: `box-sizing: border-box` (P1).** Input, Textarea, SearchInput, NumberField, PhoneField. Story «в узком контейнере». Готово: поле не вылезает за Card без внешнего reset.
-- [ ] **D39. `DataTable`/`DataTableV2`: `T extends object` (P3).** Тест со строками-`interface`; экспортировать V2-типы под своими именами (P7).
-- [ ] **D40. Компонент `Field` (P2, P4).** Label + control + hint + message, сам проставляет `id` и `aria-describedby`/`aria-invalid`; `SelectTrigger` с `fullWidth`; решить судьбу `FormMessage`.
+- [x] **D38. Поля ввода: `box-sizing: border-box` (P1).** Input, Textarea, SearchInput, NumberField, PhoneField. Story «в узком контейнере». Готово: поле не вылезает за Card без внешнего reset.
+- [x] **D39. `DataTable`/`DataTableV2`: `T extends object` (P3).** Тест со строками-`interface`; экспортировать V2-типы под своими именами (P7).
+- [x] **D40. Компонент `Field` (P2, P4).** Label + control + hint + message, сам проставляет `id` и `aria-describedby`/`aria-invalid`; `SelectTrigger` с `fullWidth`; решить судьбу `FormMessage`.
 - [ ] **D41. Base-слой или документация подключения (P5).** `base.css` (reset + font-family из токенов) либо раздел README; проверить в `sloi-smoke` без собственных глобальных стилей.
 
 ## Фаза 3. Дизайн-система как система
 
-- [ ] **D25. Аудит тёмной темы (выполнять скриптом из A3).** Тёмная тема в токенах УЖЕ есть (`packages/tokens/src/colors.css`, `[data-theme='dark']`; раньше я ошибочно считал, что её нет). Задача: сверить, что у каждого семантического токена светлой темы есть тёмный аналог, и посчитать контраст пар text/surface и status (AA 4.5:1) обеих тем. Результат: таблица с провалами.
+- [ ] **D25. Аудит тёмной темы (таблица контраста готова: A3; осталось: градиенты и stories с сырой палитрой).** Тёмная тема в токенах УЖЕ есть (`packages/tokens/src/colors.css`, `[data-theme='dark']`; раньше я ошибочно считал, что её нет). Задача: сверить, что у каждого семантического токена светлой темы есть тёмный аналог, и посчитать контраст пар text/surface и status (AA 4.5:1) обеих тем. Результат: таблица с провалами.
   Отдельно проверить места с градиентами (axe не считает контраст по градиенту): `button.module.scss` (primary), `progress`, `skeleton`; и stories с «сырыми» палитровыми цветами (`context-menu`, `aspect-ratio` stories), которые не адаптируются к тёмной теме.
 - [ ] **D26. Тёмная тема: исправить найденное в D25.** Только токены/компоненты, которые провалили контраст или не имеют тёмного значения.
 - [ ] **D27. Storybook: переключатель темы.** Тулбар light/dark (ставит `data-theme` на `<html>`/обёртку) и токены из `@sloi/tokens` вместо compat-слоя `src/app/styles`.
@@ -139,8 +140,8 @@
 
 ### Группа 1: сразу после Фазы 1
 
-- [ ] **A1. Vision & Principles.** Один документ `docs/architecture/VISION.md`: назначение, принципы (см. выше), позиционирование, платформенная стратегия. Черновик пишет Claude, правит владелец.
-- [ ] **A3. Проверка контраста по токенам.** (Идёт раньше A2: работает с текущим CSS и сразу закрывает D25.)
+- [x] **A1. Vision & Principles.** Один документ `docs/architecture/VISION.md`: назначение, принципы (см. выше), позиционирование, платформенная стратегия. Черновик пишет Claude, правит владелец.
+- [x] **A3. Проверка контраста по токенам.** (Идёт раньше A2: работает с текущим CSS и сразу закрывает D25.)
   Технический план:
   1. Скрипт `packages/tokens/scripts/check-contrast.mjs`: собирает карту токенов по темам (`:root` и `[data-theme='dark']`, 44 dark-переопределения), раскрывает `var(--…)`-алиасы до hex.
   2. Список пар лежит в явном конфиге (`contrast-pairs.json`) с обоснованием: текст на фоне, текст на поверхностях, текст на интерактивных/статусных фонах (`text-on-primary` на `interactive-primary-bg`, `text-on-danger` на danger), границы и индикаторы состояния, focus ring.
@@ -148,7 +149,8 @@
   4. Вывод: таблица тема / пара / значение / порог и конкретные ошибки («text-secondary на surface-default: 3.9:1 < 4.5:1»); код выхода ≠ 0 при провале. Список тем читается из данных, чтобы потом добавить High Contrast без правки скрипта.
   5. Подключить в `pnpm test` как vitest-тест (или отдельный скрипт `check:contrast`) и в CI.
   Готово: скрипт даёт отчёт по light и dark; все провалы либо исправлены (D26), либо явно перечислены.
-- [ ] **A2. Токены в DTCG.** (Источник истины меняется с CSS на JSON.)
+  Сделано: `check-contrast.mjs` + `contrast-pairs.json` (59 пар на тему, темы читаются из CSS), тест `src/test/token-contrast.test.ts` (входит в `pnpm test`, отдельный CI-шаг не нужен), запуск `pnpm tokens:contrast`. 7 обязательных провалов записаны в `knownFailures` со ссылкой на D26 (если запись начинает проходить, проверка падает: baseline нельзя забыть).
+- [x] **A2. Токены в DTCG.** (Источник истины меняется с CSS на JSON.)
   Технический план:
   1. **A2a. Разовая миграция.** Скрипт преобразует текущие CSS-токены в DTCG-файлы: `source/primitives/` (палитра, 242), `source/semantic/light.json`, `source/semantic/dark.json` (44 переопределения), spacing/radius/shadow/typography из `tokens.css` и `typography.css`. Алиасы становятся `{palette.slate.11}`. Типы: `color`, `dimension`, `fontFamily`, `fontWeight`, `shadow`, `duration`.
   2. **A2b. Сборка.** Style Dictionary генерирует CSS (те же имена `--sloi-*`, те же селекторы `:root` / `[data-theme='dark']`), TypeScript и JSON.
@@ -156,6 +158,7 @@
   4. **A2d. Переключение.** Удалить regex-парсер (`sync-artifacts.mjs`, 83 строки), обновить `README` и скрипты, прогнать gate, smoke в `sloi-smoke` и stories.
   Формат вывода сейчас: только CSS и TypeScript/JSON.
   Готово: CSS-контракт `@sloi/tokens` не изменился, `tokens.json` в настоящем формате DTCG (`$value`/`$type`).
+  Сделано: источник `packages/tokens/source/`, сборка `pnpm tokens:build` (Style Dictionary 5.8 загружает и проверяет ссылки, артефакты формирует `scripts/build-tokens.mjs`), тест `src/test/tokens-dtcg-equivalence.test.ts` (эквивалентность CSS и побайтовая свежесть `src/`). Решения: hex-строки, `color-mix`/`ease*` через `$extensions["sloi.css"]`, имя CSS = путь через дефис. `sync-artifacts.mjs` удалён. `scripts/migrate-css-to-dtcg.mjs` оставлен как носитель правил имён (`pathFor`); удалить после A4. Не проверено: smoke в `../sloi-smoke` (использует vendored tgz, нужен ручной `pnpm pack` и пересборка).
 
 ### Группа 2: после стабилизации React
 
@@ -194,3 +197,10 @@
 | 2026-11-12 | plan | Добавлены принципы Sloi и Фаза 5 (A1–A8): токены в DTCG, проверка контраста по токенам, component tokens на Button, модель тем; RN и выбор ядра только при потребности. Порядок: D10b, D10c, A1, A3, A2 |
 | 2026-11-12 | D10b | ESLint 10 + react-hooks 7 + refresh 0.5 + globals 17: исправлено 7 из 15 новых замечаний, 8 (эффекты в DataTable/Combobox) оставлены предупреждениями и вынесены в D10e |
 | 2026-11-12 | D10c | jest-dom 7, react-day-picker 10 (вшит), мусорный `type: {}` в Input story убран; всё зелёное. **Фаза 1 закончена** |
+| 2026-11-13 | A1 | Черновик `docs/architecture/VISION.md` (цель, позиционирование, 6 принципов «значит / не значит», слои и этапы платформ, чего не делаем, критерии решений, 4 открытых вопроса владельцу). Ждёт правки владельца |
+| 2026-11-13 | A3 | `packages/tokens/scripts/check-contrast.mjs` + `contrast-pairs.json` + тест (171 тест зелёный, typecheck/lint без новых замечаний). Провалы: light: границы полей 1.43:1 и invalid 2.77:1; dark: белый текст на primary-кнопке 2.59:1 (hover 3.67:1), граница поля 1.40:1. Всё в knownFailures → D26. Advisory (не валят): разделители и рамки статусов |
+| 2026-11-13 | plan | В VISION добавлены таблица ориентиров (Fluent, Carbon, Material 3, Polaris) и критерий RTL; в план добавлена D42 (аудит RTL). Перед A2 нужно решение по `color-mix`, формату цвета и именам токенов |
+| 2026-11-13 | A2 | A2a-A2d: DTCG-источник (242 палитра, 47 foundation, 50 light, 44 dark), Style Dictionary 5.8, тест эквивалентности (мутации в source ловятся), `sync-artifacts.mjs` удалён. Gate: typecheck, lint (8 прежних warnings), test 176, test:a11y 34, storybook:build, build зелёные; adoption-метрики без изменений. Breaking для JS-потребителей `@sloi/tokens`: `TOKENS` теперь DTCG-дерево (раньше плоская карта `--sloi-*`), `PRIMITIVE_TOKENS`/`SEMANTIC_TOKENS` удалены; `TOKEN_SCHEMA_URL` сохранён |
+| 2026-11-13 | D38 | `box-sizing: border-box` на Input, Textarea, PhoneField и на корне и внутреннем input у SearchInput и NumberField. Тест `src/test/field-box-sizing.test.tsx` (падает на старом SCSS: content-box, проходит на новом), story `InNarrowContainer` с проверкой выхода за границы в браузере. Gate: typecheck, lint (8 прежних warnings), test 178, test:a11y 34, storybook:build |
+| 2026-11-13 | D39 | `T extends Record<string, unknown>` заменён на `T extends object` в DataTable и DataTableV2 (typecheck чистый без других правок). V2-типы экспортируются под своими именами: `DataTableV2Column`, `DataTableV2SortState`, `DataTableV2SelectionKey`, `DataTableV2ColumnId`, `DataTableV2ColumnVisibility`, `DataTableV2RowSelection`, `DataTableV2RowSelectionContext`; в `dist/index.d.ts` исчезли `*_2`. Тест `src/test/data-table-row-types.test.tsx` (строки-interface; на старом ограничении typecheck даёт TS2322/TS2344). Gate: typecheck, lint (8 прежних warnings), test 181, test:a11y 34, build |
+| 2026-11-13 | D40 | Компонент `Field` (`src/shared/ui/field`): `label`, `hint`, `error`, `invalid`, `required`, `disabled`, `id`. Контекст `src/shared/lib/field/field-context.ts` + хук `useFieldControl`: Input, Textarea, PhoneField, SearchInput, NumberField и SelectTrigger сами получают `id`, `aria-describedby` (склеивается с явным), `aria-invalid`, `aria-required`, `disabled`; вне Field поведение не меняется. `id` принадлежит Field (иначе рвётся htmlFor). `SelectTrigger fullWidth` + стиль invalid. `FormMessage` оставлен для нативной валидации Radix Form, в JSDoc указано, что для остального предпочтителен `Field`. 16 тестов (unit + axe), stories (в т.ч. MixedForm и Validation с play), тег `experimental`. Gate: typecheck, lint (8 прежних), test 197, test:a11y 36, test:stories-a11y 237, storybook:build, build. Не охвачены Field: Combobox, DatePicker, Checkbox/Radio/Switch (контекст готов, подключается по одной строке) |
