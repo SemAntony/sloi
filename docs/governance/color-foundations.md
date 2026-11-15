@@ -37,7 +37,7 @@
 1. Любой новый semantic color token требует use-case и обновления governance policy.
 2. Любое изменение primitive palette family/scale требует RFC.
 3. После изменений обязательно выполнить:
-   - `pnpm run tokens:sync`
+   - `pnpm run tokens:build`
    - `pnpm run adoption:metrics:ci`
    - quality gates (`typecheck`, `lint`, `test`, `test:a11y`, `storybook:build`).
 

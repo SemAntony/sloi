@@ -1,0 +1,190 @@
+{
+  "surface": {
+    "canvas": {
+      "$value": "{palette.slate.11}"
+    },
+    "base": {
+      "$value": "{palette.slate.10}"
+    },
+    "elevated": {
+      "$value": "{palette.slate.9}"
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": "#223044",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-slate-8) 72%, var(--sloi-palette-slate-11))"
+      }
+    },
+    "floating": {
+      "$value": "{palette.slate.9}"
+    },
+    "floating-border": {
+      "$value": "{palette.slate.7}"
+    }
+  },
+  "text": {
+    "primary": {
+      "$value": "{palette.neutral.1}"
+    },
+    "secondary": {
+      "$value": "{palette.gray.2}"
+    },
+    "muted": {
+      "$value": "{palette.gray.4}"
+    },
+    "on-primary": {
+      "$value": "{palette.neutral.1}"
+    }
+  },
+  "border": {
+    "primary": {
+      "$value": "{palette.slate.8}"
+    },
+    "strong": {
+      "$value": "{palette.slate.6}"
+    }
+  },
+  "focus": {
+    "ring": {
+      "$value": "{palette.blue.5}"
+    }
+  },
+  "interactive": {
+    "primary-bg": {
+      "$value": "{palette.blue.5}"
+    },
+    "primary-bg-hover": {
+      "$value": "{palette.blue.6}"
+    },
+    "primary-bg-active": {
+      "$value": "{palette.blue.7}"
+    },
+    "primary-shadow": {
+      "$type": "color",
+      "$value": "#112453ad",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-blue-11) 68%, transparent)"
+      }
+    },
+    "secondary-bg": {
+      "$value": "{surface.elevated}"
+    },
+    "secondary-text": {
+      "$value": "{palette.neutral.1}"
+    },
+    "secondary-border": {
+      "$value": "{border.primary}"
+    },
+    "secondary-border-hover": {
+      "$value": "{palette.blue.5}"
+    },
+    "secondary-text-hover": {
+      "$value": "{palette.blue.3}"
+    },
+    "ghost-text": {
+      "$value": "{palette.blue.3}"
+    },
+    "ghost-bg-hover": {
+      "$type": "color",
+      "$value": "#0080fb4d",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-blue-6) 30%, transparent)"
+      }
+    }
+  },
+  "field": {
+    "bg": {
+      "$value": "{surface.elevated}"
+    },
+    "border": {
+      "$value": "{border.primary}"
+    },
+    "border-hover": {
+      "$value": "{border.strong}"
+    },
+    "border-focus": {
+      "$value": "{focus.ring}"
+    },
+    "border-invalid": {
+      "$value": "{status.danger-border}"
+    },
+    "placeholder": {
+      "$value": "{text.muted}"
+    }
+  },
+  "status": {
+    "info-bg": {
+      "$value": "{palette.cyan.10}"
+    },
+    "info-text": {
+      "$value": "{palette.cyan.2}"
+    },
+    "info-border": {
+      "$value": "{palette.cyan.7}"
+    },
+    "success-bg": {
+      "$value": "{palette.green.10}"
+    },
+    "success-text": {
+      "$value": "{palette.green.2}"
+    },
+    "success-border": {
+      "$value": "{palette.green.7}"
+    },
+    "warning-bg": {
+      "$value": "{palette.amber.10}"
+    },
+    "warning-text": {
+      "$value": "{palette.amber.2}"
+    },
+    "warning-border": {
+      "$value": "{palette.amber.7}"
+    },
+    "danger-bg": {
+      "$value": "{palette.red.10}"
+    },
+    "danger-text": {
+      "$value": "{palette.red.2}"
+    },
+    "danger-border": {
+      "$value": "{palette.red.7}"
+    }
+  },
+  "overlay": {
+    "backdrop": {
+      "$type": "color",
+      "$value": "#010617bd",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-slate-11) 74%, transparent)"
+      }
+    }
+  },
+  "shadow": {
+    "floating": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#010617b8",
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 24,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 56,
+          "unit": "px"
+        },
+        "spread": {
+          "value": -30,
+          "unit": "px"
+        }
+      },
+      "$extensions": {
+        "sloi.css": "0 24px 56px -30px color-mix(in srgb, var(--sloi-palette-slate-11) 72%, transparent)"
+      }
+    }
+  }
+}

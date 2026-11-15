@@ -61,7 +61,8 @@ pnpm build
 - `pnpm typecheck` — проверка типов
 - `pnpm test` — unit tests
 - `pnpm test:a11y` — a11y tests
-- `pnpm tokens:sync` — синхронизация `@sloi/tokens` JSON/JS артефактов из CSS
+- `pnpm tokens:build` — сборка CSS/JSON/JS из DTCG-источника `packages/tokens/source/`
+- `pnpm tokens:contrast` — проверка контраста токенов по WCAG 2.2 (light и dark)
 - `pnpm adoption:metrics:ci` — локальный adoption-отчёт в `reports/adoption/latest.json`
 
 ## Публичное API

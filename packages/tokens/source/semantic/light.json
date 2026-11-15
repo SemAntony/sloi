@@ -1,0 +1,210 @@
+{
+  "surface": {
+    "canvas": {
+      "$value": "{palette.neutral.1}"
+    },
+    "base": {
+      "$value": "{palette.gray.1}"
+    },
+    "elevated": {
+      "$value": "{palette.zinc.1}"
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": "#fafafae6",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-neutral-1) 90%, transparent)"
+      }
+    },
+    "floating": {
+      "$value": "{palette.zinc.1}"
+    },
+    "floating-border": {
+      "$value": "{palette.slate.4}"
+    }
+  },
+  "text": {
+    "primary": {
+      "$value": "{palette.slate.11}"
+    },
+    "secondary": {
+      "$value": "{palette.slate.9}"
+    },
+    "muted": {
+      "$value": "{palette.gray.8}"
+    },
+    "on-primary": {
+      "$value": "{palette.neutral.1}"
+    },
+    "on-danger": {
+      "$value": "{palette.neutral.1}"
+    }
+  },
+  "border": {
+    "primary": {
+      "$value": "{palette.slate.4}"
+    },
+    "strong": {
+      "$value": "{palette.slate.6}"
+    }
+  },
+  "focus": {
+    "ring": {
+      "$value": "{palette.blue.7}"
+    }
+  },
+  "interactive": {
+    "primary-bg": {
+      "$value": "{palette.blue.7}"
+    },
+    "primary-bg-hover": {
+      "$value": "{palette.blue.8}"
+    },
+    "primary-bg-active": {
+      "$value": "{palette.blue.9}"
+    },
+    "primary-text": {
+      "$value": "{text.on-primary}"
+    },
+    "primary-shadow": {
+      "$type": "color",
+      "$value": "#103a8a7a",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-blue-10) 48%, transparent)"
+      }
+    },
+    "secondary-bg": {
+      "$value": "{surface.elevated}"
+    },
+    "secondary-text": {
+      "$value": "{text.primary}"
+    },
+    "secondary-border": {
+      "$value": "{border.primary}"
+    },
+    "secondary-border-hover": {
+      "$value": "{palette.blue.6}"
+    },
+    "secondary-text-hover": {
+      "$value": "{palette.blue.8}"
+    },
+    "ghost-text": {
+      "$value": "{palette.blue.8}"
+    },
+    "ghost-bg-hover": {
+      "$type": "color",
+      "$value": "#badbfd6b",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-blue-3) 42%, transparent)"
+      }
+    }
+  },
+  "field": {
+    "bg": {
+      "$value": "{surface.base}"
+    },
+    "border": {
+      "$value": "{border.primary}"
+    },
+    "border-hover": {
+      "$value": "{border.strong}"
+    },
+    "border-focus": {
+      "$value": "{focus.ring}"
+    },
+    "border-invalid": {
+      "$value": "{status.danger-border}"
+    },
+    "placeholder": {
+      "$value": "{text.muted}"
+    }
+  },
+  "status": {
+    "info-bg": {
+      "$value": "{palette.cyan.2}"
+    },
+    "info-text": {
+      "$value": "{palette.cyan.10}"
+    },
+    "info-border": {
+      "$value": "{palette.cyan.5}"
+    },
+    "success-bg": {
+      "$value": "{palette.green.2}"
+    },
+    "success-text": {
+      "$value": "{palette.green.10}"
+    },
+    "success-border": {
+      "$value": "{palette.green.5}"
+    },
+    "warning-bg": {
+      "$value": "{palette.amber.2}"
+    },
+    "warning-text": {
+      "$value": "{palette.amber.10}"
+    },
+    "warning-border": {
+      "$value": "{palette.amber.5}"
+    },
+    "danger-bg": {
+      "$value": "{palette.red.2}"
+    },
+    "danger-text": {
+      "$value": "{palette.red.10}"
+    },
+    "danger-border": {
+      "$value": "{palette.red.5}"
+    }
+  },
+  "accent": {
+    "violet": {
+      "$value": "{palette.violet.7}"
+    },
+    "cyan": {
+      "$value": "{palette.cyan.7}"
+    },
+    "fuchsia": {
+      "$value": "{palette.fuchsia.7}"
+    },
+    "rose": {
+      "$value": "{palette.rose.7}"
+    }
+  },
+  "overlay": {
+    "backdrop": {
+      "$type": "color",
+      "$value": "#0106178a",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-slate-11) 54%, transparent)"
+      }
+    }
+  },
+  "shadow": {
+    "floating": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#0e172a61",
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 22,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 50,
+          "unit": "px"
+        },
+        "spread": {
+          "value": -28,
+          "unit": "px"
+        }
+      },
+      "$extensions": {
+        "sloi.css": "0 22px 50px -28px color-mix(in srgb, var(--sloi-palette-slate-10) 38%, transparent)"
+      }
+    }
+  }
+}

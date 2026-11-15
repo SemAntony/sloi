@@ -40,10 +40,11 @@
     "test:perf": "vitest run --config vitest.perf.config.ts",
     "test:stories-a11y": "vitest run --config vitest.stories-a11y.config.ts",
     "mf:validate": "pnpm run build && node --experimental-strip-types scripts/multi-framework-readiness.ts --out reports/multi-framework/latest.json",
-    "tokens:sync": "pnpm --filter @sloi/tokens run sync",
+    "tokens:build": "pnpm --filter @sloi/tokens run build",
     "adoption:metrics": "node --experimental-strip-types scripts/adoption-metrics.ts",
     "adoption:metrics:ci": "node --experimental-strip-types scripts/adoption-metrics.ts --out reports/adoption/latest.json --consumers consumers/sloi-pilot consumers/sloi-analytics consumers/sloi-operations",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "tokens:contrast": "pnpm --filter @sloi/tokens run contrast"
   },
   "peerDependencies": {
     "react": "^18.2.0 || ^19.0.0",

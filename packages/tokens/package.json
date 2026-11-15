@@ -1,18 +1,23 @@
 {
   "name": "@sloi/tokens",
   "version": "0.1.0",
-  "description": "Sloi design tokens package (CSS + JSON + JS)",
+  "description": "Sloi design tokens package (DTCG source -> CSS + JSON + JS)",
   "type": "module",
   "sideEffects": [
     "**/*.css"
   ],
   "files": [
     "src",
+    "source",
     "README.md"
   ],
   "exports": {
-    ".": "./src/tokens.js",
+    ".": {
+      "types": "./src/tokens.d.ts",
+      "default": "./src/tokens.js"
+    },
     "./tokens.json": "./src/tokens.json",
+    "./tokens.dark.json": "./src/tokens.dark.json",
     "./css/styles.css": "./src/styles.css",
     "./css/palette.css": "./src/palette.css",
     "./css/colors.css": "./src/colors.css",
@@ -20,6 +25,10 @@
     "./css/typography.css": "./src/typography.css"
   },
   "scripts": {
-    "sync": "node ./scripts/sync-artifacts.mjs"
+    "build": "node ./scripts/build-tokens.mjs",
+    "contrast": "node ./scripts/check-contrast.mjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "5.8.0"
   }
 }

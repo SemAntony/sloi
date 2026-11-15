@@ -88,7 +88,7 @@
 1. Добавление новых typography/spacing/motion tokens требует use-case evidence и обновления docs.
 2. Переименование/удаление public foundation tokens рассматривается как semver-critical change.
 3. После изменения foundation-токенов обязательно выполнить:
-   - `pnpm run tokens:sync`;
+   - `pnpm run tokens:build`;
    - `pnpm run adoption:metrics:ci`;
    - quality gates: `typecheck`, `lint`, `test`, `test:a11y`, `storybook:build`.
 
