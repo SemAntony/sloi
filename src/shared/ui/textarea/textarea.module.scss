@@ -1,4 +1,5 @@
 .textarea {
+  box-sizing: border-box;
   width: 100%;
   min-height: calc(var(--sloi-size-control-md) * 2);
   border: 1px solid var(--sloi-field-border);

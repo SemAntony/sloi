@@ -14,3 +14,11 @@
   display: grid;
   gap: var(--sloi-space-2);
 }
+
+.narrow {
+  width: 16rem;
+  display: grid;
+  gap: var(--sloi-space-3);
+  padding: var(--sloi-space-3);
+  border: 1px dashed var(--sloi-border-strong);
+}
