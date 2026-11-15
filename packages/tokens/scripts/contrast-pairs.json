@@ -1,0 +1,303 @@
+{
+  "$comment": "Пары для check-contrast.mjs. Пороги WCAG 2.2 AA: text 4.5 (1.4.3), large-text 3, non-text 3 (1.4.11). Disabled-состояния исключены намеренно (WCAG их не требует). level: required | advisory (advisory не валит проверку). over: токен-подложка для полупрозрачных цветов.",
+  "pairs": [
+    {
+      "fgs": [
+        "--sloi-text-primary",
+        "--sloi-text-secondary",
+        "--sloi-text-muted"
+      ],
+      "bgs": [
+        "--sloi-surface-canvas",
+        "--sloi-surface-base",
+        "--sloi-surface-elevated",
+        "--sloi-surface-floating"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Основной, вторичный и приглушённый текст на всех поверхностях"
+    },
+    {
+      "fg": "--sloi-field-placeholder",
+      "bgs": [
+        "--sloi-field-bg"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Placeholder это текст (1.4.3)"
+    },
+    {
+      "fgs": [
+        "--sloi-text-on-primary",
+        "--sloi-interactive-primary-text"
+      ],
+      "bgs": [
+        "--sloi-interactive-primary-bg",
+        "--sloi-interactive-primary-bg-hover",
+        "--sloi-interactive-primary-bg-active"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Текст primary-кнопки во всех состояниях"
+    },
+    {
+      "fgs": [
+        "--sloi-interactive-secondary-text",
+        "--sloi-interactive-secondary-text-hover"
+      ],
+      "bgs": [
+        "--sloi-interactive-secondary-bg"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Текст secondary-кнопки"
+    },
+    {
+      "fg": "--sloi-interactive-ghost-text",
+      "bgs": [
+        "--sloi-surface-canvas",
+        "--sloi-surface-base",
+        "--sloi-surface-elevated"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Текст ghost-кнопки на поверхностях"
+    },
+    {
+      "fg": "--sloi-interactive-ghost-text",
+      "bgs": [
+        "--sloi-interactive-ghost-bg-hover"
+      ],
+      "over": "--sloi-surface-base",
+      "min": 4.5,
+      "kind": "text",
+      "why": "Ghost при hover: полупрозрачный фон поверх surface-base"
+    },
+    {
+      "fg": "--sloi-status-info-text",
+      "bgs": [
+        "--sloi-status-info-bg"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Статус info: текст на своём фоне"
+    },
+    {
+      "fg": "--sloi-status-success-text",
+      "bgs": [
+        "--sloi-status-success-bg"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Статус success: текст на своём фоне"
+    },
+    {
+      "fg": "--sloi-status-warning-text",
+      "bgs": [
+        "--sloi-status-warning-bg"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Статус warning: текст на своём фоне"
+    },
+    {
+      "fg": "--sloi-status-danger-text",
+      "bgs": [
+        "--sloi-status-danger-bg"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Статус danger: текст на своём фоне"
+    },
+    {
+      "fgs": [
+        "--sloi-status-info-text",
+        "--sloi-status-success-text",
+        "--sloi-status-warning-text",
+        "--sloi-status-danger-text"
+      ],
+      "bgs": [
+        "--sloi-surface-base",
+        "--sloi-surface-canvas",
+        "--sloi-surface-elevated"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Статусный текст без плашки (например сообщение об ошибке поля)"
+    },
+    {
+      "fg": "--sloi-focus-ring",
+      "bgs": [
+        "--sloi-surface-canvas",
+        "--sloi-surface-base",
+        "--sloi-surface-elevated",
+        "--sloi-surface-floating"
+      ],
+      "min": 3,
+      "kind": "non-text",
+      "why": "Индикатор фокуса (1.4.11, 2.4.11)"
+    },
+    {
+      "fgs": [
+        "--sloi-field-border",
+        "--sloi-field-border-hover",
+        "--sloi-field-border-focus",
+        "--sloi-field-border-invalid"
+      ],
+      "bgs": [
+        "--sloi-field-bg"
+      ],
+      "min": 3,
+      "kind": "non-text",
+      "why": "Граница поля ввода: единственный признак его формы (1.4.11)"
+    },
+    {
+      "fgs": [
+        "--sloi-border-primary",
+        "--sloi-border-strong",
+        "--sloi-surface-floating-border"
+      ],
+      "bgs": [
+        "--sloi-surface-base",
+        "--sloi-surface-floating"
+      ],
+      "min": 3,
+      "kind": "non-text",
+      "level": "advisory",
+      "why": "Разделители и рамки карточек: декоративные, контраст не обязателен; показываем для информации"
+    },
+    {
+      "fg": "--sloi-status-info-border",
+      "bgs": [
+        "--sloi-status-info-bg"
+      ],
+      "min": 3,
+      "kind": "non-text",
+      "level": "advisory",
+      "why": "Рамка плашки статуса: смысл дублирует текст, поэтому advisory"
+    },
+    {
+      "fg": "--sloi-status-success-border",
+      "bgs": [
+        "--sloi-status-success-bg"
+      ],
+      "min": 3,
+      "kind": "non-text",
+      "level": "advisory",
+      "why": "Рамка плашки статуса: смысл дублирует текст, поэтому advisory"
+    },
+    {
+      "fg": "--sloi-status-warning-border",
+      "bgs": [
+        "--sloi-status-warning-bg"
+      ],
+      "min": 3,
+      "kind": "non-text",
+      "level": "advisory",
+      "why": "Рамка плашки статуса: смысл дублирует текст, поэтому advisory"
+    },
+    {
+      "fg": "--sloi-status-danger-border",
+      "bgs": [
+        "--sloi-status-danger-bg"
+      ],
+      "min": 3,
+      "kind": "non-text",
+      "level": "advisory",
+      "why": "Рамка плашки статуса: смысл дублирует текст, поэтому advisory"
+    }
+  ],
+  "exemptions": [
+    {
+      "token": "--sloi-surface-overlay",
+      "reason": "Фон оверлея, текст на нём проверяется парами surface-*"
+    },
+    {
+      "token": "--sloi-overlay-backdrop",
+      "reason": "Затемнение страницы, не содержит текста"
+    },
+    {
+      "token": "--sloi-interactive-primary-shadow",
+      "reason": "Тень, декоративная"
+    },
+    {
+      "token": "--sloi-interactive-secondary-border",
+      "reason": "Дублирует border-primary"
+    },
+    {
+      "token": "--sloi-interactive-secondary-border-hover",
+      "reason": "Декоративная рамка кнопки при hover; смысл несёт текст"
+    },
+    {
+      "token": "--sloi-accent-violet",
+      "reason": "Акценты используются только в story иконок"
+    },
+    {
+      "token": "--sloi-accent-cyan",
+      "reason": "см. accent-violet"
+    },
+    {
+      "token": "--sloi-accent-fuchsia",
+      "reason": "см. accent-violet"
+    },
+    {
+      "token": "--sloi-accent-rose",
+      "reason": "см. accent-violet"
+    },
+    {
+      "token": "--sloi-text-on-danger",
+      "reason": "Нет токена фона danger-кнопки; добавить пару вместе с интерактивным danger (D22)"
+    }
+  ],
+  "knownFailures": [
+    {
+      "theme": "light",
+      "fg": "--sloi-field-border",
+      "bg": "--sloi-field-bg",
+      "ref": "D26",
+      "reason": "Граница поля 1.43:1, нужно 3:1 (1.4.11)"
+    },
+    {
+      "theme": "light",
+      "fg": "--sloi-field-border-invalid",
+      "bg": "--sloi-field-bg",
+      "ref": "D26",
+      "reason": "Граница invalid 2.77:1, нужно 3:1"
+    },
+    {
+      "theme": "dark",
+      "fg": "--sloi-field-border",
+      "bg": "--sloi-field-bg",
+      "ref": "D26",
+      "reason": "Граница поля 1.40:1, нужно 3:1"
+    },
+    {
+      "theme": "dark",
+      "fg": "--sloi-text-on-primary",
+      "bg": "--sloi-interactive-primary-bg",
+      "ref": "D26",
+      "reason": "Белый на blue-5: 2.59:1, нужно 4.5:1"
+    },
+    {
+      "theme": "dark",
+      "fg": "--sloi-text-on-primary",
+      "bg": "--sloi-interactive-primary-bg-hover",
+      "ref": "D26",
+      "reason": "3.67:1, нужно 4.5:1"
+    },
+    {
+      "theme": "dark",
+      "fg": "--sloi-interactive-primary-text",
+      "bg": "--sloi-interactive-primary-bg",
+      "ref": "D26",
+      "reason": "Алиас text-on-primary, 2.59:1"
+    },
+    {
+      "theme": "dark",
+      "fg": "--sloi-interactive-primary-text",
+      "bg": "--sloi-interactive-primary-bg-hover",
+      "ref": "D26",
+      "reason": "Алиас text-on-primary, 3.67:1"
+    }
+  ]
+}
