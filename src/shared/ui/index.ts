@@ -10,6 +10,7 @@ export * from './date-picker';
 export * from './empty-state';
 export * from './file-uploader';
 export * from './filter-bar';
+export * from './field';
 export * from './field-message';
 export * from './input';
 export * from './input-group';

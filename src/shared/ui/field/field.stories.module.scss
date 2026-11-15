@@ -1,0 +1,11 @@
+.form {
+  width: min(24rem, 100%);
+  display: grid;
+  gap: var(--sloi-space-4);
+}
+
+.narrow {
+  width: 16rem;
+  padding: var(--sloi-space-3);
+  border: 1px dashed var(--sloi-border-strong);
+}

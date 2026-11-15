@@ -1,0 +1,22 @@
+.field {
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--sloi-space-2);
+  width: 100%;
+}
+
+.label {
+  gap: var(--sloi-space-1);
+}
+
+.field[data-invalid] .label {
+  color: var(--sloi-status-danger-text);
+}
+
+.field[data-disabled] .label {
+  opacity: 0.7;
+}
+
+.required {
+  color: var(--sloi-status-danger-text);
+}

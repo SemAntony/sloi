@@ -6,6 +6,7 @@ import {
   type KeyboardEvent
 } from 'react';
 import { cn } from '../../lib/cn/cn';
+import { useFieldControl } from '../../lib/field/field-context';
 import styles from './search-input.module.scss';
 
 export type SearchInputProps = Omit<
@@ -29,11 +30,19 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((rawPr
     onChange,
     onClear,
     placeholder = 'Search',
-    invalid = false,
-    disabled = false,
+    invalid: invalidProp = false,
+    disabled: disabledProp = false,
     ...props
   } = rawProps;
   const isControlled = Object.prototype.hasOwnProperty.call(rawProps, 'value');
+    const field = useFieldControl({
+      id: props.id,
+      describedBy: props['aria-describedby'],
+      invalid: invalidProp,
+      disabled: disabledProp
+    });
+    const invalid = field.invalid;
+    const disabled = field.disabled;
     const [internalValue, setInternalValue] = useState(defaultValue);
     const currentValue = isControlled ? value ?? '' : internalValue;
 
@@ -72,6 +81,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((rawPr
           className={styles.input}
           aria-invalid={invalid || props['aria-invalid']}
           {...props}
+          {...field.attributes}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         />

@@ -5,6 +5,7 @@ import {
   type InputHTMLAttributes
 } from 'react';
 import { cn } from '../../lib/cn/cn';
+import { useFieldControl } from '../../lib/field/field-context';
 import styles from './number-field.module.scss';
 
 export type NumberFieldProps = Omit<
@@ -26,8 +27,8 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>((rawPr
     defaultValue,
     onValueChange,
     onChange,
-    invalid = false,
-    disabled = false,
+    invalid: invalidProp = false,
+    disabled: disabledProp = false,
     showStepper = true,
     min,
     max,
@@ -35,6 +36,14 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>((rawPr
     ...props
   } = rawProps;
   const isControlled = Object.prototype.hasOwnProperty.call(rawProps, 'value');
+    const field = useFieldControl({
+      id: props.id,
+      describedBy: props['aria-describedby'],
+      invalid: invalidProp,
+      disabled: disabledProp
+    });
+    const invalid = field.invalid;
+    const disabled = field.disabled;
     const [internalValue, setInternalValue] = useState<number | undefined>(defaultValue);
     const currentValue = isControlled ? value : internalValue;
     const numericStep = typeof step === 'number' ? step : Number(step) || 1;
@@ -100,6 +109,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>((rawPr
           aria-invalid={invalid || props['aria-invalid']}
           onChange={handleChange}
           {...props}
+          {...field.attributes}
         />
         {showStepper ? (
           <div className={styles.stepper}>

@@ -7,6 +7,7 @@ import {
 } from 'react';
 import { useSelectController } from '@sloi/headless-core';
 import { cn } from '../../../lib/cn/cn';
+import { useFieldControl } from '../../../lib/field/field-context';
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '../_internal/common';
 import styles from './select.module.scss';
 
@@ -50,28 +51,40 @@ export const SelectValue = SelectPrimitive.Value;
 type SelectTriggerProps = ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
   showChevron?: boolean;
   chevron?: ReactNode;
+  /** Растянуть триггер на всю ширину контейнера (как Input). */
+  fullWidth?: boolean;
 };
 
 export const SelectTrigger = forwardRef<
   ComponentRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ className, children, showChevron = true, chevron, asChild, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    asChild={asChild}
-    className={cn(styles.selectTrigger, className)}
-    {...props}
-  >
-    {asChild
-      ? children
-      : (
-        <>
-          {children}
-          {showChevron && <SelectIcon>{chevron ?? <ChevronDownIcon />}</SelectIcon>}
-        </>
-      )}
-  </SelectPrimitive.Trigger>
-));
+>(({ className, children, showChevron = true, chevron, asChild, fullWidth = false, ...props }, ref) => {
+  const field = useFieldControl({
+    id: props.id,
+    describedBy: props['aria-describedby'],
+    disabled: props.disabled
+  });
+
+  return (
+    <SelectPrimitive.Trigger
+      ref={ref}
+      asChild={asChild}
+      className={cn(styles.selectTrigger, fullWidth && styles.fullWidth, className)}
+      aria-invalid={field.invalid || undefined}
+      {...props}
+      {...field.attributes}
+    >
+      {asChild
+        ? children
+        : (
+          <>
+            {children}
+            {showChevron && <SelectIcon>{chevron ?? <ChevronDownIcon />}</SelectIcon>}
+          </>
+        )}
+    </SelectPrimitive.Trigger>
+  );
+});
 
 SelectTrigger.displayName = 'SelectTrigger';
 

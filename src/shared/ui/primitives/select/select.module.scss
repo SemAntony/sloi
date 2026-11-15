@@ -24,6 +24,15 @@
     background-color var(--sloi-motion-duration-sm) var(--sloi-motion-easing-standard);
 }
 
+.selectTrigger.fullWidth {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.selectTrigger[aria-invalid='true'] {
+  border-color: var(--sloi-field-border-invalid);
+}
+
 .selectTrigger[data-placeholder] {
   color: var(--sloi-text-secondary);
 }

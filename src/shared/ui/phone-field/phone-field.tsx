@@ -5,6 +5,7 @@ import {
   type InputHTMLAttributes
 } from 'react';
 import { cn } from '../../lib/cn/cn';
+import { useFieldControl } from '../../lib/field/field-context';
 import styles from './phone-field.module.scss';
 
 export type PhoneFieldProps = Omit<
@@ -25,12 +26,19 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>((rawProp
     defaultValue = '',
     onValueChange,
     onChange,
-    invalid = false,
+    invalid: invalidProp = false,
     placeholder = '+1 (555) 123-4567',
     autoComplete = 'tel',
     ...props
   } = rawProps;
   const isControlled = Object.prototype.hasOwnProperty.call(rawProps, 'value');
+    const field = useFieldControl({
+      id: props.id,
+      describedBy: props['aria-describedby'],
+      invalid: invalidProp,
+      disabled: props.disabled
+    });
+    const invalid = field.invalid;
     const [internalValue, setInternalValue] = useState(defaultValue);
     const currentValue = isControlled ? value ?? '' : internalValue;
 
@@ -56,6 +64,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>((rawProp
         data-invalid={invalid ? '' : undefined}
         onChange={handleChange}
         {...props}
+        {...field.attributes}
       />
     );
   });

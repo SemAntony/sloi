@@ -41,6 +41,11 @@ export const FormControl = forwardRef<
 
 FormControl.displayName = 'FormControl';
 
+/**
+ * Сообщение валидации Radix Form: показывается по нативным ограничениям (`match='valueMissing'` и т.п).
+ * Для контролируемой валидации и единой разметки label/hint/error используйте `Field` (его проп `error`):
+ * он сам проставляет `id`, `aria-describedby` и `aria-invalid`.
+ */
 export const FormMessage = forwardRef<
   ComponentRef<typeof FormPrimitive.Message>,
   ComponentPropsWithoutRef<typeof FormPrimitive.Message>
