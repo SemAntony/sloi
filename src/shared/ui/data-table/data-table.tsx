@@ -82,7 +82,7 @@ export interface DataTableColumn<T> {
   width?: number | string;
 }
 
-interface DataTableCommonProps<T extends Record<string, unknown>>
+interface DataTableCommonProps<T extends object>
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   data: T[];
   columns: DataTableColumn<T>[];
@@ -122,10 +122,10 @@ type DataTableServerModeProps = {
   totalItems: number;
 };
 
-export type DataTableProps<T extends Record<string, unknown>> = DataTableCommonProps<T> &
+export type DataTableProps<T extends object> = DataTableCommonProps<T> &
   (DataTableClientModeProps | DataTableServerModeProps);
 
-const getCellContent = <T extends Record<string, unknown>>(column: DataTableColumn<T>, row: T) => {
+const getCellContent = <T extends object>(column: DataTableColumn<T>, row: T) => {
   if (column.cell) {
     return column.cell(row);
   }
@@ -141,7 +141,7 @@ const getCellContent = <T extends Record<string, unknown>>(column: DataTableColu
   return null;
 };
 
-const getSortValue = <T extends Record<string, unknown>>(column: DataTableColumn<T>, row: T): SortValue => {
+const getSortValue = <T extends object>(column: DataTableColumn<T>, row: T): SortValue => {
   if (column.sortAccessor) {
     if (typeof column.sortAccessor === 'function') {
       return column.sortAccessor(row);
@@ -209,7 +209,7 @@ type DataTablePersistedState = {
   visibleColumnIds?: DataTableColumnId[];
 };
 
-function DataTableInner<T extends Record<string, unknown>>(
+function DataTableInner<T extends object>(
   rawProps: DataTableProps<T>,
   ref: ForwardedRef<HTMLDivElement>
 ) {
@@ -803,7 +803,7 @@ function DataTableInner<T extends Record<string, unknown>>(
   );
 }
 
-type DataTableComponent = <T extends Record<string, unknown>>(
+type DataTableComponent = <T extends object>(
   props: DataTableProps<T> & RefAttributes<HTMLDivElement>
 ) => ReactElement;
 

@@ -85,7 +85,7 @@ export interface DataTableColumn<T> {
   width?: number | string;
 }
 
-interface DataTableCommonProps<T extends Record<string, unknown>>
+interface DataTableCommonProps<T extends object>
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   data: T[];
   columns: DataTableColumn<T>[];
@@ -123,7 +123,7 @@ type DataTableServerModeProps = {
   totalItems: number;
 };
 
-export type DataTableProps<T extends Record<string, unknown>> = DataTableCommonProps<T> &
+export type DataTableProps<T extends object> = DataTableCommonProps<T> &
   (DataTableClientModeProps | DataTableServerModeProps);
 
 export type DataTablePinSide = 'left' | 'right';
@@ -159,12 +159,12 @@ export interface DataTableV2VirtualizationProps {
   overscan?: number;
 }
 
-export type DataTableV2Props<T extends Record<string, unknown>> = DataTableProps<T> &
+export type DataTableV2Props<T extends object> = DataTableProps<T> &
   DataTableV2PinningProps &
   DataTableV2ResizeProps &
   DataTableV2VirtualizationProps;
 
-const getCellContent = <T extends Record<string, unknown>>(column: DataTableColumn<T>, row: T) => {
+const getCellContent = <T extends object>(column: DataTableColumn<T>, row: T) => {
   if (column.cell) {
     return column.cell(row);
   }
@@ -180,7 +180,7 @@ const getCellContent = <T extends Record<string, unknown>>(column: DataTableColu
   return null;
 };
 
-const getSortValue = <T extends Record<string, unknown>>(column: DataTableColumn<T>, row: T): SortValue => {
+const getSortValue = <T extends object>(column: DataTableColumn<T>, row: T): SortValue => {
   if (column.sortAccessor) {
     if (typeof column.sortAccessor === 'function') {
       return column.sortAccessor(row);
@@ -368,7 +368,7 @@ const areColumnSizesEqual = (
   return leftEntries.every(([columnId, width]) => right[columnId] === width);
 };
 
-const resolveColumnWidthPx = <T extends Record<string, unknown>>(column: DataTableColumn<T>) => {
+const resolveColumnWidthPx = <T extends object>(column: DataTableColumn<T>) => {
   if (typeof column.width === 'number' && Number.isFinite(column.width) && column.width > 0) {
     return column.width;
   }
@@ -403,7 +403,7 @@ type DataTablePersistedState = {
   visibleColumnIds?: DataTableColumnId[];
 };
 
-function DataTableInner<T extends Record<string, unknown>>(
+function DataTableInner<T extends object>(
   rawProps: DataTableV2Props<T>,
   ref: ForwardedRef<HTMLDivElement>
 ) {
@@ -1619,7 +1619,7 @@ function DataTableInner<T extends Record<string, unknown>>(
   );
 }
 
-type DataTableV2Component = <T extends Record<string, unknown>>(
+type DataTableV2Component = <T extends object>(
   props: DataTableV2Props<T> & RefAttributes<HTMLDivElement>
 ) => ReactElement;
 
