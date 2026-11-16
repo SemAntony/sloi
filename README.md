@@ -75,6 +75,27 @@ import '@sloi/ui-kit/styles.css';
 import '@sloi/tokens/css/styles.css';
 ```
 
+### Иконки
+
+Иконки экспортируются с префиксом `Icon` (`IconArrowRight`, `IconDownload`, всего ~70) и передаются в `Icon`:
+
+```tsx
+import { Icon, IconArrowRight } from '@sloi/ui-kit';
+
+<Icon icon={IconArrowRight} />;
+```
+
+Имён без префикса (`ArrowRight`) в пакете нет: в Next.js App Router такой импорт не падает на сборке, а превращается в `undefined` и даёт `Element type is invalid … Check the render method of Icon`. Полный список: `ICON_LIBRARY`.
+
+### Next.js App Router (Server Components)
+
+Пакет собирается как клиентский модуль (`'use client'` в начале `dist/index.js`). Компоненты рендерятся на сервере в HTML (SSR) и гидрируются, но:
+
+- Импортировать компоненты можно прямо в Server Component (проверено с `Button` и `Icon icon={IconArrowRight}`).
+- Из Server Component нельзя передавать функции в props: обработчики (`onClick`, `onChange`), `accessor`/`cell` в колонках таблиц, render-props. Такие места выносите в файл с `'use client'`.
+- Не-компонентные экспорты (`ICON_LIBRARY` и т.п.) в серверном коде читать нельзя: на сервере это клиентские ссылки.
+- Статичные компоненты тоже попадают в клиентский бандл: «серверных» компонентов без JS пока нет.
+
 ## Migration Notes: DataTable V2 Pinning
 
 - `DataTable V1` остается замороженным (без `pinning/resize/virtualization`).
