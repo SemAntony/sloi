@@ -34,6 +34,7 @@ Label, Input, FieldMessage и `aria-describedby` собираются рукам
 Исправление: `Field` (label + control + hint + message, сам проставляет id и aria-*); решить судьбу `FormMessage`.
 
 ## P5 (M). styles.css не задаёт базовую типографику и reset
+Исправлено (D41): необязательный `@sloi/ui-kit/base.css`, раздел «Базовый слой» в README.
 В `dist/style.css` только два `font-family: inherit`; шрифт не задан нигде, поэтому в приложении без своих глобальных стилей всё рисуется Times (скриншот).
 Ни README, ни Storybook этого не оговаривают.
 Исправление: отдельный необязательный слой (например `@sloi/ui-kit/base.css`: reset + font-family из токенов) либо явная секция «Подключение» в README.

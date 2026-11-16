@@ -27,3 +27,4 @@ export function loadAndRun(configPath?: string): Outcome;
 export function hasFailures(outcome: Outcome): boolean;
 export function formatReport(outcome: Outcome, options?: { showAll?: boolean }): string;
 export function parseThemeBlocks(css: string): Record<string, Record<string, string>>;
+export function parseDeclarations(css: string): Record<string, string>;

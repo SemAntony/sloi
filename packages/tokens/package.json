@@ -22,7 +22,8 @@
     "./css/palette.css": "./src/palette.css",
     "./css/colors.css": "./src/colors.css",
     "./css/tokens.css": "./src/tokens.css",
-    "./css/typography.css": "./src/typography.css"
+    "./css/typography.css": "./src/typography.css",
+    "./css/base.css": "./src/base.css"
   },
   "scripts": {
     "build": "node ./scripts/build-tokens.mjs",

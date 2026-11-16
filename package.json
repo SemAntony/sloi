@@ -18,7 +18,8 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./styles.css": "./dist/style.css"
+    "./styles.css": "./dist/style.css",
+    "./base.css": "./dist/base.css"
   },
   "files": [
     "dist"
@@ -28,7 +29,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node -e \"require('fs').copyFileSync('dist/index.d.ts','dist/index.d.cts')\"",
+    "build": "vite build && node scripts/post-build.mjs",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",

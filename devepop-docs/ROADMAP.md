@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D41** (Фаза 2b, base-слой или документация подключения) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
+Следующая задача: **D11** (Фаза 2; Фаза 2b закончена) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
 
 ---
 
@@ -109,7 +109,7 @@
 - [x] **D38. Поля ввода: `box-sizing: border-box` (P1).** Input, Textarea, SearchInput, NumberField, PhoneField. Story «в узком контейнере». Готово: поле не вылезает за Card без внешнего reset.
 - [x] **D39. `DataTable`/`DataTableV2`: `T extends object` (P3).** Тест со строками-`interface`; экспортировать V2-типы под своими именами (P7).
 - [x] **D40. Компонент `Field` (P2, P4).** Label + control + hint + message, сам проставляет `id` и `aria-describedby`/`aria-invalid`; `SelectTrigger` с `fullWidth`; решить судьбу `FormMessage`.
-- [ ] **D41. Base-слой или документация подключения (P5).** `base.css` (reset + font-family из токенов) либо раздел README; проверить в `sloi-smoke` без собственных глобальных стилей.
+- [x] **D41. Base-слой или документация подключения (P5).** `base.css` (reset + font-family из токенов) либо раздел README; проверить в `sloi-smoke` без собственных глобальных стилей.
 - [ ] **D43. Server Components: smoke и ограничения.** В `sloi-smoke` страница без `'use client'`, импортирующая `Button`, `Icon`, `Field`; зафиксировать, что передавать с сервера можно, а что нет (функции, не-компонентные экспорты). Решить: нужна ли сборка по компонентам с `'use client'` только там, где есть состояние (меняет сборку и экспорты). Текст для README уже есть (раздел «Next.js App Router»). Повод: 2026-11-15 портфолио падало с `Element type is invalid` из-за импорта `ArrowRight` вместо `IconArrowRight`.
 - [ ] **D44. `Icon` по имени.** Рассмотреть `<Icon name='arrow-right' />` (строка сериализуется, удобнее в RSC и защищает от опечаток типами) рядом с `icon={IconArrowRight}`.
 
@@ -207,3 +207,4 @@
 | 2026-11-13 | D39 | `T extends Record<string, unknown>` заменён на `T extends object` в DataTable и DataTableV2 (typecheck чистый без других правок). V2-типы экспортируются под своими именами: `DataTableV2Column`, `DataTableV2SortState`, `DataTableV2SelectionKey`, `DataTableV2ColumnId`, `DataTableV2ColumnVisibility`, `DataTableV2RowSelection`, `DataTableV2RowSelectionContext`; в `dist/index.d.ts` исчезли `*_2`. Тест `src/test/data-table-row-types.test.tsx` (строки-interface; на старом ограничении typecheck даёт TS2322/TS2344). Gate: typecheck, lint (8 прежних warnings), test 181, test:a11y 34, build |
 | 2026-11-13 | D40 | Компонент `Field` (`src/shared/ui/field`): `label`, `hint`, `error`, `invalid`, `required`, `disabled`, `id`. Контекст `src/shared/lib/field/field-context.ts` + хук `useFieldControl`: Input, Textarea, PhoneField, SearchInput, NumberField и SelectTrigger сами получают `id`, `aria-describedby` (склеивается с явным), `aria-invalid`, `aria-required`, `disabled`; вне Field поведение не меняется. `id` принадлежит Field (иначе рвётся htmlFor). `SelectTrigger fullWidth` + стиль invalid. `FormMessage` оставлен для нативной валидации Radix Form, в JSDoc указано, что для остального предпочтителен `Field`. 16 тестов (unit + axe), stories (в т.ч. MixedForm и Validation с play), тег `experimental`. Gate: typecheck, lint (8 прежних), test 197, test:a11y 36, test:stories-a11y 237, storybook:build, build. Не охвачены Field: Combobox, DatePicker, Checkbox/Radio/Switch (контекст готов, подключается по одной строке) |
 | 2026-11-15 | docs | Разбор падения портфолио (Next, Server Component): `import { ArrowRight } from '@sloi/ui-kit'` вместо `IconArrowRight` (имён без префикса нет, в RSC даёт undefined). `'use client'` SSR не отключает: `renderToString` по dist даёт 187 компонентов без ошибок окружения. В README разделы «Иконки» и «Next.js App Router»; задачи D43, D44 |
+| 2026-11-15 | D41 | Необязательный base-слой `packages/tokens/src/base.css` (`@sloi/tokens/css/base.css`, `@sloi/ui-kit/base.css`): box-sizing, body из токенов (font-family, размер, цвет, фон), `font: inherit` у form-controls, `color-scheme` для light/dark; всё в `:where()`. В `styles.css` не входит. Сборка: `scripts/post-build.mjs` (копирует `dist/base.css` и `index.d.cts`) вместо inline `node -e`. Тест `src/test/base-layer.test.ts` (специфичность 0, нет `!important`, токены существуют, экспорты). Gate: typecheck, lint (8 прежних), test 202, test:a11y 36, build. Не проверено в браузере и в `sloi-smoke`/портфолио |

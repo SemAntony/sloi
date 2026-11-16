@@ -1,0 +1,40 @@
+/*
+ * Sloi base layer (необязательный, подключается явно после styles.css).
+ * Задаёт то, без чего компоненты выглядят «сырыми» в приложении без своих глобальных стилей:
+ * шрифт и цвет страницы из токенов, box-sizing, наследование шрифта у form-controls, color-scheme.
+ *
+ * Все селекторы обёрнуты в :where(), то есть имеют нулевую специфичность:
+ * любой стиль приложения (даже `body { ... }`) перекрывает их без !important.
+ */
+
+:where(*, *::before, *::after) {
+  box-sizing: border-box;
+}
+
+:where(html) {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+:where(:root) {
+  color-scheme: light;
+}
+
+:where([data-theme='dark']) {
+  color-scheme: dark;
+}
+
+:where(body) {
+  margin: 0;
+  font-family: var(--sloi-font-family-sans);
+  font-size: var(--sloi-font-size-300);
+  line-height: var(--sloi-font-line-normal);
+  font-weight: var(--sloi-font-weight-regular);
+  color: var(--sloi-text-primary);
+  background-color: var(--sloi-surface-canvas);
+}
+
+:where(button, input, select, textarea) {
+  font: inherit;
+  color: inherit;
+}
