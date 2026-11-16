@@ -82,6 +82,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((rawProps, r
               {...props}
               ref={ref}
               role='combobox'
+              aria-haspopup='listbox'
               aria-controls={listboxId}
               aria-expanded={controller.open}
               aria-autocomplete='list'
@@ -122,29 +123,34 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((rawProps, r
         </PopoverAnchor>
 
         <PopoverPortal>
-          <PopoverContent className={cn(styles.content, contentClassName)} align='start' onOpenAutoFocus={(event) => event.preventDefault()}>
-            <ul id={listboxId} role='listbox' className={styles.list}>
-              {controller.filteredOptions.length === 0 ? <p className={styles.empty}>{emptyMessage}</p> : null}
-
+          {/* Попап комбобокса это сам listbox, а не диалог: role=dialog от Radix заменён на presentation. */}
+          <PopoverContent
+            role='presentation'
+            className={cn(styles.content, contentClassName)}
+            align='start'
+            onOpenAutoFocus={(event) => event.preventDefault()}
+          >
+            {/* Опции лежат прямо в listbox: промежуточные li ломали связь listbox > option. */}
+            <div id={listboxId} role='listbox' className={styles.list}>
               {controller.filteredOptions.map((option, index) => (
-                <li key={option.value}>
-                  <button
-                    id={`${listboxId}-option-${option.value}`}
-                    type='button'
-                    role='option'
-                    aria-selected={controller.selectedValue === option.value}
-                    disabled={option.disabled}
-                    data-active={index === controller.activeIndex ? 'true' : 'false'}
-                    data-selected={controller.selectedValue === option.value ? 'true' : 'false'}
-                    className={styles.option}
-                    onMouseDown={(event) => event.preventDefault()}
-                    onClick={() => controller.selectOption(option)}
-                  >
-                    {option.label}
-                  </button>
-                </li>
+                <button
+                  key={option.value}
+                  id={`${listboxId}-option-${option.value}`}
+                  type='button'
+                  role='option'
+                  aria-selected={controller.selectedValue === option.value}
+                  disabled={option.disabled}
+                  data-active={index === controller.activeIndex ? 'true' : 'false'}
+                  data-selected={controller.selectedValue === option.value ? 'true' : 'false'}
+                  className={styles.option}
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => controller.selectOption(option)}
+                >
+                  {option.label}
+                </button>
               ))}
-            </ul>
+            </div>
+            {controller.filteredOptions.length === 0 ? <p className={styles.empty}>{emptyMessage}</p> : null}
           </PopoverContent>
         </PopoverPortal>
       </Popover>

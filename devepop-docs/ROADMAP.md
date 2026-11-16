@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D11** (Фаза 2; Фаза 2b закончена) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
+Следующая задача: **D13** (Фаза 2; D11 и D12 сделаны) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
 
 ---
 
@@ -86,8 +86,8 @@
 
 ## Фаза 2. Качество компонентов
 
-- [ ] **D11. Combobox: структура ARIA.** Убрать промежуточный `li` между `listbox` и `option` (или поставить `role="presentation"`). Добавить `aria-haspopup="listbox"`.
-- [ ] **D12. Combobox: a11y-тест в открытом состоянии.** Тест открывает список и прогоняет axe. Готово: тест падает на старом коде и проходит на новом.
+- [x] **D11. Combobox: структура ARIA.** Убрать промежуточный `li` между `listbox` и `option` (или поставить `role="presentation"`). Добавить `aria-haspopup="listbox"`.
+- [x] **D12. Combobox: a11y-тест в открытом состоянии.** Тест открывает список и прогоняет axe. Готово: тест падает на старом коде и проходит на новом.
 - [ ] **D13. Tooltip: один Provider.** Убрать `TooltipProvider` из `Tooltip`, добавить общий Provider и документировать его в Storybook. Решить, как не ломать API (опциональный Provider или внутренний fallback).
 - [ ] **D14. Select: controlled/uncontrolled.** Проверить переход при отсутствии `defaultValue`; тест на предупреждение в консоли; исправить, если воспроизводится.
 - [ ] **D15. Pagination: тесты логики.** Диапазоны страниц, границы, смена размера страницы, controlled/uncontrolled.
@@ -208,3 +208,4 @@
 | 2026-11-13 | D40 | Компонент `Field` (`src/shared/ui/field`): `label`, `hint`, `error`, `invalid`, `required`, `disabled`, `id`. Контекст `src/shared/lib/field/field-context.ts` + хук `useFieldControl`: Input, Textarea, PhoneField, SearchInput, NumberField и SelectTrigger сами получают `id`, `aria-describedby` (склеивается с явным), `aria-invalid`, `aria-required`, `disabled`; вне Field поведение не меняется. `id` принадлежит Field (иначе рвётся htmlFor). `SelectTrigger fullWidth` + стиль invalid. `FormMessage` оставлен для нативной валидации Radix Form, в JSDoc указано, что для остального предпочтителен `Field`. 16 тестов (unit + axe), stories (в т.ч. MixedForm и Validation с play), тег `experimental`. Gate: typecheck, lint (8 прежних), test 197, test:a11y 36, test:stories-a11y 237, storybook:build, build. Не охвачены Field: Combobox, DatePicker, Checkbox/Radio/Switch (контекст готов, подключается по одной строке) |
 | 2026-11-15 | docs | Разбор падения портфолио (Next, Server Component): `import { ArrowRight } from '@sloi/ui-kit'` вместо `IconArrowRight` (имён без префикса нет, в RSC даёт undefined). `'use client'` SSR не отключает: `renderToString` по dist даёт 187 компонентов без ошибок окружения. В README разделы «Иконки» и «Next.js App Router»; задачи D43, D44 |
 | 2026-11-15 | D41 | Необязательный base-слой `packages/tokens/src/base.css` (`@sloi/tokens/css/base.css`, `@sloi/ui-kit/base.css`): box-sizing, body из токенов (font-family, размер, цвет, фон), `font: inherit` у form-controls, `color-scheme` для light/dark; всё в `:where()`. В `styles.css` не входит. Сборка: `scripts/post-build.mjs` (копирует `dist/base.css` и `index.d.cts`) вместо inline `node -e`. Тест `src/test/base-layer.test.ts` (специфичность 0, нет `!important`, токены существуют, экспорты). Gate: typecheck, lint (8 прежних), test 202, test:a11y 36, build. Не проверено в браузере и в `sloi-smoke`/портфолио |
+| 2026-11-15 | D11+D12 | Combobox: `ul > li > button[role=option]` заменён на `div[role=listbox] > button[role=option]`, `aria-haspopup='listbox'` у input, `role='presentation'` у PopoverContent вместо `dialog` (axe: aria-dialog-name), сообщение «нет опций» вынесено из listbox (раньше `p` внутри `ul`). Axe на старом коде в открытом состоянии давал 4 нарушения (aria-dialog-name, aria-required-children, aria-required-parent, listitem), в пустом 2; теперь 0. Тесты: 3 структурных + 2 axe с `document.body` (портал), все 5 падают на старом коде. Gate: typecheck, lint (8 прежних), test 207, test:a11y 38, test:stories-a11y 237. Наблюдение для D16-ряда: у listbox нет имени кроме aria-label, переданного в input (axe не требует), опции остаются в Tab-порядке (tabIndex не -1) |

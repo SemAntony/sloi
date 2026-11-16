@@ -42,4 +42,47 @@ describe('Combobox', () => {
 
     expect(onValueChange).toHaveBeenCalledWith('fr');
   });
+
+  describe('ARIA structure (D11)', () => {
+    it('options are direct children of the listbox, without listitem wrappers', async () => {
+      const user = userEvent.setup();
+      render(<Combobox options={options} aria-label='Country' />);
+
+      await user.click(screen.getByRole('combobox', { name: 'Country' }));
+
+      const listbox = screen.getByRole('listbox');
+      const rendered = screen.getAllByRole('option');
+      expect(rendered).toHaveLength(options.length);
+      for (const option of rendered) {
+        expect(option.parentElement).toBe(listbox);
+      }
+      expect(screen.queryAllByRole('listitem')).toHaveLength(0);
+    });
+
+    it('advertises a listbox popup and does not expose the popup as a dialog', async () => {
+      const user = userEvent.setup();
+      render(<Combobox options={options} aria-label='Country' />);
+
+      const input = screen.getByRole('combobox', { name: 'Country' });
+      expect(input).toHaveAttribute('aria-haspopup', 'listbox');
+
+      await user.click(input);
+
+      expect(input).toHaveAttribute('aria-controls', screen.getByRole('listbox').id);
+      expect(screen.queryByRole('dialog')).toBeNull();
+    });
+
+    it('keeps the empty message outside the listbox so that the listbox holds only options', async () => {
+      const user = userEvent.setup();
+      render(<Combobox options={options} aria-label='Country' emptyMessage='Nothing here' />);
+
+      await user.type(screen.getByRole('combobox', { name: 'Country' }), 'zzz');
+
+      const message = screen.getByText('Nothing here');
+      const listbox = screen.getByRole('listbox');
+      expect(listbox.contains(message)).toBe(false);
+      expect(listbox.children).toHaveLength(0);
+    });
+  });
 });
+
