@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D14** (Фаза 2) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
+Следующая задача: **D15** (Фаза 2) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
 
 ---
 
@@ -89,7 +89,7 @@
 - [x] **D11. Combobox: структура ARIA.** Убрать промежуточный `li` между `listbox` и `option` (или поставить `role="presentation"`). Добавить `aria-haspopup="listbox"`.
 - [x] **D12. Combobox: a11y-тест в открытом состоянии.** Тест открывает список и прогоняет axe. Готово: тест падает на старом коде и проходит на новом.
 - [x] **D13. Tooltip: один Provider.** Убрать `TooltipProvider` из `Tooltip`, добавить общий Provider и документировать его в Storybook. Решить, как не ломать API (опциональный Provider или внутренний fallback).
-- [ ] **D14. Select: controlled/uncontrolled.** Проверить переход при отсутствии `defaultValue`; тест на предупреждение в консоли; исправить, если воспроизводится.
+- [x] **D14. Select: controlled/uncontrolled.** Проверить переход при отсутствии `defaultValue`; тест на предупреждение в консоли; исправить, если воспроизводится.
 - [ ] **D15. Pagination: тесты логики.** Диапазоны страниц, границы, смена размера страницы, controlled/uncontrolled.
 - [ ] **D16. Pagination: тексты и Select.** Вынести строки в props (`labels`), заменить нативный `<select>` на `Select` из библиотеки.
 - [ ] **D17. Modal: unit + a11y тесты.**
@@ -210,3 +210,4 @@
 | 2026-11-15 | D41 | Необязательный base-слой `packages/tokens/src/base.css` (`@sloi/tokens/css/base.css`, `@sloi/ui-kit/base.css`): box-sizing, body из токенов (font-family, размер, цвет, фон), `font: inherit` у form-controls, `color-scheme` для light/dark; всё в `:where()`. В `styles.css` не входит. Сборка: `scripts/post-build.mjs` (копирует `dist/base.css` и `index.d.cts`) вместо inline `node -e`. Тест `src/test/base-layer.test.ts` (специфичность 0, нет `!important`, токены существуют, экспорты). Gate: typecheck, lint (8 прежних), test 202, test:a11y 36, build. Не проверено в браузере и в `sloi-smoke`/портфолио |
 | 2026-11-15 | D11+D12 | Combobox: `ul > li > button[role=option]` заменён на `div[role=listbox] > button[role=option]`, `aria-haspopup='listbox'` у input, `role='presentation'` у PopoverContent вместо `dialog` (axe: aria-dialog-name), сообщение «нет опций» вынесено из listbox (раньше `p` внутри `ul`). Axe на старом коде в открытом состоянии давал 4 нарушения (aria-dialog-name, aria-required-children, aria-required-parent, listitem), в пустом 2; теперь 0. Тесты: 3 структурных + 2 axe с `document.body` (портал), все 5 падают на старом коде. Gate: typecheck, lint (8 прежних), test 207, test:a11y 38, test:stories-a11y 237. Наблюдение для D16-ряда: у listbox нет имени кроме aria-label, переданного в input (axe не требует), опции остаются в Tab-порядке (tabIndex не -1) |
 | 2026-11-15 | D13 | Tooltip: `TooltipProvider` теперь обёртка над Radix Provider, которая помечает наличие общего Provider через контекст; `Tooltip` без общего Provider создаёт свой (обратная совместимость), под общим не создаёт и берёт `delayDuration` из него, если не задан у подсказки (раньше дефолт 250 всегда перекрывал Provider). `skipDelayDuration` у `Tooltip` работает только без общего Provider (задокументировано в JSDoc). Тесты: 4 новых (2 падают на старом коде: задержка Provider и skipDelay между подсказками), story `SharedProvider`. Gate: typecheck, lint (8 прежних), test 211, test:a11y 38, test:stories-a11y 238, storybook:build, build |
+| 2026-11-15 | D14 | Воспроизведено: Select без `defaultValue` после первого выбора давал console.warn «Select is changing from uncontrolled to controlled» (обёртка передавала Radix `value={undefined}`, затем строку). Исправление: Radix всегда получает `value={controller.value ?? ''}` (пустая строка = плейсхолдер). Тесты (2): плейсхолдер → выбор → onValueChange; нет предупреждения (падает на старом коде). Gate: typecheck, lint (8 прежних), test, test:a11y, test:stories-a11y |

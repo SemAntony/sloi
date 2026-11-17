@@ -33,7 +33,9 @@ export const Select = ({
 
   return (
     <SelectPrimitive.Root
-      value={controller.value}
+      // Radix всегда получает значение (пустая строка = плейсхолдер): иначе без defaultValue он
+      // стартует неуправляемым и после первого выбора переключается в управляемый с предупреждением.
+      value={controller.value ?? ''}
       onValueChange={controller.onValueChange}
       open={controller.open}
       onOpenChange={controller.onOpenChange}

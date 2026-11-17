@@ -118,4 +118,58 @@ describe('Select', () => {
     await user.click(screen.getByRole('option', { name: 'Cherry' }));
     expect(trigger).toHaveTextContent('Cherry');
   });
+
+  describe('without defaultValue (D14)', () => {
+    const renderWithoutDefault = (onValueChange?: (value: string) => void) =>
+      render(
+        <Select onValueChange={onValueChange}>
+          <SelectTrigger aria-label='Food'>
+            <SelectValue placeholder='Pick a fruit' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectViewport>
+              <SelectItem value='apple'>Apple</SelectItem>
+              <SelectItem value='banana'>Banana</SelectItem>
+            </SelectViewport>
+          </SelectContent>
+        </Select>
+      );
+
+    it('shows the placeholder, then the chosen value, and reports the change', async () => {
+      const user = userEvent.setup();
+      const onValueChange = vi.fn();
+      renderWithoutDefault(onValueChange);
+
+      const trigger = screen.getByRole('combobox', { name: 'Food' });
+      expect(trigger).toHaveTextContent('Pick a fruit');
+
+      trigger.focus();
+      await user.keyboard('{Enter}');
+      await user.click(await screen.findByRole('option', { name: 'Banana' }));
+
+      expect(trigger).toHaveTextContent('Banana');
+      expect(onValueChange).toHaveBeenCalledWith('banana');
+    });
+
+    it('does not warn about switching from uncontrolled to controlled', async () => {
+      const user = userEvent.setup();
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+      const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
+      try {
+        renderWithoutDefault();
+
+        screen.getByRole('combobox', { name: 'Food' }).focus();
+        await user.keyboard('{Enter}');
+        await user.click(await screen.findByRole('option', { name: 'Apple' }));
+
+        const messages = [...warn.mock.calls, ...error.mock.calls].map((call) => String(call[0]));
+        expect(messages.filter((message) => /controlled/i.test(message))).toEqual([]);
+      } finally {
+        warn.mockRestore();
+        error.mockRestore();
+      }
+    });
+  });
 });
+
