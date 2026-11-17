@@ -438,7 +438,8 @@ export const PersistedState: Story = {
     await step('Change sort and pagination', async () => {
       await userEvent.click(canvas.getByRole('button', { name: 'Customer' }));
       await userEvent.click(canvas.getByRole('button', { name: 'Next' }));
-      await userEvent.selectOptions(canvas.getByRole('combobox'), '5');
+      await userEvent.click(canvas.getByRole('combobox', { name: 'Rows' }));
+      await userEvent.click(await screen.findByRole('option', { name: '5' }));
     });
 
     await step('Persist visibility change', async () => {

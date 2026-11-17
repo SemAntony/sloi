@@ -49,6 +49,19 @@ const ControlledPreview = () => {
   );
 };
 
+export const Localized: Story = {
+  args: {
+    totalItems: 127,
+    navigationLabel: 'Страницы',
+    labels: {
+      previous: 'Назад',
+      next: 'Вперёд',
+      rows: 'Строк',
+      summary: ({ from, to, total }) => `Показано ${from}–${to} из ${total}`
+    }
+  }
+};
+
 export const Controlled: Story = {
   render: () => <ControlledPreview />
 };

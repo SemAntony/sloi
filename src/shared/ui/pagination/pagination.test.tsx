@@ -150,6 +150,11 @@ describe('Pagination: controlled / uncontrolled page (D15)', () => {
 
 describe('Pagination: page size (D15)', () => {
   const sizeSelect = () => screen.getByRole('combobox', { name: 'Rows' });
+  const chooseSize = async (user: ReturnType<typeof userEvent.setup>, size: string) => {
+    sizeSelect().focus();
+    await user.keyboard('{Enter}');
+    await user.click(await screen.findByRole('option', { name: size }));
+  };
 
   it('uncontrolled: changes the size, recomputes the range, reports it', async () => {
     const user = userEvent.setup();
@@ -158,9 +163,9 @@ describe('Pagination: page size (D15)', () => {
       <Pagination totalItems={95} onPageSizeChange={onPageSizeChange} pageSizeOptions={[10, 20, 50]} />
     );
 
-    await user.selectOptions(sizeSelect(), '50');
+    await chooseSize(user, '50');
 
-    expect(sizeSelect()).toHaveValue('50');
+    expect(sizeSelect()).toHaveTextContent('50');
     expect(onPageSizeChange).toHaveBeenCalledExactlyOnceWith(50);
     expect(summary(container)).toBe('Showing 1-50 of 95');
     expect(visibleItems(container)).toEqual(['1', '2']);
@@ -174,7 +179,7 @@ describe('Pagination: page size (D15)', () => {
     );
     expect(summary(container)).toBe('Showing 91-95 of 95');
 
-    await user.selectOptions(sizeSelect(), '50');
+    await chooseSize(user, '50');
 
     expect(currentPageOf()).toBe('2');
     expect(summary(container)).toBe('Showing 51-95 of 95');
@@ -186,7 +191,7 @@ describe('Pagination: page size (D15)', () => {
     const onPageChange = vi.fn();
     render(<Pagination totalItems={95} defaultPage={1} onPageChange={onPageChange} pageSizeOptions={[10, 20]} />);
 
-    await user.selectOptions(sizeSelect(), '20');
+    await chooseSize(user, '20');
 
     expect(currentPageOf()).toBe('1');
     expect(onPageChange).not.toHaveBeenCalled();
@@ -199,12 +204,72 @@ describe('Pagination: page size (D15)', () => {
       <Pagination totalItems={95} pageSize={10} onPageSizeChange={onPageSizeChange} pageSizeOptions={[10, 20]} />
     );
 
-    await user.selectOptions(sizeSelect(), '20');
+    await chooseSize(user, '20');
 
     expect(onPageSizeChange).toHaveBeenCalledExactlyOnceWith(20);
-    expect(sizeSelect()).toHaveValue('10');
+    expect(sizeSelect()).toHaveTextContent('10');
 
     rerender(<Pagination totalItems={95} pageSize={20} onPageSizeChange={onPageSizeChange} pageSizeOptions={[10, 20]} />);
-    expect(sizeSelect()).toHaveValue('20');
+    expect(sizeSelect()).toHaveTextContent('20');
+  });
+});
+
+describe('Pagination: labels and page-size Select (D16)', () => {
+  it('uses English defaults', () => {
+    const { container } = render(<Pagination totalItems={95} />);
+
+    expect(screen.getByRole('button', { name: 'Prev' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Next' })).toBeTruthy();
+    expect(screen.getByRole('combobox', { name: 'Rows' })).toBeTruthy();
+    expect(summary(container)).toBe('Showing 1-10 of 95');
+  });
+
+  it('takes every text from labels, including the summary word order', () => {
+    const { container } = render(
+      <Pagination
+        totalItems={95}
+        navigationLabel='Страницы'
+        labels={{
+          previous: 'Назад',
+          next: 'Вперёд',
+          rows: 'Строк',
+          summary: ({ from, to, total }) => `${total} всего, показано ${from}–${to}`
+        }}
+      />
+    );
+
+    expect(screen.getByRole('navigation', { name: 'Страницы' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Назад' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Вперёд' })).toBeTruthy();
+    expect(screen.getByRole('combobox', { name: 'Строк' })).toBeTruthy();
+    expect(summary(container)).toBe('95 всего, показано 1–10');
+  });
+
+  it('keeps defaults for labels that are not overridden', () => {
+    render(<Pagination totalItems={95} labels={{ next: 'Siguiente' }} />);
+
+    expect(screen.getByRole('button', { name: 'Siguiente' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Prev' })).toBeTruthy();
+  });
+
+  it('uses the library Select instead of a native <select>', () => {
+    const { container } = render(<Pagination totalItems={95} />);
+
+    expect(container.querySelector('select')).toBeNull();
+    expect(screen.getByRole('combobox', { name: 'Rows' }).tagName).toBe('BUTTON');
+  });
+
+  it('always offers the current page size, even when it is missing from pageSizeOptions', async () => {
+    const user = userEvent.setup();
+    render(<Pagination totalItems={95} defaultPageSize={25} pageSizeOptions={[10, 20, 50]} />);
+
+    const trigger = screen.getByRole('combobox', { name: 'Rows' });
+    expect(trigger).toHaveTextContent('25');
+
+    trigger.focus();
+    await user.keyboard('{Enter}');
+    // у выбранной опции в тексте есть индикатор ✓
+    const options = (await screen.findAllByRole('option')).map((option) => option.textContent?.replace('✓', ''));
+    expect(options).toEqual(['10', '20', '25', '50']);
   });
 });

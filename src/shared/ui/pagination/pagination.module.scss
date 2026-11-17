@@ -44,19 +44,9 @@
   font-size: var(--sloi-font-size-200);
 }
 
-.pageSizeSelect {
+.pageSizeLabel .pageSizeTrigger {
+  min-width: 4.5rem;
   min-height: var(--sloi-size-control-sm);
-  border: 1px solid var(--sloi-field-border);
-  border-radius: var(--sloi-radius-sm);
-  background: var(--sloi-field-bg);
-  color: var(--sloi-text-primary);
-  padding: 0 var(--sloi-space-2);
-}
-
-.pageSizeSelect:focus-visible {
-  border-color: var(--sloi-field-border-focus);
-  outline: 2px solid color-mix(in srgb, var(--sloi-focus-ring) 35%, transparent);
-  outline-offset: 1px;
 }
 
 @media (max-width: 720px) {

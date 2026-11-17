@@ -250,7 +250,10 @@ describe('DataTable', () => {
     await user.click(amountSortButton);
     await user.click(amountSortButton);
     await user.click(screen.getByRole('button', { name: 'Next' }));
-    await user.selectOptions(screen.getByRole('combobox'), '2');
+    // размер страницы выбирается через Select из библиотеки (не нативный select)
+    screen.getByRole('combobox', { name: 'Rows' }).focus();
+    await user.keyboard('{Enter}');
+    await user.click(await screen.findByRole('option', { name: '2' }));
 
     await user.click(screen.getByRole('button', { name: 'Columns' }));
     await user.click(screen.getByRole('checkbox', { name: 'Toggle column Status' }));

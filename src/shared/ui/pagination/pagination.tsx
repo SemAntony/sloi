@@ -1,6 +1,7 @@
-import { forwardRef, useMemo, useState, type HTMLAttributes } from 'react';
+import { forwardRef, useId, useMemo, useState, type HTMLAttributes } from 'react';
 import { Button } from '../button';
 import { cn } from '../../lib/cn/cn';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectViewport } from '../primitives/select';
 import styles from './pagination.module.scss';
 
 type PaginationItem = number | 'ellipsis-left' | 'ellipsis-right';
@@ -37,6 +38,22 @@ const buildPageItems = (page: number, totalPages: number, siblingCount: number):
   return [1, 'ellipsis-left', ...middleRange, 'ellipsis-right', totalPages];
 };
 
+export interface PaginationLabels {
+  previous: string;
+  next: string;
+  /** Подпись выбора размера страницы. */
+  rows: string;
+  /** Итоговая строка; функция, чтобы порядок слов можно было менять в любом языке. */
+  summary: (range: { from: number; to: number; total: number }) => string;
+}
+
+const defaultLabels: PaginationLabels = {
+  previous: 'Prev',
+  next: 'Next',
+  rows: 'Rows',
+  summary: ({ from, to, total }) => `Showing ${from}-${to} of ${total}`
+};
+
 export interface PaginationProps extends HTMLAttributes<HTMLDivElement> {
   totalItems: number;
   page?: number;
@@ -49,6 +66,8 @@ export interface PaginationProps extends HTMLAttributes<HTMLDivElement> {
   showPageSizeSelector?: boolean;
   /** Accessible name of the <nav>; make it unique when several paginations share a page. */
   navigationLabel?: string;
+  /** Тексты интерфейса; незаданные берутся из английских по умолчанию. */
+  labels?: Partial<PaginationLabels>;
   showSummary?: boolean;
   siblingCount?: number;
   disabled?: boolean;
@@ -67,12 +86,15 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((rawProps,
     pageSizeOptions = [10, 20, 50],
     showPageSizeSelector = true,
     navigationLabel = 'Pagination',
+    labels: labelOverrides,
     showSummary = true,
     siblingCount = 1,
     disabled = false,
     ...props
   } = rawProps;
 
+  const labels = { ...defaultLabels, ...labelOverrides };
+  const pageSizeLabelId = useId();
   const isPageControlled = Object.prototype.hasOwnProperty.call(rawProps, 'page');
   const isPageSizeControlled = Object.prototype.hasOwnProperty.call(rawProps, 'pageSize');
 
@@ -116,6 +138,11 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((rawProps,
     }
   };
 
+  // Текущий размер всегда есть в списке (например, defaultPageSize=25 при опциях 10/20/50).
+  const pageSizeChoices = pageSizeOptions.includes(activePageSize)
+    ? pageSizeOptions
+    : [...pageSizeOptions, activePageSize].sort((a, b) => a - b);
+
   const from = resolvedTotalItems === 0 ? 0 : (currentPage - 1) * activePageSize + 1;
   const to = resolvedTotalItems === 0 ? 0 : Math.min(resolvedTotalItems, currentPage * activePageSize);
 
@@ -128,7 +155,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((rawProps,
     <div ref={ref} className={cn(styles.root, className)} {...props}>
       {showSummary ? (
         <p className={styles.summary}>
-          Showing {from}-{to} of {resolvedTotalItems}
+          {labels.summary({ from, to, total: resolvedTotalItems })}
         </p>
       ) : null}
 
@@ -140,7 +167,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((rawProps,
           onClick={() => setPage(currentPage - 1)}
           disabled={disabled || currentPage <= 1}
         >
-          Prev
+          {labels.previous}
         </Button>
 
         <ul className={styles.pages} role='list'>
@@ -179,26 +206,32 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((rawProps,
           onClick={() => setPage(currentPage + 1)}
           disabled={disabled || currentPage >= totalPages}
         >
-          Next
+          {labels.next}
         </Button>
       </nav>
 
       {showPageSizeSelector ? (
-        <label className={styles.pageSizeLabel}>
-          Rows
-          <select
-            className={styles.pageSizeSelect}
-            value={activePageSize}
+        <div className={styles.pageSizeLabel}>
+          <span id={pageSizeLabelId}>{labels.rows}</span>
+          <Select
+            value={String(activePageSize)}
+            onValueChange={(value) => setPageSize(Number(value))}
             disabled={disabled}
-            onChange={(event) => setPageSize(Number(event.target.value))}
           >
-            {pageSizeOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
+            <SelectTrigger aria-labelledby={pageSizeLabelId} className={styles.pageSizeTrigger}>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectViewport>
+                {pageSizeChoices.map((option) => (
+                  <SelectItem key={option} value={String(option)}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectViewport>
+            </SelectContent>
+          </Select>
+        </div>
       ) : null}
     </div>
   );
