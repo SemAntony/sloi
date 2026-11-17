@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, waitFor } from 'storybook/test';
 import { useState } from 'react';
 import { Button } from '../button';
-import { Tooltip } from './tooltip';
+import { Tooltip, TooltipProvider } from './tooltip';
 import styles from './tooltip.stories.module.scss';
 
 const meta = {
@@ -97,4 +97,30 @@ const TooltipContainerPreview = () => {
 
 export const WithCustomContainer: Story = {
   render: () => <TooltipContainerPreview />
+};
+
+/**
+ * Один `TooltipProvider` в корне приложения: общие задержки и `skipDelayDuration`
+ * (после первой подсказки соседние открываются без задержки). Без Provider каждый
+ * `Tooltip` работает сам, как раньше.
+ */
+export const SharedProvider: Story = {
+  parameters: {
+    controls: { disable: true }
+  },
+  render: () => (
+    <TooltipProvider delayDuration={600} skipDelayDuration={800}>
+      <div className={styles.stack}>
+        <Tooltip content='First tooltip'>
+          <Button variant='secondary'>First</Button>
+        </Tooltip>
+        <Tooltip content='Second tooltip opens without delay'>
+          <Button variant='secondary'>Second</Button>
+        </Tooltip>
+        <Tooltip content='Instant, overrides the provider' delayDuration={0}>
+          <Button variant='secondary'>Instant</Button>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
+  )
 };
