@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D15** (Фаза 2) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
+Следующая задача: **D16** (Фаза 2) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
 
 ---
 
@@ -90,7 +90,7 @@
 - [x] **D12. Combobox: a11y-тест в открытом состоянии.** Тест открывает список и прогоняет axe. Готово: тест падает на старом коде и проходит на новом.
 - [x] **D13. Tooltip: один Provider.** Убрать `TooltipProvider` из `Tooltip`, добавить общий Provider и документировать его в Storybook. Решить, как не ломать API (опциональный Provider или внутренний fallback).
 - [x] **D14. Select: controlled/uncontrolled.** Проверить переход при отсутствии `defaultValue`; тест на предупреждение в консоли; исправить, если воспроизводится.
-- [ ] **D15. Pagination: тесты логики.** Диапазоны страниц, границы, смена размера страницы, controlled/uncontrolled.
+- [x] **D15. Pagination: тесты логики.** Диапазоны страниц, границы, смена размера страницы, controlled/uncontrolled.
 - [ ] **D16. Pagination: тексты и Select.** Вынести строки в props (`labels`), заменить нативный `<select>` на `Select` из библиотеки.
 - [ ] **D17. Modal: unit + a11y тесты.**
 - [ ] **D18. Table и Textarea: тесты.**
@@ -211,3 +211,4 @@
 | 2026-11-15 | D11+D12 | Combobox: `ul > li > button[role=option]` заменён на `div[role=listbox] > button[role=option]`, `aria-haspopup='listbox'` у input, `role='presentation'` у PopoverContent вместо `dialog` (axe: aria-dialog-name), сообщение «нет опций» вынесено из listbox (раньше `p` внутри `ul`). Axe на старом коде в открытом состоянии давал 4 нарушения (aria-dialog-name, aria-required-children, aria-required-parent, listitem), в пустом 2; теперь 0. Тесты: 3 структурных + 2 axe с `document.body` (портал), все 5 падают на старом коде. Gate: typecheck, lint (8 прежних), test 207, test:a11y 38, test:stories-a11y 237. Наблюдение для D16-ряда: у listbox нет имени кроме aria-label, переданного в input (axe не требует), опции остаются в Tab-порядке (tabIndex не -1) |
 | 2026-11-15 | D13 | Tooltip: `TooltipProvider` теперь обёртка над Radix Provider, которая помечает наличие общего Provider через контекст; `Tooltip` без общего Provider создаёт свой (обратная совместимость), под общим не создаёт и берёт `delayDuration` из него, если не задан у подсказки (раньше дефолт 250 всегда перекрывал Provider). `skipDelayDuration` у `Tooltip` работает только без общего Provider (задокументировано в JSDoc). Тесты: 4 новых (2 падают на старом коде: задержка Provider и skipDelay между подсказками), story `SharedProvider`. Gate: typecheck, lint (8 прежних), test 211, test:a11y 38, test:stories-a11y 238, storybook:build, build |
 | 2026-11-15 | D14 | Воспроизведено: Select без `defaultValue` после первого выбора давал console.warn «Select is changing from uncontrolled to controlled» (обёртка передавала Radix `value={undefined}`, затем строку). Исправление: Radix всегда получает `value={controller.value ?? ''}` (пустая строка = плейсхолдер). Тесты (2): плейсхолдер → выбор → onValueChange; нет предупреждения (падает на старом коде). Gate: typecheck, lint (8 прежних), test, test:a11y, test:stories-a11y |
+| 2026-11-15 | D15 | Pagination не имел тестов; добавлено 27 (`pagination.test.tsx`): диапазоны страниц (13 кейсов: границы 3/4 и 17/18, siblings 0/2/отрицательные, одна страница), границы и summary (пустой список, отрицательный totalItems, page вне диапазона, pageSize<1, disabled), controlled/uncontrolled для page и pageSize, смена размера (пересчёт диапазона, зажим страницы). Алгоритм диапазонов прошёл без правок. Найдена и исправлена ошибка: смена размера страницы всегда вызывала `onPageChange`, даже если страница не менялась; теперь только при реальном сдвиге (тест падает на старом коде). Замечание: в неуправляемом режиме внутренняя страница хранится без зажима, пересчёт идёт при рендере. Тесты используют нативный `<select>` (`combobox` «Rows»), их придётся адаптировать в D16. Gate: typecheck, lint (8 прежних), test 241, test:stories-a11y 238 |

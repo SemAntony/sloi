@@ -110,7 +110,10 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((rawProps,
       setInternalPage(nextPage);
     }
 
-    onPageChange?.(nextPage);
+    // Страница сообщается только если она действительно сдвинулась из-за нового размера.
+    if (nextPage !== currentPage) {
+      onPageChange?.(nextPage);
+    }
   };
 
   const from = resolvedTotalItems === 0 ? 0 : (currentPage - 1) * activePageSize + 1;
