@@ -119,6 +119,32 @@ describe('Select', () => {
     expect(trigger).toHaveTextContent('Cherry');
   });
 
+  describe('controlled reset (D14)', () => {
+    it("value='' shows the placeholder, a value shows the option, and it can be reset back", () => {
+      const tree = (value: string) => (
+        <Select value={value} onValueChange={() => undefined}>
+          <SelectTrigger aria-label='Food'>
+            <SelectValue placeholder='Pick a fruit' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectViewport>
+              <SelectItem value='apple'>Apple</SelectItem>
+            </SelectViewport>
+          </SelectContent>
+        </Select>
+      );
+      const { rerender } = render(tree(''));
+      const trigger = screen.getByRole('combobox', { name: 'Food' });
+      expect(trigger).toHaveTextContent('Pick a fruit');
+
+      rerender(tree('apple'));
+      expect(trigger).toHaveTextContent('Apple');
+
+      rerender(tree(''));
+      expect(trigger).toHaveTextContent('Pick a fruit');
+    });
+  });
+
   describe('without defaultValue (D14)', () => {
     const renderWithoutDefault = (onValueChange?: (value: string) => void) =>
       render(
@@ -172,4 +198,3 @@ describe('Select', () => {
     });
   });
 });
-
