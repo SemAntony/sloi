@@ -1,5 +1,5 @@
 import { Dialog as DialogPrimitive, VisuallyHidden } from 'radix-ui';
-import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
+import { useRef, type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { cn } from '../../lib/cn/cn';
 import styles from './modal.module.scss';
 
@@ -25,8 +25,15 @@ export const Modal = ({
   overlayClassName,
   closeButton = true,
   container,
+  onOpenAutoFocus,
+  onCloseAutoFocus,
   ...contentProps
 }: ModalProps) => {
+  // У Modal нет Dialog.Trigger (им управляют снаружи через `open`), а Radix возвращает фокус
+  // только на Trigger: без этого после закрытия фокус терялся бы на body. Запоминаем элемент,
+  // который был в фокусе до открытия, и возвращаем фокус на него.
+  const openerRef = useRef<HTMLElement | null>(null);
+
   const handleOpenChange = (nextOpen: boolean) => {
     onOpenChange?.(nextOpen);
 
@@ -43,6 +50,25 @@ export const Modal = ({
           aria-describedby={undefined}
           className={cn(styles.content, className)}
           {...contentProps}
+          onOpenAutoFocus={(event) => {
+            openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+            onOpenAutoFocus?.(event);
+          }}
+          onCloseAutoFocus={(event) => {
+            onCloseAutoFocus?.(event);
+
+            if (event.defaultPrevented) {
+              return;
+            }
+
+            event.preventDefault();
+            const opener = openerRef.current;
+            openerRef.current = null;
+
+            if (opener?.isConnected) {
+              opener.focus();
+            }
+          }}
         >
           {title ? (
             <DialogPrimitive.Title className={styles.title}>{title}</DialogPrimitive.Title>

@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D17** (Фаза 2) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
+Следующая задача: **D18** (Фаза 2) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2)
 
 ---
 
@@ -92,7 +92,7 @@
 - [x] **D14. Select: controlled/uncontrolled.** Проверить переход при отсутствии `defaultValue`; тест на предупреждение в консоли; исправить, если воспроизводится.
 - [x] **D15. Pagination: тесты логики.** Диапазоны страниц, границы, смена размера страницы, controlled/uncontrolled.
 - [x] **D16. Pagination: тексты и Select.** Вынести строки в props (`labels`), заменить нативный `<select>` на `Select` из библиотеки.
-- [ ] **D17. Modal: unit + a11y тесты.**
+- [x] **D17. Modal: unit + a11y тесты.**
 - [ ] **D18. Table и Textarea: тесты.**
 - [ ] **D19. NumberField и PhoneField: тесты.**
 - [ ] **D20. SearchInput и FilterBar: тесты.**
@@ -213,3 +213,4 @@
 | 2026-11-15 | D14 | Воспроизведено: Select без `defaultValue` после первого выбора давал console.warn «Select is changing from uncontrolled to controlled» (обёртка передавала Radix `value={undefined}`, затем строку). Исправление: Radix всегда получает `value={controller.value ?? ''}` (пустая строка = плейсхолдер). Тесты (2): плейсхолдер → выбор → onValueChange; нет предупреждения (падает на старом коде). Gate: typecheck, lint (8 прежних), test, test:a11y, test:stories-a11y |
 | 2026-11-15 | D15 | Pagination не имел тестов; добавлено 27 (`pagination.test.tsx`): диапазоны страниц (13 кейсов: границы 3/4 и 17/18, siblings 0/2/отрицательные, одна страница), границы и summary (пустой список, отрицательный totalItems, page вне диапазона, pageSize<1, disabled), controlled/uncontrolled для page и pageSize, смена размера (пересчёт диапазона, зажим страницы). Алгоритм диапазонов прошёл без правок. Найдена и исправлена ошибка: смена размера страницы всегда вызывала `onPageChange`, даже если страница не менялась; теперь только при реальном сдвиге (тест падает на старом коде). Замечание: в неуправляемом режиме внутренняя страница хранится без зажима, пересчёт идёт при рендере. Тесты используют нативный `<select>` (`combobox` «Rows»), их придётся адаптировать в D16. Gate: typecheck, lint (8 прежних), test 241, test:stories-a11y 238 |
 | 2026-11-15 | D16 | Pagination: проп `labels` (`previous`, `next`, `rows`, `summary` как функция `({from,to,total}) => string`), незаданное берётся из английских; `navigationLabel` сохранён. Нативный `<select>` заменён на `Select` из библиотеки (trigger с `aria-labelledby` на подпись «Rows»). Текущий размер страницы всегда есть в списке опций (раньше `defaultPageSize=25` при опциях 10/20/50 показывал неверное значение). Тесты: 5 новых + адаптированы под Select (7 из них падают на старом коде); обновлены тест и story-play DataTable (`selectOptions` больше не работает). Story `Localized`. Play-функции в браузере не запускались (только storybook:build). Gate: typecheck, lint (8 прежних), test 246, test:a11y 38, test:stories-a11y 239, storybook:build, build. Не охвачено: DataTable встраивает Pagination и пока не пробрасывает `labels` |
+| 2026-11-15 | D17 | Modal не имел тестов; добавлено 15 unit + 2 axe (`document.body`, портал): закрытое/открытое состояние, имя из title и скрытый fallback-title, Close по умолчанию/`closeButton={false}`, Close/Escape/клик по оверлею, controlled, ловушка Tab, `aria-describedby` по умолчанию и override, `className`/`overlayClassName`/`container`. Найдена и исправлена ошибка: после закрытия фокус терялся на `body`, потому что у Modal нет `Dialog.Trigger`, а Radix возвращает фокус только на него (WCAG 2.4.3). Теперь Modal запоминает активный элемент при открытии и возвращает на него фокус; пользовательский `onCloseAutoFocus` с `preventDefault` отключает это (тест падает на старом коде). Для jsdom добавлен хелпер `finishExitAnimations` (exit-анимация Presence не завершается без `animationend`). Gate: typecheck, lint (8 прежних), test 261, test:a11y 40, test:stories-a11y 239, build |
