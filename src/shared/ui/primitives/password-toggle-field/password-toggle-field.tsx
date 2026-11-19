@@ -8,6 +8,10 @@ import {
 import { cn } from '../../../lib/cn/cn';
 import styles from './password-toggle-field.module.scss';
 
+/**
+ * @experimental Обёртка над `unstable_PasswordToggleField` из radix-ui. API может измениться
+ * в minor-релизах и не считается semver-stable до выхода из эксперимента.
+ */
 export type PasswordToggleFieldProps = ComponentPropsWithoutRef<
   typeof PasswordToggleFieldPrimitive.Root
 > & {
@@ -15,6 +19,10 @@ export type PasswordToggleFieldProps = ComponentPropsWithoutRef<
   children?: ReactNode;
 };
 
+/**
+ * @experimental Обёртка над `unstable_PasswordToggleField` из radix-ui. API может измениться
+ * в minor-релизах и не считается semver-stable до выхода из эксперимента.
+ */
 export const PasswordToggleField = forwardRef<
   HTMLDivElement,
   PasswordToggleFieldProps
@@ -25,8 +33,16 @@ export const PasswordToggleField = forwardRef<
 ));
 
 PasswordToggleField.displayName = 'PasswordToggleField';
+/**
+ * @experimental Обёртка над `unstable_PasswordToggleField` из radix-ui. API может измениться
+ * в minor-релизах и не считается semver-stable до выхода из эксперимента.
+ */
 export const PasswordToggleFieldRoot = PasswordToggleField;
 
+/**
+ * @experimental Обёртка над `unstable_PasswordToggleField` из radix-ui. API может измениться
+ * в minor-релизах и не считается semver-stable до выхода из эксперимента.
+ */
 export const PasswordToggleFieldInput = forwardRef<
   ComponentRef<typeof PasswordToggleFieldPrimitive.Input>,
   ComponentPropsWithoutRef<typeof PasswordToggleFieldPrimitive.Input>
@@ -40,6 +56,10 @@ export const PasswordToggleFieldInput = forwardRef<
 
 PasswordToggleFieldInput.displayName = 'PasswordToggleFieldInput';
 
+/**
+ * @experimental Обёртка над `unstable_PasswordToggleField` из radix-ui. API может измениться
+ * в minor-релизах и не считается semver-stable до выхода из эксперимента.
+ */
 export const PasswordToggleFieldToggle = forwardRef<
   ComponentRef<typeof PasswordToggleFieldPrimitive.Toggle>,
   ComponentPropsWithoutRef<typeof PasswordToggleFieldPrimitive.Toggle>
@@ -53,9 +73,17 @@ export const PasswordToggleFieldToggle = forwardRef<
 
 PasswordToggleFieldToggle.displayName = 'PasswordToggleFieldToggle';
 
+/**
+ * @experimental Обёртка над `unstable_PasswordToggleField` из radix-ui. API может измениться
+ * в minor-релизах и не считается semver-stable до выхода из эксперимента.
+ */
 export const PasswordToggleFieldSlot = PasswordToggleFieldPrimitive.Slot;
 PasswordToggleFieldSlot.displayName = 'PasswordToggleFieldSlot';
 
+/**
+ * @experimental Обёртка над `unstable_PasswordToggleField` из radix-ui. API может измениться
+ * в minor-релизах и не считается semver-stable до выхода из эксперимента.
+ */
 export const PasswordToggleFieldIcon = forwardRef<
   ComponentRef<typeof PasswordToggleFieldPrimitive.Icon>,
   ComponentPropsWithoutRef<typeof PasswordToggleFieldPrimitive.Icon>

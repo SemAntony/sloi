@@ -12,7 +12,16 @@ const OTP_LENGTH = 6;
 
 const meta = {
   title: 'UI/Primitives/OneTimePasswordField',
-  component: OneTimePasswordField
+  component: OneTimePasswordField,
+  tags: ['experimental'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '**Experimental.** Обёртка над `unstable_OneTimePasswordField` из radix-ui: API может измениться в minor-релизах и не считается semver-stable до выхода из эксперимента.'
+      }
+    }
+  }
 } satisfies Meta<typeof OneTimePasswordField>;
 
 export default meta;

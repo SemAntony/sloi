@@ -12,7 +12,16 @@ import styles from './password-toggle-field.stories.module.scss';
 
 const meta = {
   title: 'UI/Primitives/PasswordToggleField',
-  component: PasswordToggleField
+  component: PasswordToggleField,
+  tags: ['experimental'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '**Experimental.** Обёртка над `unstable_PasswordToggleField` из radix-ui: API может измениться в minor-релизах и не считается semver-stable до выхода из эксперимента.'
+      }
+    }
+  }
 } satisfies Meta<typeof PasswordToggleField>;
 
 export default meta;

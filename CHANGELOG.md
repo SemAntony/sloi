@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - readiness CI artifact (`reports/multi-framework/latest.json`).
 
 ### Changed
+- `OneTimePasswordField` и `PasswordToggleField` (обёртки над `unstable_*` из radix-ui) явно помечены как experimental: `@experimental` в JSDoc, тег `experimental` и описание в stories. Из экспорта не убраны, чтобы не ломать текущих потребителей; API не считается semver-stable до выхода из эксперимента (см. `docs/governance/public-api-semver-contract.md`).
 - Индикаторы примитивов (`ChevronDown/Up/Right`, `Check`, `Dot`) теперь svg-иконки из курируемого набора вместо текстовых глифов «▾ ▴ ▸ ✓ •»; размер по-прежнему задаётся `font-size` родителя.
 - DataTable V2 column pinning RFC moved to `Accepted` with resolved rollout decisions.
 - Column pinning Phase 1 checklist closed (including docs/release + sign-off records).
