@@ -8,6 +8,18 @@ import { cn } from '../../lib/cn/cn';
 import { useFieldControl } from '../../lib/field/field-context';
 import styles from './number-field.module.scss';
 
+function decimalPlaces(value: number): number {
+  const [mantissa, exponent] = String(value).split('e-');
+  const fraction = mantissa.split('.')[1]?.length ?? 0;
+  return fraction + (exponent ? Number(exponent) : 0);
+}
+
+/** Убирает float-ошибку шага: 0.2 + 0.1 = 0.30000000000000004 → 0.3. */
+function roundToPrecision(result: number, start: number, step: number): number {
+  const places = Math.min(Math.max(decimalPlaces(start), decimalPlaces(step)), 20);
+  return Number(result.toFixed(places));
+}
+
 export type NumberFieldProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'type' | 'value' | 'defaultValue' | 'onChange'
@@ -91,7 +103,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>((rawPr
       }
       const startValue =
         currentValue ?? (typeof min === 'number' ? min : direction > 0 ? 0 : numericStep);
-      const nextValue = clampValue(startValue + numericStep * direction);
+      const nextValue = clampValue(roundToPrecision(startValue + numericStep * direction, startValue, numericStep));
       applyValue(nextValue);
     };
 
@@ -106,10 +118,10 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>((rawPr
           max={max}
           step={step}
           className={styles.input}
-          aria-invalid={invalid || props['aria-invalid']}
           onChange={handleChange}
           {...props}
           {...field.attributes}
+          aria-invalid={invalid || props['aria-invalid']}
         />
         {showStepper ? (
           <div className={styles.stepper}>

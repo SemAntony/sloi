@@ -60,11 +60,11 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>((rawProp
         value={currentValue}
         placeholder={placeholder}
         className={cn(styles.phoneField, className)}
-        aria-invalid={invalid || props['aria-invalid']}
         data-invalid={invalid ? '' : undefined}
         onChange={handleChange}
         {...props}
         {...field.attributes}
+        aria-invalid={invalid || props['aria-invalid']}
       />
     );
   });

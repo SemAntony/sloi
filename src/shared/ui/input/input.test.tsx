@@ -40,6 +40,14 @@ describe('Input', () => {
     expect(screen.getByRole('textbox', { name: 'Custom validation' })).toHaveAttribute('aria-invalid', 'grammar');
   });
 
+  it('invalid wins over explicit aria-invalid="false" and sets data-invalid', () => {
+    render(<Input aria-label='Email' invalid aria-invalid='false' />);
+
+    const input = screen.getByRole('textbox', { name: 'Email' });
+    expect(input).toHaveAttribute('aria-invalid', 'true');
+    expect(input).toHaveAttribute('data-invalid');
+  });
+
   it('updates value in controlled mode', async () => {
     const user = userEvent.setup();
 

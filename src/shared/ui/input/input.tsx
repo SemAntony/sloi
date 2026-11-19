@@ -21,10 +21,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         type={type}
         className={cn(styles.input, className)}
-        aria-invalid={field.invalid || props['aria-invalid']}
         data-invalid={field.invalid ? '' : undefined}
         {...props}
         {...field.attributes}
+        aria-invalid={field.invalid || props['aria-invalid']}
       />
     );
   }

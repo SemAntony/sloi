@@ -79,9 +79,9 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((rawPr
           placeholder={placeholder}
           disabled={disabled}
           className={styles.input}
-          aria-invalid={invalid || props['aria-invalid']}
           {...props}
           {...field.attributes}
+          aria-invalid={invalid || props['aria-invalid']}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         />

@@ -21,10 +21,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         ref={ref}
         rows={rows}
         className={cn(styles.textarea, className)}
-        aria-invalid={field.invalid || props['aria-invalid']}
         data-invalid={field.invalid ? '' : undefined}
         {...props}
         {...field.attributes}
+        aria-invalid={field.invalid || props['aria-invalid']}
       />
     );
   }
