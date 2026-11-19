@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Тесты для `Table`, `Textarea`, `NumberField`, `PhoneField`, `SearchInput`, `FilterBar` и glyph-компонентов примитивов.
+- `Button`: `loading` (`aria-busy` + `aria-disabled`, клики блокируются, кнопка остаётся фокусируемой, CSS-спиннер), вариант `danger`, декоративные слоты `startIcon`/`endIcon` (работают и с `asChild`).
+- Токены `--sloi-interactive-danger-{bg,bg-hover,bg-active,text,shadow}` (контраст текста проверяется `tokens:contrast`).
 - Root public API export for `DataTableV2` (`src/shared/ui/index.ts`).
 - Migration notes for DataTable V2 column pinning adoption.
 - Pilot consumer app for adoption metrics baseline (`consumers/sloi-pilot`).
@@ -41,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - readiness CI artifact (`reports/multi-framework/latest.json`).
 
 ### Changed
+- Индикаторы примитивов (`ChevronDown/Up/Right`, `Check`, `Dot`) теперь svg-иконки из курируемого набора вместо текстовых глифов «▾ ▴ ▸ ✓ •»; размер по-прежнему задаётся `font-size` родителя.
 - DataTable V2 column pinning RFC moved to `Accepted` with resolved rollout decisions.
 - Column pinning Phase 1 checklist closed (including docs/release + sign-off records).
 - DataTable V2 column resize RFC moved to `Accepted` with acceptance validation and owner sign-off.
@@ -68,6 +72,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - None.
 
 ### Fixed
+- `Input`, `Textarea`, `NumberField`, `PhoneField`, `SearchInput`: явный `aria-invalid="false"` больше не перебивает `invalid`.
+- `NumberField`: шаг `0.1` больше не накапливает float-ошибку (`0.30000000000000004`).
 - DataTable V2 layout regression coverage for constrained viewport and `pinning + resize` combination.
 - Test environment pointer-event support for stable resize interaction tests in jsdom.
 - DataTable V2 virtualization regression coverage for overscan windowing and focused-row stability on scroll.
