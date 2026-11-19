@@ -268,8 +268,8 @@ describe('Pagination: labels and page-size Select (D16)', () => {
 
     trigger.focus();
     await user.keyboard('{Enter}');
-    // у выбранной опции в тексте есть индикатор ✓
-    const options = (await screen.findAllByRole('option')).map((option) => option.textContent?.replace('✓', ''));
+    // индикатор выбранной опции это svg, в текст он не попадает
+    const options = (await screen.findAllByRole('option')).map((option) => option.textContent);
     expect(options).toEqual(['10', '20', '25', '50']);
   });
 });
