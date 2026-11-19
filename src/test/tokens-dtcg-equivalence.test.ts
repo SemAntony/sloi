@@ -71,7 +71,7 @@ describe('tokens: DTCG source и артефакты в src (A2c/A2d)', () => {
       }
     };
     walk(doc, []);
-    expect(leaves.size).toBe(242 + 47 + 50);
+    expect(leaves.size).toBe(242 + 47 + 55);
 
     for (const [tokenPath, token] of leaves) {
       const isAlias = typeof token.$value === 'string' && /^\{.+\}$/.test(token.$value);

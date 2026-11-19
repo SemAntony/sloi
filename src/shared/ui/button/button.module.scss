@@ -93,3 +93,82 @@
     background-color: var(--sloi-interactive-ghost-bg-hover);
   }
 }
+.variantDanger {
+  color: var(--sloi-interactive-danger-text);
+  background: linear-gradient(
+    130deg,
+    var(--sloi-interactive-danger-bg),
+    var(--sloi-interactive-danger-bg-hover)
+  );
+  box-shadow: 0 8px 18px -12px var(--sloi-interactive-danger-shadow);
+
+  &:not(:disabled):hover {
+    background: linear-gradient(
+      130deg,
+      var(--sloi-interactive-danger-bg-hover),
+      var(--sloi-interactive-danger-bg-active)
+    );
+    box-shadow: 0 14px 24px -14px var(--sloi-interactive-danger-shadow);
+  }
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.iconOnly {
+  width: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding-inline: 0;
+  aspect-ratio: 1;
+}
+
+.sizeMd.iconOnly {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
+
+.sizeLg.iconOnly {
+  width: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+}
+
+.root.loading {
+  cursor: progress;
+
+  &:hover {
+    transform: none;
+  }
+
+  &::before {
+    content: '';
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: sloi-button-spin 0.7s linear infinite;
+  }
+}
+
+.root.loading.iconOnly > * {
+  display: none;
+}
+
+@keyframes sloi-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root.loading::before {
+    animation-duration: 2s;
+  }
+}

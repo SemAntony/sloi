@@ -42,6 +42,20 @@
     },
     {
       "fgs": [
+        "--sloi-text-on-danger",
+        "--sloi-interactive-danger-text"
+      ],
+      "bgs": [
+        "--sloi-interactive-danger-bg",
+        "--sloi-interactive-danger-bg-hover",
+        "--sloi-interactive-danger-bg-active"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Текст danger-кнопки во всех состояниях"
+    },
+    {
+      "fgs": [
         "--sloi-interactive-secondary-text",
         "--sloi-interactive-secondary-text-hover"
       ],
@@ -218,6 +232,10 @@
     },
     {
       "token": "--sloi-interactive-primary-shadow",
+      "reason": "Тень, декоративная"
+    },
+    {
+      "token": "--sloi-interactive-danger-shadow",
       "reason": "Тень, декоративная"
     },
     {

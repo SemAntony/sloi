@@ -1430,6 +1430,25 @@ export const TOKENS = {
         "sloi.css": "color-mix(in srgb, var(--sloi-palette-blue-10) 48%, transparent)"
       }
     },
+    "danger-bg": {
+      "$value": "{palette.red.8}"
+    },
+    "danger-bg-hover": {
+      "$value": "{palette.red.9}"
+    },
+    "danger-bg-active": {
+      "$value": "{palette.red.10}"
+    },
+    "danger-text": {
+      "$value": "{text.on-danger}"
+    },
+    "danger-shadow": {
+      "$type": "color",
+      "$value": "#87181e7a",
+      "$extensions": {
+        "sloi.css": "color-mix(in srgb, var(--sloi-palette-red-10) 48%, transparent)"
+      }
+    },
     "secondary-bg": {
       "$value": "{surface.elevated}"
     },

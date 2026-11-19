@@ -21,6 +21,11 @@
   --sloi-interactive-primary-bg-active: var(--sloi-palette-blue-9);
   --sloi-interactive-primary-text: var(--sloi-text-on-primary);
   --sloi-interactive-primary-shadow: color-mix(in srgb, var(--sloi-palette-blue-10) 48%, transparent);
+  --sloi-interactive-danger-bg: var(--sloi-palette-red-8);
+  --sloi-interactive-danger-bg-hover: var(--sloi-palette-red-9);
+  --sloi-interactive-danger-bg-active: var(--sloi-palette-red-10);
+  --sloi-interactive-danger-text: var(--sloi-text-on-danger);
+  --sloi-interactive-danger-shadow: color-mix(in srgb, var(--sloi-palette-red-10) 48%, transparent);
   --sloi-interactive-secondary-bg: var(--sloi-surface-elevated);
   --sloi-interactive-secondary-text: var(--sloi-text-primary);
   --sloi-interactive-secondary-border: var(--sloi-border-primary);
