@@ -113,6 +113,14 @@
       "$value": "{text.muted}"
     }
   },
+  "skeleton": {
+    "base": {
+      "$value": "{palette.slate.8}"
+    },
+    "highlight": {
+      "$value": "{palette.slate.7}"
+    }
+  },
   "status": {
     "info-bg": {
       "$value": "{palette.cyan.10}"

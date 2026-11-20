@@ -3,9 +3,9 @@
   width: 100%;
   background: linear-gradient(
     90deg,
-    color-mix(in srgb, var(--sloi-surface-elevated) 85%, transparent) 0%,
-    color-mix(in srgb, var(--sloi-surface-elevated) 55%, var(--sloi-surface-base)) 50%,
-    color-mix(in srgb, var(--sloi-surface-elevated) 85%, transparent) 100%
+    var(--sloi-skeleton-base) 0%,
+    var(--sloi-skeleton-highlight) 50%,
+    var(--sloi-skeleton-base) 100%
   );
   background-size: 180% 100%;
 }

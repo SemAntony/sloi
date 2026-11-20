@@ -71,7 +71,7 @@ describe('tokens: DTCG source и артефакты в src (A2c/A2d)', () => {
       }
     };
     walk(doc, []);
-    expect(leaves.size).toBe(242 + 47 + 55);
+    expect(leaves.size).toBe(242 + 47 + 57);
 
     for (const [tokenPath, token] of leaves) {
       const isAlias = typeof token.$value === 'string' && /^\{.+\}$/.test(token.$value);
@@ -88,7 +88,7 @@ describe('tokens: DTCG source и артефакты в src (A2c/A2d)', () => {
       }
     };
     collect(dark, []);
-    expect(darkLeaves.size).toBe(44);
+    expect(darkLeaves.size).toBe(46);
 
     for (const token of [...leaves.values(), ...darkLeaves.values()]) {
       const match = typeof token.$value === 'string' ? token.$value.match(/^\{(.+)\}$/) : null;

@@ -219,6 +219,19 @@
       "kind": "non-text",
       "level": "advisory",
       "why": "Рамка плашки статуса: смысл дублирует текст, поэтому advisory"
+    },
+    {
+      "fgs": [
+        "--sloi-skeleton-base"
+      ],
+      "bgs": [
+        "--sloi-surface-base",
+        "--sloi-surface-elevated"
+      ],
+      "min": 1.2,
+      "kind": "non-text",
+      "level": "advisory",
+      "why": "Основная заливка заглушки загрузки: декоративная, WCAG контраст не требует, но она должна быть заметна на странице и на карточке (порог 1.2:1 функциональный, не из WCAG); highlight это блик шиммера и светлее по замыслу"
     }
   ],
   "exemptions": [
@@ -265,6 +278,10 @@
     {
       "token": "--sloi-text-on-danger",
       "reason": "Нет токена фона danger-кнопки; добавить пару вместе с интерактивным danger (D22)"
+    },
+    {
+      "token": "--sloi-skeleton-highlight",
+      "reason": "Блик шиммера заглушки, светлее основной заливки по замыслу; видимость задаёт skeleton-base"
     }
   ],
   "knownFailures": []

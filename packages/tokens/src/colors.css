@@ -39,6 +39,8 @@
   --sloi-field-border-focus: var(--sloi-focus-ring);
   --sloi-field-border-invalid: var(--sloi-palette-red-6);
   --sloi-field-placeholder: var(--sloi-text-muted);
+  --sloi-skeleton-base: var(--sloi-palette-slate-4);
+  --sloi-skeleton-highlight: var(--sloi-palette-slate-3);
   --sloi-status-info-bg: var(--sloi-palette-cyan-2);
   --sloi-status-info-text: var(--sloi-palette-cyan-10);
   --sloi-status-info-border: var(--sloi-palette-cyan-5);
@@ -90,6 +92,8 @@
   --sloi-field-border-focus: var(--sloi-focus-ring);
   --sloi-field-border-invalid: var(--sloi-status-danger-border);
   --sloi-field-placeholder: var(--sloi-text-muted);
+  --sloi-skeleton-base: var(--sloi-palette-slate-8);
+  --sloi-skeleton-highlight: var(--sloi-palette-slate-7);
   --sloi-status-info-bg: var(--sloi-palette-cyan-10);
   --sloi-status-info-text: var(--sloi-palette-cyan-2);
   --sloi-status-info-border: var(--sloi-palette-cyan-7);

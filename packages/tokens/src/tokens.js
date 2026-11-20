@@ -1495,6 +1495,14 @@ export const TOKENS = {
       "$value": "{text.muted}"
     }
   },
+  "skeleton": {
+    "base": {
+      "$value": "{palette.slate.4}"
+    },
+    "highlight": {
+      "$value": "{palette.slate.3}"
+    }
+  },
   "status": {
     "info-bg": {
       "$value": "{palette.cyan.2}"
@@ -1697,6 +1705,14 @@ export const DARK_TOKENS = {
     },
     "placeholder": {
       "$value": "{text.muted}"
+    }
+  },
+  "skeleton": {
+    "base": {
+      "$value": "{palette.slate.8}"
+    },
+    "highlight": {
+      "$value": "{palette.slate.7}"
     }
   },
   "status": {
