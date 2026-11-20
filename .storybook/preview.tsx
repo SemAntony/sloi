@@ -1,9 +1,31 @@
+import { useEffect } from 'react';
 import type { Preview } from '@storybook/react';
-import '../src/app/styles/tokens.css';
-import '../src/app/styles/typography.css';
+import '@sloi/tokens/css/styles.css';
+import '@sloi/tokens/css/base.css';
+
+type Theme = 'light' | 'dark';
+
+const THEMES: Theme[] = ['light', 'dark'];
 
 const preview: Preview = {
   tags: ['autodocs', 'stable'],
+  globalTypes: {
+    theme: {
+      description: 'Цветовая тема (data-theme на <html>)',
+      toolbar: {
+        title: 'Theme',
+        icon: 'circlehollow',
+        dynamicTitle: true,
+        items: [
+          { value: 'light', title: 'Light', icon: 'sun' },
+          { value: 'dark', title: 'Dark', icon: 'moon' }
+        ]
+      }
+    }
+  },
+  initialGlobals: {
+    theme: 'light'
+  },
   parameters: {
     controls: {
       matchers: {
@@ -23,6 +45,31 @@ const preview: Preview = {
     }
   },
   decorators: [
+    (Story, { globals, viewMode }) => {
+      const theme: Theme = THEMES.includes(globals.theme as Theme) ? (globals.theme as Theme) : 'light';
+
+      useEffect(() => {
+        document.documentElement.dataset.theme = theme;
+      }, [theme]);
+
+      // В docs-режиме превью лежит на светлом фоне Storybook, поэтому даём ему фон и цвет текста темы.
+      if (viewMode === 'docs') {
+        return (
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 8,
+              color: 'var(--sloi-text-primary)',
+              background: 'var(--sloi-surface-canvas)'
+            }}
+          >
+            <Story />
+          </div>
+        );
+      }
+
+      return <Story />;
+    },
     (Story, { parameters }) => {
       const pageLayout = parameters.pageLayout as 'page' | 'page-mobile' | undefined;
 
