@@ -288,34 +288,6 @@
       "bg": "--sloi-field-bg",
       "ref": "D26",
       "reason": "Граница поля 1.40:1, нужно 3:1"
-    },
-    {
-      "theme": "dark",
-      "fg": "--sloi-text-on-primary",
-      "bg": "--sloi-interactive-primary-bg",
-      "ref": "D26",
-      "reason": "Белый на blue-5: 2.59:1, нужно 4.5:1"
-    },
-    {
-      "theme": "dark",
-      "fg": "--sloi-text-on-primary",
-      "bg": "--sloi-interactive-primary-bg-hover",
-      "ref": "D26",
-      "reason": "3.67:1, нужно 4.5:1"
-    },
-    {
-      "theme": "dark",
-      "fg": "--sloi-interactive-primary-text",
-      "bg": "--sloi-interactive-primary-bg",
-      "ref": "D26",
-      "reason": "Алиас text-on-primary, 2.59:1"
-    },
-    {
-      "theme": "dark",
-      "fg": "--sloi-interactive-primary-text",
-      "bg": "--sloi-interactive-primary-bg-hover",
-      "ref": "D26",
-      "reason": "Алиас text-on-primary, 3.67:1"
     }
   ]
 }

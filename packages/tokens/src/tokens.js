@@ -1620,7 +1620,7 @@ export const DARK_TOKENS = {
       "$value": "{palette.gray.4}"
     },
     "on-primary": {
-      "$value": "{palette.neutral.1}"
+      "$value": "{palette.slate.11}"
     }
   },
   "border": {
@@ -1641,10 +1641,10 @@ export const DARK_TOKENS = {
       "$value": "{palette.blue.5}"
     },
     "primary-bg-hover": {
-      "$value": "{palette.blue.6}"
+      "$value": "{palette.blue.4}"
     },
     "primary-bg-active": {
-      "$value": "{palette.blue.7}"
+      "$value": "{palette.blue.3}"
     },
     "primary-shadow": {
       "$type": "color",

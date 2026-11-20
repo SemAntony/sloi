@@ -62,3 +62,8 @@
   color: var(--sloi-text-on-primary);
   border-color: var(--badge-border);
 }
+
+/* Нейтральная заливка (border-primary) светлая в light и тёмная в dark: text-on-primary на ней нечитаем. */
+.toneNeutral.appearanceSolid {
+  color: var(--sloi-text-primary);
+}

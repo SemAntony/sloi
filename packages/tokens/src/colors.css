@@ -69,13 +69,13 @@
   --sloi-text-primary: var(--sloi-palette-neutral-1);
   --sloi-text-secondary: var(--sloi-palette-gray-2);
   --sloi-text-muted: var(--sloi-palette-gray-4);
-  --sloi-text-on-primary: var(--sloi-palette-neutral-1);
+  --sloi-text-on-primary: var(--sloi-palette-slate-11);
   --sloi-border-primary: var(--sloi-palette-slate-8);
   --sloi-border-strong: var(--sloi-palette-slate-6);
   --sloi-focus-ring: var(--sloi-palette-blue-5);
   --sloi-interactive-primary-bg: var(--sloi-palette-blue-5);
-  --sloi-interactive-primary-bg-hover: var(--sloi-palette-blue-6);
-  --sloi-interactive-primary-bg-active: var(--sloi-palette-blue-7);
+  --sloi-interactive-primary-bg-hover: var(--sloi-palette-blue-4);
+  --sloi-interactive-primary-bg-active: var(--sloi-palette-blue-3);
   --sloi-interactive-primary-shadow: color-mix(in srgb, var(--sloi-palette-blue-11) 68%, transparent);
   --sloi-interactive-secondary-bg: var(--sloi-surface-elevated);
   --sloi-interactive-secondary-text: var(--sloi-palette-neutral-1);
