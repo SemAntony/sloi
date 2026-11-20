@@ -9,7 +9,7 @@
   background:
     radial-gradient(
       circle at 12% 20%,
-      color-mix(in srgb, var(--sloi-palette-cyan-2) 70%, transparent),
+      color-mix(in srgb, var(--sloi-status-info-bg) 70%, transparent),
       transparent 45%
     ),
     var(--sloi-surface-elevated);
