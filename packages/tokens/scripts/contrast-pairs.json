@@ -232,6 +232,20 @@
       "kind": "non-text",
       "level": "advisory",
       "why": "Основная заливка заглушки загрузки: декоративная, WCAG контраст не требует, но она должна быть заметна на странице и на карточке (порог 1.2:1 функциональный, не из WCAG); highlight это блик шиммера и светлее по замыслу"
+    },
+    {
+      "fgs": [
+        "--sloi-text-on-primary"
+      ],
+      "bgs": [
+        "--sloi-status-info-solid",
+        "--sloi-status-success-solid",
+        "--sloi-status-warning-solid",
+        "--sloi-status-danger-solid"
+      ],
+      "min": 4.5,
+      "kind": "text",
+      "why": "Текст solid-бейджа (Badge appearance=solid) на заливке статуса"
     }
   ],
   "exemptions": [

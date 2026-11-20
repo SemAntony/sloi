@@ -53,6 +53,10 @@
   --sloi-status-danger-bg: var(--sloi-palette-red-2);
   --sloi-status-danger-text: var(--sloi-palette-red-10);
   --sloi-status-danger-border: var(--sloi-palette-red-5);
+  --sloi-status-info-solid: var(--sloi-palette-cyan-8);
+  --sloi-status-success-solid: var(--sloi-palette-green-8);
+  --sloi-status-warning-solid: var(--sloi-palette-amber-8);
+  --sloi-status-danger-solid: var(--sloi-palette-red-8);
   --sloi-accent-violet: var(--sloi-palette-violet-7);
   --sloi-accent-cyan: var(--sloi-palette-cyan-7);
   --sloi-accent-fuchsia: var(--sloi-palette-fuchsia-7);
@@ -106,6 +110,10 @@
   --sloi-status-danger-bg: var(--sloi-palette-red-10);
   --sloi-status-danger-text: var(--sloi-palette-red-2);
   --sloi-status-danger-border: var(--sloi-palette-red-7);
+  --sloi-status-info-solid: var(--sloi-status-info-border);
+  --sloi-status-success-solid: var(--sloi-status-success-border);
+  --sloi-status-warning-solid: var(--sloi-status-warning-border);
+  --sloi-status-danger-solid: var(--sloi-status-danger-border);
   --sloi-overlay-backdrop: color-mix(in srgb, var(--sloi-palette-slate-11) 74%, transparent);
   --sloi-shadow-floating: 0 24px 56px -30px color-mix(in srgb, var(--sloi-palette-slate-11) 72%, transparent);
 }

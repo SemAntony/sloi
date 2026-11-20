@@ -157,6 +157,18 @@
     },
     "danger-border": {
       "$value": "{palette.red.7}"
+    },
+    "info-solid": {
+      "$value": "{status.info-border}"
+    },
+    "success-solid": {
+      "$value": "{status.success-border}"
+    },
+    "warning-solid": {
+      "$value": "{status.warning-border}"
+    },
+    "danger-solid": {
+      "$value": "{status.danger-border}"
     }
   },
   "overlay": {

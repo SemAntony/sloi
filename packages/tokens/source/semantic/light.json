@@ -182,6 +182,18 @@
     },
     "danger-border": {
       "$value": "{palette.red.5}"
+    },
+    "info-solid": {
+      "$value": "{palette.cyan.8}"
+    },
+    "success-solid": {
+      "$value": "{palette.green.8}"
+    },
+    "warning-solid": {
+      "$value": "{palette.amber.8}"
+    },
+    "danger-solid": {
+      "$value": "{palette.red.8}"
     }
   },
   "accent": {

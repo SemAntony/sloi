@@ -1539,6 +1539,18 @@ export const TOKENS = {
     },
     "danger-border": {
       "$value": "{palette.red.5}"
+    },
+    "info-solid": {
+      "$value": "{palette.cyan.8}"
+    },
+    "success-solid": {
+      "$value": "{palette.green.8}"
+    },
+    "warning-solid": {
+      "$value": "{palette.amber.8}"
+    },
+    "danger-solid": {
+      "$value": "{palette.red.8}"
     }
   },
   "accent": {
@@ -1751,6 +1763,18 @@ export const DARK_TOKENS = {
     },
     "danger-border": {
       "$value": "{palette.red.7}"
+    },
+    "info-solid": {
+      "$value": "{status.info-border}"
+    },
+    "success-solid": {
+      "$value": "{status.success-border}"
+    },
+    "warning-solid": {
+      "$value": "{status.warning-border}"
+    },
+    "danger-solid": {
+      "$value": "{status.danger-border}"
     }
   },
   "overlay": {

@@ -25,30 +25,35 @@
   --badge-bg: var(--sloi-surface-elevated);
   --badge-fg: var(--sloi-text-secondary);
   --badge-border: var(--sloi-border-primary);
+  --badge-solid: var(--sloi-border-primary);
 }
 
 .toneInfo {
   --badge-bg: var(--sloi-status-info-bg);
   --badge-fg: var(--sloi-status-info-text);
   --badge-border: var(--sloi-status-info-border);
+  --badge-solid: var(--sloi-status-info-solid);
 }
 
 .toneSuccess {
   --badge-bg: var(--sloi-status-success-bg);
   --badge-fg: var(--sloi-status-success-text);
   --badge-border: var(--sloi-status-success-border);
+  --badge-solid: var(--sloi-status-success-solid);
 }
 
 .toneWarning {
   --badge-bg: var(--sloi-status-warning-bg);
   --badge-fg: var(--sloi-status-warning-text);
   --badge-border: var(--sloi-status-warning-border);
+  --badge-solid: var(--sloi-status-warning-solid);
 }
 
 .toneDanger {
   --badge-bg: var(--sloi-status-danger-bg);
   --badge-fg: var(--sloi-status-danger-text);
   --badge-border: var(--sloi-status-danger-border);
+  --badge-solid: var(--sloi-status-danger-solid);
 }
 
 .appearanceSubtle {
@@ -58,9 +63,9 @@
 }
 
 .appearanceSolid {
-  background-color: var(--badge-border);
+  background-color: var(--badge-solid);
   color: var(--sloi-text-on-primary);
-  border-color: var(--badge-border);
+  border-color: var(--badge-solid);
 }
 
 /* Нейтральная заливка (border-primary) светлая в light и тёмная в dark: text-on-primary на ней нечитаем. */
