@@ -98,10 +98,10 @@
       "$value": "{surface.elevated}"
     },
     "border": {
-      "$value": "{border.primary}"
+      "$value": "{palette.slate.6}"
     },
     "border-hover": {
-      "$value": "{border.strong}"
+      "$value": "{palette.slate.5}"
     },
     "border-focus": {
       "$value": "{focus.ring}"

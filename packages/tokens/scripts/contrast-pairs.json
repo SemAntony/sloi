@@ -267,27 +267,5 @@
       "reason": "Нет токена фона danger-кнопки; добавить пару вместе с интерактивным danger (D22)"
     }
   ],
-  "knownFailures": [
-    {
-      "theme": "light",
-      "fg": "--sloi-field-border",
-      "bg": "--sloi-field-bg",
-      "ref": "D26",
-      "reason": "Граница поля 1.43:1, нужно 3:1 (1.4.11)"
-    },
-    {
-      "theme": "light",
-      "fg": "--sloi-field-border-invalid",
-      "bg": "--sloi-field-bg",
-      "ref": "D26",
-      "reason": "Граница invalid 2.77:1, нужно 3:1"
-    },
-    {
-      "theme": "dark",
-      "fg": "--sloi-field-border",
-      "bg": "--sloi-field-bg",
-      "ref": "D26",
-      "reason": "Граница поля 1.40:1, нужно 3:1"
-    }
-  ]
+  "knownFailures": []
 }

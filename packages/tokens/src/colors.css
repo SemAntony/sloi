@@ -34,10 +34,10 @@
   --sloi-interactive-ghost-text: var(--sloi-palette-blue-8);
   --sloi-interactive-ghost-bg-hover: color-mix(in srgb, var(--sloi-palette-blue-3) 42%, transparent);
   --sloi-field-bg: var(--sloi-surface-base);
-  --sloi-field-border: var(--sloi-border-primary);
-  --sloi-field-border-hover: var(--sloi-border-strong);
+  --sloi-field-border: var(--sloi-palette-slate-6);
+  --sloi-field-border-hover: var(--sloi-palette-slate-7);
   --sloi-field-border-focus: var(--sloi-focus-ring);
-  --sloi-field-border-invalid: var(--sloi-status-danger-border);
+  --sloi-field-border-invalid: var(--sloi-palette-red-6);
   --sloi-field-placeholder: var(--sloi-text-muted);
   --sloi-status-info-bg: var(--sloi-palette-cyan-2);
   --sloi-status-info-text: var(--sloi-palette-cyan-10);
@@ -85,8 +85,8 @@
   --sloi-interactive-ghost-text: var(--sloi-palette-blue-3);
   --sloi-interactive-ghost-bg-hover: color-mix(in srgb, var(--sloi-palette-blue-6) 30%, transparent);
   --sloi-field-bg: var(--sloi-surface-elevated);
-  --sloi-field-border: var(--sloi-border-primary);
-  --sloi-field-border-hover: var(--sloi-border-strong);
+  --sloi-field-border: var(--sloi-palette-slate-6);
+  --sloi-field-border-hover: var(--sloi-palette-slate-5);
   --sloi-field-border-focus: var(--sloi-focus-ring);
   --sloi-field-border-invalid: var(--sloi-status-danger-border);
   --sloi-field-placeholder: var(--sloi-text-muted);

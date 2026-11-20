@@ -1480,16 +1480,16 @@ export const TOKENS = {
       "$value": "{surface.base}"
     },
     "border": {
-      "$value": "{border.primary}"
+      "$value": "{palette.slate.6}"
     },
     "border-hover": {
-      "$value": "{border.strong}"
+      "$value": "{palette.slate.7}"
     },
     "border-focus": {
       "$value": "{focus.ring}"
     },
     "border-invalid": {
-      "$value": "{status.danger-border}"
+      "$value": "{palette.red.6}"
     },
     "placeholder": {
       "$value": "{text.muted}"
@@ -1684,10 +1684,10 @@ export const DARK_TOKENS = {
       "$value": "{surface.elevated}"
     },
     "border": {
-      "$value": "{border.primary}"
+      "$value": "{palette.slate.6}"
     },
     "border-hover": {
-      "$value": "{border.strong}"
+      "$value": "{palette.slate.5}"
     },
     "border-focus": {
       "$value": "{focus.ring}"
