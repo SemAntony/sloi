@@ -88,7 +88,7 @@ describe('tokens: DTCG source и артефакты в src (A2c/A2d)', () => {
       }
     };
     collect(dark, []);
-    expect(darkLeaves.size).toBe(50);
+    expect(darkLeaves.size).toBe(51);
 
     for (const token of [...leaves.values(), ...darkLeaves.values()]) {
       const match = typeof token.$value === 'string' ? token.$value.match(/^\{(.+)\}$/) : null;

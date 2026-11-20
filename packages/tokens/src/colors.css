@@ -114,6 +114,7 @@
   --sloi-status-success-solid: var(--sloi-status-success-border);
   --sloi-status-warning-solid: var(--sloi-status-warning-border);
   --sloi-status-danger-solid: var(--sloi-status-danger-border);
+  --sloi-accent-violet: var(--sloi-palette-violet-6);
   --sloi-overlay-backdrop: color-mix(in srgb, var(--sloi-palette-slate-11) 74%, transparent);
   --sloi-shadow-floating: 0 24px 56px -30px color-mix(in srgb, var(--sloi-palette-slate-11) 72%, transparent);
 }

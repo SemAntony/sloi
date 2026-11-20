@@ -1777,6 +1777,11 @@ export const DARK_TOKENS = {
       "$value": "{status.danger-border}"
     }
   },
+  "accent": {
+    "violet": {
+      "$value": "{palette.violet.6}"
+    }
+  },
   "overlay": {
     "backdrop": {
       "$type": "color",

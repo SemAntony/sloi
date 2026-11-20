@@ -246,6 +246,21 @@
       "min": 4.5,
       "kind": "text",
       "why": "Текст solid-бейджа (Badge appearance=solid) на заливке статуса"
+    },
+    {
+      "fgs": [
+        "--sloi-accent-violet",
+        "--sloi-accent-cyan",
+        "--sloi-accent-fuchsia",
+        "--sloi-accent-rose"
+      ],
+      "bgs": [
+        "--sloi-surface-base",
+        "--sloi-surface-elevated"
+      ],
+      "min": 3,
+      "kind": "non-text",
+      "why": "Акценты как графика (иконки, 1.4.11) на поверхностях"
     }
   ],
   "exemptions": [
@@ -272,22 +287,6 @@
     {
       "token": "--sloi-interactive-secondary-border-hover",
       "reason": "Декоративная рамка кнопки при hover; смысл несёт текст"
-    },
-    {
-      "token": "--sloi-accent-violet",
-      "reason": "Акценты используются только в story иконок"
-    },
-    {
-      "token": "--sloi-accent-cyan",
-      "reason": "см. accent-violet"
-    },
-    {
-      "token": "--sloi-accent-fuchsia",
-      "reason": "см. accent-violet"
-    },
-    {
-      "token": "--sloi-accent-rose",
-      "reason": "см. accent-violet"
     },
     {
       "token": "--sloi-text-on-danger",

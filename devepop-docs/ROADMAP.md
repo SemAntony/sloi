@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D26** (Фаза 3) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2; D25 сделана, отчёт `devepop-docs/DARK-THEME-AUDIT.md`; из Фазы 2 открыты D10e, D42, D43, D44)
+Следующая задача: **D27** (Фаза 3) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2; D25 сделана, отчёт `devepop-docs/DARK-THEME-AUDIT.md`; из Фазы 2 открыты D10e, D42, D43, D44)
 
 ---
 
@@ -116,10 +116,7 @@
 ## Фаза 3. Дизайн-система как система
 
 - [x] **D25. Аудит тёмной темы.** Отчёт: `devepop-docs/DARK-THEME-AUDIT.md` (покрытие токенов, контраст пар, градиенты, stories). Тёмная тема в токенах УЖЕ есть (`packages/tokens/src/colors.css`, `[data-theme='dark']`).
-- [ ] **D26. Тёмная тема: исправить найденное в D25.** Только токены/компоненты, которые провалили контраст или не имеют тёмного значения.
-  Сделано (2026-11-20): п.1 dark primary-кнопка; п.2 `field-border` (обе темы) и п.3 `field-border-invalid` (light).
-  Тоже сделано: п.4 Skeleton, п.5 stories `aspect-ratio`/`context-menu`.
-  Остаётся: п.6 `accent.*` (низкий приоритет); solid-бейджи в light сделаны (см. журнал).
+- [x] **D26. Тёмная тема: исправить найденное в D25.** Сделано 2026-11-20: dark primary-кнопка, границы полей (`field-border*`), Skeleton, stories `aspect-ratio`/`context-menu`, solid-бейджи в light, `accent.violet` в dark. Подробности в журнале. Обе темы: 71 пара ok, 0 FAIL, `knownFailures` пуст.
 - [ ] **D27. Storybook: переключатель темы.** Тулбар light/dark (ставит `data-theme` на `<html>`/обёртку) и токены из `@sloi/tokens` вместо compat-слоя `src/app/styles`.
 - [ ] **D28. Тёмная тема: Tier-1.** Пройти 12 Tier-1 компонентов в тёмной теме (a11y-панель + глазами), исправить.
 - [ ] **D29. Решение по подпутям экспорта.** Короткий документ: какие подпути (`/button`, `/data-table-v2`), что с CSS.
@@ -229,3 +226,4 @@
 | 2026-11-20 | D26 (п.4) | Skeleton: вместо смеси `surface-elevated` с `surface-base` (1.00–1.17:1, на странице невидим) добавлены токены `skeleton.base` и `skeleton.highlight` (light `slate.4` / `slate.3`, dark `slate.8` / `slate.7`), градиент шиммера `base → highlight → base`. Основная заливка 1.43:1 на `surface-base` в light, 1.71:1 в dark (на `elevated` 1.41:1). В `contrast-pairs` добавлена advisory-пара `skeleton-base` на `surface-base`/`surface-elevated` (порог 1.2:1 функциональный, не из WCAG), `skeleton-highlight` в exemptions. Токенов стало light 57 / dark-переопределений 46, счётчики в `tokens-dtcg-equivalence.test.ts` обновлены. Gate: tokens:build, typecheck, lint (8 прежних), test 391. Визуально в Storybook не смотрел |
 | 2026-11-20 | D26 (п.5) | Stories: сырые `palette-blue-2`/`cyan-2` заменены на семантические токены: `aspect-ratio` градиент `status-info-bg → surface-elevated`, `context-menu` радиальная подсветка `status-info-bg` 70%. Контраст `text-secondary`: aspect-ratio light 13.0 / 14.1, dark 8.4 / 13.4 (было 1.12 / 1.03); context-menu light 13.3, dark 9.8 (было 1.88). Остальные `palette-*` в stories только в `design-system.stories` (показ палитры, так и надо). Gate: typecheck, lint (8 прежних), test 391 |
 | 2026-11-20 | D26 (Badge solid) | Solid-бейджи: заливка больше не `status-*-border`, а новые токены `status.{info,success,warning,danger}-solid`: light `cyan/green/amber/red.8` (белый текст 5.13 / 4.79 / 4.62 / 5.63:1, было 1.6–2.8), dark = `status.*-border` (на тёмном `text-on-primary` 4.7–6.5:1, внешний вид не изменился). Badge: локальная переменная `--badge-solid` по тонам, neutral остаётся `border-primary` с `text-primary`. В `contrast-pairs` пара `text-on-primary` на 4 solid (4.5:1, required). Токенов light 61 / dark-переопределений 50, счётчики в equivalence-тесте обновлены. Gate: tokens:build, typecheck, lint (8 прежних), test 391. Визуально в Storybook не смотрел |
+| 2026-11-20 | D26 (п.6, закрыта) | `accent.violet` в dark: `violet.7` → `violet.6` (на elevated 2.49 → 3.32:1, на base 4.03:1); cyan/fuchsia/rose уже ≥3.39:1 и не менялись. Вместо exemptions для 4 акцентов добавлена обязательная пара accent-* на `surface-base`/`surface-elevated` (3:1, non-text). Токенов dark-переопределений 51, счётчик в equivalence-тесте обновлён. Gate: tokens:build, typecheck, lint (8 прежних), test 391. D26 закрыта целиком |
