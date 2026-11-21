@@ -159,11 +159,12 @@
         "--sloi-field-border-invalid"
       ],
       "bgs": [
-        "--sloi-field-bg"
+        "--sloi-field-bg",
+        "--sloi-surface-base"
       ],
       "min": 3,
       "kind": "non-text",
-      "why": "Граница поля ввода: единственный признак его формы (1.4.11)"
+      "why": "Граница поля ввода и контролов (Input, Select, Checkbox, Radio, Switch на surface-base): единственный признак формы (1.4.11)"
     },
     {
       "fgs": [

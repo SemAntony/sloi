@@ -4,7 +4,7 @@
   justify-content: center;
   width: 1.2rem;
   height: 1.2rem;
-  border: 1px solid var(--sloi-border-primary);
+  border: 1px solid var(--sloi-field-border);
   border-radius: 0.35rem;
   background-color: var(--sloi-surface-base);
   color: var(--sloi-interactive-primary-text);
@@ -17,7 +17,7 @@
 }
 
 .checkboxRoot:hover:not([data-disabled]) {
-  border-color: var(--sloi-border-strong);
+  border-color: var(--sloi-field-border-hover);
 }
 
 .checkboxRoot:focus-visible {
