@@ -48,10 +48,10 @@ export const States: Story = {
       <Button {...args} variant='danger'>Danger</Button>
       <Button {...args} variant='danger' disabled>Danger disabled</Button>
       <Button {...args} variant='danger' loading>Danger loading</Button>
-      <Button {...args} variant='ghost' iconOnly><Icon icon={IconArrowLeft}/></Button>
-      <Button {...args} variant='secondary' iconOnly><Icon icon={IconBell}/></Button>
-      <Button {...args} variant='primary' iconOnly><Icon icon={IconPlus}/></Button>
-      <Button {...args} variant='primary' iconOnly disabled><Icon icon={IconArrowLeft}/></Button>
+      <Button {...args} variant='ghost' iconOnly aria-label='Back'><Icon icon={IconArrowLeft}/></Button>
+      <Button {...args} variant='secondary' iconOnly aria-label='Notifications'><Icon icon={IconBell}/></Button>
+      <Button {...args} variant='primary' iconOnly aria-label='Add'><Icon icon={IconPlus}/></Button>
+      <Button {...args} variant='primary' iconOnly disabled aria-label='Back'><Icon icon={IconArrowLeft}/></Button>
     </div>
   )
 };

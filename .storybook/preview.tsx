@@ -36,6 +36,9 @@ const preview: Preview = {
     a11y: {
       test: 'error'
     },
+    // Фон канваса задаёт тема (data-theme + base.css). Переключатель Backgrounds выключен: он красит
+    // канвас поверх темы через !important, и тёмные токены оказываются на светлом #F8F8F8 (ложные FAIL в a11y).
+    backgrounds: { disable: true },
     layout: 'centered',
     options: {
       storySort: {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent } from 'storybook/test';
+import { expect, userEvent, waitFor } from 'storybook/test';
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
 import styles from './tabs.stories.module.scss';
@@ -56,7 +56,8 @@ export const Controlled: Story = {
     await step('Switch controlled tab', async () => {
       await userEvent.click(canvas.getByRole('tab', { name: 'API' }));
       await expect(canvas.getByText('Current tab: api')).toBeInTheDocument();
-      await expect(canvas.getByText('API tab content.')).toBeVisible();
+      // Панель появляется с fade-in (opacity 0 → 1, 140ms): ждём конца анимации, а не проверяем мгновенно.
+      await waitFor(() => expect(canvas.getByText('API tab content.')).toBeVisible());
     });
   }
 };

@@ -16,6 +16,7 @@
   border-radius: var(--sloi-radius-md);
   background-color: var(--sloi-surface-base);
   padding: 0.75rem 0.85rem;
+  min-height: 4.75rem; /* одинаковая высота панелей: layout «centered» не перецентрирует story при смене вкладки */
 }
 
 .text {
