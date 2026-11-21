@@ -29,7 +29,7 @@
 3. Если задача не влезла в сессию, разбить её и записать остаток под тем же номером.
 4. Новых компонентов и новых фич до конца Фазы 2 не добавляем.
 
-Следующая задача: **D29** (Фаза 3) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2; D25–D28 сделаны, отчёт `devepop-docs/DARK-THEME-AUDIT.md`; из Фазы 2 открыты D10e, D42, D43, D44)
+Следующая задача: **D30** (Фаза 3) (Фаза 1 закончена; группа 1 Фазы 5 сделана: A1, A3, A2; D25–D29 сделаны, отчёт `devepop-docs/DARK-THEME-AUDIT.md`; из Фазы 2 открыты D10e, D42, D43, D44)
 
 ---
 
@@ -119,7 +119,7 @@
 - [x] **D26. Тёмная тема: исправить найденное в D25.** Сделано 2026-11-20: dark primary-кнопка, границы полей (`field-border*`), Skeleton, stories `aspect-ratio`/`context-menu`, solid-бейджи в light, `accent.violet` в dark. Подробности в журнале. Обе темы: 71 пара ok, 0 FAIL, `knownFailures` пуст.
 - [x] **D27. Storybook: переключатель темы.** Тулбар Theme (light/dark) ставит `data-theme` на `<html>`; токены и base-слой берутся напрямую из `@sloi/tokens`.
 - [x] **D28. Тёмная тема: Tier-1.** Пройти 12 Tier-1 компонентов в тёмной теме (a11y-панель + глазами), исправить.
-- [ ] **D29. Решение по подпутям экспорта.** Короткий документ: какие подпути (`/button`, `/data-table-v2`), что с CSS.
+- [x] **D29. Решение по подпутям экспорта.** Короткий документ: какие подпути (`/button`, `/data-table-v2`), что с CSS.
 - [ ] **D30. Подпути экспорта.** Реализация для `DataTableV2` и тяжёлых компонентов; проверка размеров бандла.
 - [ ] **D31. Changesets.** Настроить версионирование и генерацию changelog.
 - [ ] **D32. Визуальные регрессии: настройка.** Playwright или Chromatic, один компонент как пример.
@@ -231,3 +231,4 @@
 
 | 2026-11-21 | D28 (часть 1, код) | Проверка Tier-1 по коду без браузера. Скрипт посчитал контраст ~40 реальных пар из SCSS (их не было в `contrast-pairs.json`). Найдено и исправлено: (1) границы Select trigger, Checkbox, RadioGroup, Switch (unchecked) брали декоративный `border-primary` (1.43:1 light, 1.71:1 dark, нужно 3:1 по 1.4.11), теперь `field-border` (4.64 / 3.68); hover Checkbox/Radio: `border-strong` совпадал с `field-border` в light, теперь `field-border-hover`; (2) `--sloi-surface-muted` не существует: `bulkActions` в DataTable и DataTableV2 был без фона, заменён на `surface-elevated`; (3) story `Button/States`: 4 icon-only кнопки без `aria-label` (`test:stories-a11y` в strict падал на 4 нарушениях), добавлены. Новое: тест `src/test/scss-token-references.test.ts` (каждый `var(--sloi-*)` в SCSS компонентов должен быть объявлен; падает на старом `surface-muted`), в `contrast-pairs.json` пара `field-border` теперь и на `surface-base` (tokens:contrast: 83 пары на тему, 0 FAIL). Открыто для визуальной проверки: Tabs (активная вкладка отличается только цветом текста и декоративной рамкой, фон floating = base в light, 1.00:1), см. отчёт в чате. D28 не закрыта: ждёт ручной проход по Storybook в dark. Gate: typecheck, lint (8 прежних), test 393, test:a11y 42, test:stories-a11y strict 241 |
 | 2026-11-22 | D28 закрыта | Визуальный проход в dark сделан владельцем, замечаний нет. Дополнительно по ходу: (1) story `Tabs/Controlled`: `toBeVisible()` срабатывал до конца fade-in панели (opacity 0), обёрнут в `waitFor`; (2) в Storybook отключён Backgrounds (`parameters.backgrounds.disable`): он красил канвас светлым #F8F8F8 поверх тёмной темы, отсюда ложный FAIL 1.03:1; (3) `min-height` панелей в story Tabs, чтобы `centered` не прыгал при смене вкладки. Открыто: анимация `tabs-content-in` сдвигает панель на 4px (`translateY`), если дёргание останется, убрать сдвиг и оставить fade |
+| 2026-11-22 | D29 | Решение по подпутям: `docs/architecture/EXPORT-SUBPATHS.md`. Core в корне + heavy-подпути по критерию (сторонний рантайм или >10 KB gzip); зависимость, не торчащая в публичном API, идёт в `dependencies` + external (peer только если торчит); совместимость в два шага (A: подпуть + `@deprecated` на реэкспорте, B: удаление из корня в следующем major); один `styles.css`, split CSS только при >3 KB gzip. Замер: react-day-picker + date-fns + tz ≈ 43% JS (120 KB raw / 28 KB gzip); публичные d.ts DatePicker от react-day-picker не зависят. Риск для D30: `import 'react-day-picker/style.css'` в `date-picker.tsx`. Вес DataTableV2 не измерен, мерить в D30 |
