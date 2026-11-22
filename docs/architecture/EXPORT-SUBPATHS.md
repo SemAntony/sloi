@@ -80,12 +80,13 @@
 
 ## 4. План D30
 1. ~~Замерить вклад DataTableV2~~ (сделано, см. раздел 1). Остаётся замерить CSS DataTableV2 отдельно (по правилу 2.4 делим CSS, только если >3 KB gzip).
-2. Вынести `react-day-picker`, `date-fns` в `dependencies` + `external`; решить риск CSS из 2.4.
-3. Многовходовая сборка: `lib.entry` = `index`, `date-picker`, `data-table-v2` (оба подпути подтверждены замером), общие чанки без дублей (проверено в замере).
-4. `exports` с подпутями, `types` для обеих систем модулей; проверить в consumers (`sloi-pilot` и др.) на реальном импорте.
-5. Бюджеты и тесты из 2.5, `@deprecated` на корневых реэкспортах, запись в журнал и changeset.
+2. ~~Вынести `react-day-picker`, `date-fns` в `dependencies` + `external`; решить риск CSS из 2.4.~~ Сделано: в `dependencies` только `react-day-picker` (`date-fns` и `@date-fns/tz` его собственные зависимости), external по точному имени, поэтому `react-day-picker/style.css` остаётся вшитым в `styles.css`.
+3. ~~Многовходовая сборка: `lib.entry` = `index`, `date-picker`, `data-table-v2` (оба подпути подтверждены замером), общие чанки без дублей (проверено в замере).~~ Сделано.
+4. ~~`exports` с подпутями, `types` для обеих систем модулей; проверить в consumers (`sloi-pilot` и др.) на реальном импорте.~~ Сделано; проверено в `sloi-smoke` (Next 16, `tsc`, `next build`). `consumers/*` намеренно остались на корневых импортах: `adoption-metrics.ts` считает только `from '@sloi/ui-kit'`, а build-скрипта у них нет.
+5. ~~Бюджеты и тесты из 2.5, `@deprecated` на корневых реэкспортах, запись в журнал и changeset.~~ Сделано: бюджеты по входам в `mf:validate`, gate `scripts/verify-exports.mjs` (пункты 1 и 3 из 2.5), `@deprecated` на корневых `DatePicker`/`DataTableV2`, тест тождественности `src/package-entries.test.ts`, запись в `CHANGELOG.md` (Changesets появятся в D31). Пункт 2 из 2.5 (корень не содержит тяжёлого кода) включается вместе с шагом B.
 
 Эффект (замер, не оценка): для потребителя без DatePicker и DataTableV2 после шага B корневой JS ≈81 KB raw, 19.7 KB gzip против 236 KB / 54.8 KB при вшитых зависимостях.
 
 ## 5. Открытое
-- Для потребителей с TypeScript `moduleResolution: node10` нужен `typesVersions` для подпутей. Проверить, нужен ли он нашим consumers.
+- Решено в D30: `typesVersions` не добавлен. Все наши потребители на `moduleResolution: bundler`, а `attw` для подпутей показывает только `node10: Resolution failed`. Если понадобится поддержка node10, добавить `typesVersions` с двумя подпутями (4 строки в `package.json`).
+- Размер CSS `DataTableV2` отдельно не замерен: по правилу 2.4 делить `styles.css` нужно, только если он больше 3 KB gzip. Пока `styles.css` остаётся единым (17.7 KB gzip).

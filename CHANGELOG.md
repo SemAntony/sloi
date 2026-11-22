@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Подпути экспорта `@sloi/ui-kit/date-picker` и `@sloi/ui-kit/data-table-v2` (ESM/CJS и типы); тяжёлые компоненты подключаются отдельно от корня. Решение и критерии: `docs/architecture/EXPORT-SUBPATHS.md`.
+- Gate после сборки `scripts/verify-exports.mjs`: `exports` не ссылается на отсутствующие файлы, в публичных `.d.ts` нет типов тяжёлых зависимостей; бюджеты размера в `mf:validate` теперь по каждому входу.
 - Тесты для `Table`, `Textarea`, `NumberField`, `PhoneField`, `SearchInput`, `FilterBar` и glyph-компонентов примитивов.
 - `Button`: `loading` (`aria-busy` + `aria-disabled`, клики блокируются, кнопка остаётся фокусируемой, CSS-спиннер), вариант `danger`, декоративные слоты `startIcon`/`endIcon` (работают и с `asChild`).
 - Токены `--sloi-interactive-danger-{bg,bg-hover,bg-active,text,shadow}` (контраст текста проверяется `tokens:contrast`).
@@ -44,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - readiness CI artifact (`reports/multi-framework/latest.json`).
 
 ### Changed
+- `react-day-picker` (вместе с `date-fns` и `@date-fns/tz`) больше не вшивается в бандл: он стал внешней `dependency` пакета и устанавливается автоматически. Его CSS остаётся внутри единого `styles.css`. `dist/index.js` 231 KB → 81 KB raw (остальное в общих чанках).
 - `OneTimePasswordField` и `PasswordToggleField` (обёртки над `unstable_*` из radix-ui) явно помечены как experimental: `@experimental` в JSDoc, тег `experimental` и описание в stories. Из экспорта не убраны, чтобы не ломать текущих потребителей; API не считается semver-stable до выхода из эксперимента (см. `docs/governance/public-api-semver-contract.md`).
 - Индикаторы примитивов (`ChevronDown/Up/Right`, `Check`, `Dot`) теперь svg-иконки из курируемого набора вместо текстовых глифов «▾ ▴ ▸ ✓ •»; размер по-прежнему задаётся `font-size` родителя.
 - DataTable V2 column pinning RFC moved to `Accepted` with resolved rollout decisions.
@@ -67,7 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Quality gate now includes `multi-framework-readiness` check (`pnpm run mf:validate`) with bundle budgets, TS DX validation, and a11y parity baseline enforcement.
 
 ### Deprecated
-- None.
+- Импорт `DatePicker` и `DataTableV2` из корня `@sloi/ui-kit`: используйте `@sloi/ui-kit/date-picker` и `@sloi/ui-kit/data-table-v2`. Экспорт из корня будет удалён в следующем major.
 
 ### Removed
 - None.

@@ -68,12 +68,20 @@ pnpm build
 ## Публичное API
 
 ```ts
-import { Button, Modal, Tooltip, Dialog, DropdownMenu, Select, DataTableV2 } from '@sloi/ui-kit';
+import { Button, Modal, Tooltip, Dialog, DropdownMenu, Select } from '@sloi/ui-kit';
 import '@sloi/ui-kit/styles.css';
+
+// тяжёлые компоненты (сторонний рантайм или больше 10 KB gzip) живут в своих подпутях:
+import { DataTableV2 } from '@sloi/ui-kit/data-table-v2';
+import { DatePicker } from '@sloi/ui-kit/date-picker';
 
 // tokens-only consumption (без компонентов):
 import '@sloi/tokens/css/styles.css';
 ```
+
+### Подпути экспорта
+
+Корень `@sloi/ui-kit` остаётся главным входом. `DataTableV2` и `DatePicker` вынесены в `@sloi/ui-kit/data-table-v2` и `@sloi/ui-kit/date-picker`, чтобы потребитель, который их не использует, не платил за них размером: ES-бандлер потребителя отбрасывает неиспользуемое, а после следующего major корень физически перестанет на них ссылаться (корневой JS ≈20 KB gzip против ≈55 KB с ними). Импорт этих двух компонентов из корня пока работает, но помечен `@deprecated` и будет удалён в следующем major; при `require()` корня они пока загружаются целиком. CSS общий: подключайте один `@sloi/ui-kit/styles.css`. `react-day-picker` устанавливается автоматически как зависимость пакета. Критерии выноса и правила для новых подпутей: `docs/architecture/EXPORT-SUBPATHS.md`.
 
 ### Select: значение и сброс
 
