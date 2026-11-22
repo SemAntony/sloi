@@ -18,6 +18,26 @@
         "default": "./dist/index.cjs"
       }
     },
+    "./date-picker": {
+      "import": {
+        "types": "./dist/date-picker.d.ts",
+        "default": "./dist/date-picker.js"
+      },
+      "require": {
+        "types": "./dist/date-picker.d.cts",
+        "default": "./dist/date-picker.cjs"
+      }
+    },
+    "./data-table-v2": {
+      "import": {
+        "types": "./dist/data-table-v2.d.ts",
+        "default": "./dist/data-table-v2.js"
+      },
+      "require": {
+        "types": "./dist/data-table-v2.d.cts",
+        "default": "./dist/data-table-v2.cjs"
+      }
+    },
     "./styles.css": "./dist/style.css",
     "./base.css": "./dist/base.css"
   },
@@ -53,7 +73,8 @@
   },
   "dependencies": {
     "lucide-react": "^1.72.0",
-    "radix-ui": "^1.8.1"
+    "radix-ui": "^1.8.1",
+    "react-day-picker": "^10.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -80,7 +101,6 @@
     "globals": "^17.14.0",
     "jsdom": "^31.0.0",
     "react": "^19.3.1",
-    "react-day-picker": "^10.0.2",
     "react-dom": "^19.3.1",
     "sass": "^1.108.2",
     "storybook": "^10.6.7",

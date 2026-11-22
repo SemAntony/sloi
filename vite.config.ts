@@ -30,17 +30,29 @@ export default defineConfig({
   ].filter(Boolean),
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      // Корень + heavy-подпути (критерии в docs/architecture/EXPORT-SUBPATHS.md).
+      // Новый подпуть: вход здесь, запись в package.json `exports`, имя в scripts/post-build.mjs.
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        'date-picker': resolve(__dirname, 'src/date-picker.ts'),
+        'data-table-v2': resolve(__dirname, 'src/data-table-v2.ts')
+      },
       name: 'SloiUI',
       formats: ['es', 'cjs'],
       cssFileName: 'style',
-      fileName: (format) => (format === 'es' ? 'index.js' : 'index.cjs')
+      fileName: (format, entryName) => `${entryName}.${format === 'es' ? 'js' : 'cjs'}`
     },
     rollupOptions: {
       // external = пакеты, которые потребитель получает через dependencies/peerDependencies.
-      // Всё остальное (clsx, react-day-picker вместе с его CSS, @sloi/*) вшивается в бандл.
+      // react-day-picker (и его date-fns/@date-fns/tz) внешний, но только корневой импорт:
+      // 'react-day-picker/style.css' намеренно НЕ external, чтобы его CSS попадал
+      // в единый dist/style.css, а не оставался import-ом в чанке.
+      // Всё остальное (clsx, @sloi/*) вшивается в бандл.
       external: (id) =>
-        /^react(?:\/.*)?$/.test(id) || id === 'radix-ui' || id === 'lucide-react',
+        /^react(?:\/.*)?$/.test(id) ||
+        id === 'radix-ui' ||
+        id === 'lucide-react' ||
+        id === 'react-day-picker',
       output: {
         globals: {
           react: 'React',
