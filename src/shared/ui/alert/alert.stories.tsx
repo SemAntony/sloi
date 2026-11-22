@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Button } from '../button';
+import { Icon, IconCheck, IconX } from '../icon';
 import { Alert, type AlertTone } from './alert';
 import storyStyles from '../input/input.stories.module.scss';
 
@@ -18,6 +19,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+// Иконка лежит в круглой рамке Alert. SVG центрируется геометрически, а текстовые
+// `x` и `*` сидят в строке по метрикам шрифта и визуально съезжают от центра круга.
+const toneIcons: Record<AlertTone, ReactNode> = {
+  info: 'i',
+  success: <Icon icon={IconCheck} size='sm' />,
+  warning: '!',
+  error: <Icon icon={IconX} size='sm' />
+};
+
 export const Default: Story = {
   args: {
     icon: 'i'
@@ -28,9 +38,9 @@ export const States: Story = {
   render: () => (
     <div className={storyStyles.stack} style={{ width: '100%' }}>
       <Alert tone='info' title='Info' description='Background sync is running.' icon='i' />
-      <Alert tone='success' title='Success' description='Profile updated successfully.' icon='ok' />
+      <Alert tone='success' title='Success' description='Profile updated successfully.' icon={toneIcons.success} />
       <Alert tone='warning' title='Warning' description='Your trial expires in 2 days.' icon='!' />
-      <Alert tone='error' title='Error' description='Payment failed, retry required.' icon='x' />
+      <Alert tone='error' title='Error' description='Payment failed, retry required.' icon={toneIcons.error} />
     </div>
   )
 };
@@ -50,7 +60,7 @@ const ControlledPreview = () => {
         tone={tone}
         title='Controlled alert'
         description={`Current tone is ${tone}.`}
-        icon='*'
+        icon={toneIcons[tone]}
         actions={<Button size='sm' variant='secondary'>Open details</Button>}
       />
     </div>
