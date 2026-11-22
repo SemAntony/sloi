@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "generatedAt": "2026-04-06T09:14:30.491Z",
+  "generatedAt": "2026-11-22T16:03:23.485Z",
   "passed": true,
   "checks": {
     "bundle": {
@@ -9,21 +9,49 @@
         {
           "id": "react-esm",
           "relativePath": "dist/index.js",
-          "sizeBytes": 271193,
-          "maxBytes": 300000,
+          "sizeBytes": 81499,
+          "maxBytes": 100000,
           "passed": true
         },
         {
           "id": "react-cjs",
           "relativePath": "dist/index.cjs",
-          "sizeBytes": 204507,
-          "maxBytes": 230000,
+          "sizeBytes": 75072,
+          "maxBytes": 92000,
+          "passed": true
+        },
+        {
+          "id": "date-picker-esm",
+          "relativePath": "dist/date-picker.js",
+          "sizeBytes": 3649,
+          "maxBytes": 5000,
+          "passed": true
+        },
+        {
+          "id": "date-picker-cjs",
+          "relativePath": "dist/date-picker.cjs",
+          "sizeBytes": 2781,
+          "maxBytes": 4000,
+          "passed": true
+        },
+        {
+          "id": "data-table-v2-esm",
+          "relativePath": "dist/data-table-v2.js",
+          "sizeBytes": 48105,
+          "maxBytes": 60000,
+          "passed": true
+        },
+        {
+          "id": "data-table-v2-cjs",
+          "relativePath": "dist/data-table-v2.cjs",
+          "sizeBytes": 40023,
+          "maxBytes": 50000,
           "passed": true
         },
         {
           "id": "ui-styles",
           "relativePath": "dist/style.css",
-          "sizeBytes": 117021,
+          "sizeBytes": 118577,
           "maxBytes": 130000,
           "passed": true
         }

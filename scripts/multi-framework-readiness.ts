@@ -13,6 +13,12 @@ type BundleBudgetEntry = {
   id: string;
   relativePath: string;
   maxBytes: number;
+  /**
+   * Подпуть-обёртка весит байты, а код лежит в общих чанках `<prefix>-<hash>.<ext>`.
+   * Для них бюджет считается по входу вместе с его собственными чанками
+   * (общие чанки вроде `popover-*` в бюджет конкретного входа не входят).
+   */
+  chunkPrefix?: string;
 };
 
 type RuntimeStatus = 'planned' | 'in-progress' | 'validated';
@@ -94,9 +100,16 @@ type ReadinessReport = {
   };
 };
 
+// Бюджеты по каждому входу пакета (docs/architecture/EXPORT-SUBPATHS.md, 2.5), raw-байты, запас около 20%.
+// Замер 2026-11-22: index 81 499 / 75 072, date-picker 3 649 / 2 781, data-table-v2 48 105 / 40 023 (esm / cjs).
+// Новый подпуть: добавить сюда пару esm/cjs с `chunkPrefix`.
 const BUNDLE_BUDGETS: BundleBudgetEntry[] = [
-  { id: 'react-esm', relativePath: 'dist/index.js', maxBytes: 300_000 },
-  { id: 'react-cjs', relativePath: 'dist/index.cjs', maxBytes: 230_000 },
+  { id: 'react-esm', relativePath: 'dist/index.js', maxBytes: 100_000 },
+  { id: 'react-cjs', relativePath: 'dist/index.cjs', maxBytes: 92_000 },
+  { id: 'date-picker-esm', relativePath: 'dist/date-picker.js', maxBytes: 5_000, chunkPrefix: 'date-picker' },
+  { id: 'date-picker-cjs', relativePath: 'dist/date-picker.cjs', maxBytes: 4_000, chunkPrefix: 'date-picker' },
+  { id: 'data-table-v2-esm', relativePath: 'dist/data-table-v2.js', maxBytes: 60_000, chunkPrefix: 'data-table-v2' },
+  { id: 'data-table-v2-cjs', relativePath: 'dist/data-table-v2.cjs', maxBytes: 50_000, chunkPrefix: 'data-table-v2' },
   { id: 'ui-styles', relativePath: 'dist/style.css', maxBytes: 130_000 }
 ];
 
@@ -191,10 +204,26 @@ const runTsSmokeCheck = (root: string) => {
   };
 };
 
+const measureBundleEntryBytes = (root: string, entry: BundleBudgetEntry): number => {
+  const absolutePath = resolveFromRoot(root, entry.relativePath);
+  if (!existsSync(absolutePath)) return Number.POSITIVE_INFINITY;
+
+  let total = statSync(absolutePath).size;
+  if (entry.chunkPrefix) {
+    const directory = path.dirname(absolutePath);
+    const extension = path.extname(absolutePath);
+    const chunkPattern = new RegExp(`^${entry.chunkPrefix}-[\\w-]+\\${extension}$`);
+    for (const name of readdirSync(directory)) {
+      if (chunkPattern.test(name)) total += statSync(path.join(directory, name)).size;
+    }
+  }
+  return total;
+};
+
 const buildBundleSection = (root: string): ReadinessReport['checks']['bundle'] => {
   const entries = BUNDLE_BUDGETS.map((entry) => {
     const absolutePath = resolveFromRoot(root, entry.relativePath);
-    const sizeBytes = existsSync(absolutePath) ? statSync(absolutePath).size : Number.POSITIVE_INFINITY;
+    const sizeBytes = measureBundleEntryBytes(root, entry);
 
     return {
       id: entry.id,
