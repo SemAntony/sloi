@@ -37,6 +37,11 @@
 }
 
 .separator {
+  // flex-контейнер, а не inline: иначе SVG-иконка садится на baseline строки внутри span
+  // и съезжает с середины текста пункта; текстовый разделитель центрируется так же.
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
   color: var(--sloi-text-muted);
 }
 
