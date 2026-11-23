@@ -56,6 +56,11 @@
   width: 100%;
 }
 
+// Фон primary и danger это градиент между токенами bg и bg-hover (на hover bg-hover и bg-active).
+// Axe не умеет считать контраст поверх градиента и в панели Storybook пишет "background color could
+// not be determined due to a background gradient" (пометка needs review, не нарушение).
+// Реальный контраст проверяет src/test/token-contrast.test.ts по парам из
+// packages/tokens/scripts/contrast-pairs.json: текст на всех трёх цветах градиента, во всех темах.
 .variantPrimary {
   color: var(--sloi-interactive-primary-text);
   background: linear-gradient(
@@ -93,6 +98,7 @@
     background-color: var(--sloi-interactive-ghost-bg-hover);
   }
 }
+// Градиент как у .variantPrimary: см. комментарий выше про axe и контраст.
 .variantDanger {
   color: var(--sloi-interactive-danger-text);
   background: linear-gradient(
