@@ -61,6 +61,7 @@
 // not be determined due to a background gradient" (пометка needs review, не нарушение).
 // Реальный контраст проверяет src/test/token-contrast.test.ts по парам из
 // packages/tokens/scripts/contrast-pairs.json: текст на всех трёх цветах градиента, во всех темах.
+// Эти две кнопки исключены из правила color-contrast в Storybook (.storybook/preview.tsx, a11y.config).
 .variantPrimary {
   color: var(--sloi-interactive-primary-text);
   background: linear-gradient(

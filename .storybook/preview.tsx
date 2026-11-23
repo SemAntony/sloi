@@ -34,7 +34,20 @@ const preview: Preview = {
       }
     },
     a11y: {
-      test: 'error'
+      test: 'error',
+      config: {
+        rules: [
+          {
+            // Button primary/danger: фон это градиент, axe не умеет считать контраст поверх него и в панели
+            // пишет needs review ("background color could not be determined due to a background gradient").
+            // Реальный контраст текста на всех цветах градиента, во всех темах, проверяет
+            // src/test/token-contrast.test.ts (пары в packages/tokens/scripts/contrast-pairs.json).
+            // Правило color-contrast остаётся включённым для всего остального.
+            id: 'color-contrast',
+            selector: ':not(button[class*="_variantPrimary_"]):not(button[class*="_variantDanger_"])'
+          }
+        ]
+      }
     },
     // Фон канваса задаёт тема (data-theme + base.css). Переключатель Backgrounds выключен: он красит
     // канвас поверх темы через !important, и тёмные токены оказываются на светлом #F8F8F8 (ложные FAIL в a11y).
