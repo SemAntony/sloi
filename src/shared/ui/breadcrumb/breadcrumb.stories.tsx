@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {useState} from 'react';
 import {Breadcrumb} from './breadcrumb';
+import {Icon, IconArrowRight} from '../icon';
 import styles from '../input/input.stories.module.scss';
 
 const items = [
@@ -44,7 +45,9 @@ export const States: Story = {
                     {label: 'Reports', href: '#'},
                     {label: 'Quarterly'}
                 ]}
-                separator='→'
+                // SVG вместо текстового '→': у символа без текстового начертания axe не может посчитать контраст
+                // и пишет needs review ("content contains only non-text characters").
+                separator={<Icon icon={IconArrowRight} size='sm' decorative />}
             />
         </div>
     )
