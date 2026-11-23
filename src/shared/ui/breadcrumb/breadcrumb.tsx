@@ -90,7 +90,11 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>((rawProps, re
                 </button>
               )}
 
-              {index < items.length - 1 ? <span className={styles.separator}>{separator}</span> : null}
+              {index < items.length - 1 ? (
+                <span className={styles.separator} aria-hidden='true'>
+                  {separator}
+                </span>
+              ) : null}
             </li>
           );
         })}

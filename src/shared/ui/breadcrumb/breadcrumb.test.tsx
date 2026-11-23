@@ -18,6 +18,25 @@ describe('Breadcrumb', () => {
     expect(screen.getByText('Components')).toHaveAttribute('aria-current', 'page');
   });
 
+  it('hides separators from assistive technology', () => {
+    render(
+      <Breadcrumb
+        separator='→'
+        items={[
+          { label: 'Home', href: '#' },
+          { label: 'Library', href: '#' },
+          { label: 'Components' }
+        ]}
+      />
+    );
+
+    const separators = screen.getAllByText('→');
+    expect(separators).toHaveLength(2);
+    for (const separator of separators) {
+      expect(separator).toHaveAttribute('aria-hidden', 'true');
+    }
+  });
+
   it('notifies controlled index changes on click', async () => {
     const user = userEvent.setup();
     const onCurrentIndexChange = vi.fn();
