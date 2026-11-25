@@ -1,10 +1,12 @@
 import {
   forwardRef,
   useId,
+  useRef,
   type InputHTMLAttributes,
 } from 'react';
 import { useComboboxController } from '@sloi/headless-core';
 import { Button } from '../button';
+import { Icon, IconX } from '../icon';
 import { Input } from '../input';
 import { Popover, PopoverAnchor, PopoverContent, PopoverPortal } from '../primitives/popover';
 import { cn } from '../../lib/cn/cn';
@@ -72,12 +74,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((rawProps, r
   });
 
   const listboxId = useId();
+  const controlRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className={cn(styles.root, className)}>
       <Popover open={controller.open} onOpenChange={controller.setOpen}>
         <PopoverAnchor asChild>
-          <div className={styles.control}>
+          <div ref={controlRef} className={styles.control}>
             <Input
               {...props}
               ref={ref}
@@ -116,7 +119,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((rawProps, r
                 onClick={controller.clearValue}
                 aria-label='Clear value'
               >
-                ×
+                <Icon size='sm' icon={IconX} />
               </Button>
             ) : null}
           </div>
@@ -129,6 +132,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>((rawProps, r
             className={cn(styles.content, contentClassName)}
             align='start'
             onOpenAutoFocus={(event) => event.preventDefault()}
+            // Input это якорь, а не Trigger, поэтому Radix считает фокус и клик по нему событием «снаружи»
+            // и закрывает список сразу после открытия по onFocus. Для самого поля закрытие отменяем.
+            onInteractOutside={(event) => {
+              if (controlRef.current?.contains(event.target as Node)) {
+                event.preventDefault();
+              }
+            }}
           >
             {/* Опции лежат прямо в listbox: промежуточные li ломали связь listbox > option. */}
             <div id={listboxId} role='listbox' className={styles.list}>

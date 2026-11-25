@@ -6,20 +6,33 @@
 
 .control {
   position: relative;
+  display: grid;
+  align-items: center;
 }
 
 .input {
-  padding-right: calc(var(--sloi-space-8) + var(--sloi-space-2));
+  padding-inline-end: calc(var(--sloi-space-8) + var(--sloi-space-2));
+}
+
+// Инпут и крестик лежат в одной ячейке grid: крестик центрируется по высоте поля при любой высоте
+// инпута, без top/transform. Через transform нельзя: Button на hover сам задаёт transform и ломал бы центр.
+.input,
+.clearButton {
+  grid-area: 1 / 1;
 }
 
 .clearButton {
-  position: absolute;
-  top: 50%;
-  right: var(--sloi-space-2);
-  transform: translateY(-50%);
+  justify-self: end;
+  margin-inline-end: var(--sloi-space-2);
   min-height: 1.75rem;
   width: 1.75rem;
   padding: 0;
+
+  // Button на hover приподнимается на 1px; внутри поля это выглядит как дрожание крестика.
+  &:not(:disabled):hover,
+  &:not(:disabled):active {
+    transform: none;
+  }
 }
 
 .content {
