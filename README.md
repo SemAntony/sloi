@@ -85,7 +85,14 @@ pnpm build
 
 1. `pnpm version-packages`: файлы `.changeset/*.md` удаляются, версия в `package.json` и `CHANGELOG.md` обновляются.
 2. Проверить дифф, прогнать `pnpm typecheck && pnpm lint && pnpm test && pnpm build`, закоммитить.
-3. `pnpm release` (нужен вход в npm: `npm login`).
+3. Влить в `main`, поставить тег `v<версия>` (например `git tag v1.1.0 && git push origin v1.1.0`). Публикацию делает
+   workflow `.github/workflows/publish.yml`: проверяет, что тег совпадает с версией в `package.json`, прогоняет typecheck, lint,
+   тесты и сборку и выполняет `npm publish`. Стабильный тег (`v1.1.0`) допускается только из `main` и уходит в dist-tag `latest`;
+   `-alpha`, `-beta`, `-rc` (например `v1.2.0-beta.1`) публикуются под одноимённым dist-tag, другие суффиксы отклоняются.
+4. Локальный запасной вариант без CI: `pnpm release` (нужен `npm login`).
+
+Для публикации из CI один раз настроить на npmjs.com **Trusted Publisher** для пакета `@sloi/ui-kit`: репозиторий на GitHub и
+имя workflow `publish.yml`. Токены в секреты репозитория при этом не нужны (OIDC).
 
 **Если позже понадобится публиковать `@sloi/tokens` или `@sloi/headless-core` отдельно:** убрать пакет из `ignore`
 в `.changeset/config.json`, подготовить его к публикации (сборка, `files`, README, `publishConfig`), после этого

@@ -1,0 +1,98 @@
+name: 🚀 Publish to NPM
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  id-token: write # npm Trusted Publishing (OIDC)
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # нужна история, чтобы узнать, в каких ветках лежит тег
+
+      - name: 🛡️ Determine release type and branch safety
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          TAG_COMMIT=$(git rev-list -n 1 "$TAG_NAME")
+          BRANCHES_WITH_TAG=$(git branch -r --contains "$TAG_COMMIT")
+
+          echo "🏷️ Tag: $TAG_NAME"
+          echo "🔗 Commit: $TAG_COMMIT"
+          echo "🌿 Branches containing this commit:"
+          echo "$BRANCHES_WITH_TAG"
+
+          # Тег vX.Y.Z должен совпадать с версией в package.json
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          if [[ "$TAG_NAME" != "v$PKG_VERSION" ]]; then
+            echo "❌ ERROR: tag $TAG_NAME does not match package.json version $PKG_VERSION"
+            exit 1
+          fi
+
+          RELEASE_TYPE=""
+
+          # 1️⃣ Pre-release определяем по тегу
+          if [[ "$TAG_NAME" == *"-beta"* ]]; then
+            echo "🟡 BETA pre-release detected"
+            RELEASE_TYPE="beta"
+          elif [[ "$TAG_NAME" == *"-alpha"* ]]; then
+            echo "🔵 ALPHA pre-release detected"
+            RELEASE_TYPE="alpha"
+          elif [[ "$TAG_NAME" == *"-rc"* ]]; then
+            echo "🟣 RC release candidate detected"
+            RELEASE_TYPE="rc"
+          elif [[ "$TAG_NAME" == *"-"* ]]; then
+            # любой другой суффикс не должен случайно стать latest
+            echo "❌ ERROR: unknown pre-release suffix in $TAG_NAME (use -alpha, -beta or -rc)"
+            exit 1
+          else
+            # 2️⃣ Не pre-release: стабильный релиз только из main
+            if echo "$BRANCHES_WITH_TAG" | grep -q "origin/main"; then
+              echo "✅ STABLE release detected on main branch"
+              RELEASE_TYPE="latest"
+            else
+              echo "❌ ERROR: stable release must be on 'main' branch!"
+              echo "🔒 Blocking unsafe publication"
+              exit 1
+            fi
+          fi
+
+          echo "RELEASE_TAG=$RELEASE_TYPE" >> "$GITHUB_ENV"
+
+      - uses: pnpm/action-setup@v4 # версия берётся из packageManager в package.json
+
+      - name: 🧩 Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 🔄 Update npm (for Trusted Publishing)
+        run: npm install -g npm@latest # для OIDC нужен npm >= 11.5.1
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🧪 Typecheck, lint, tests
+        run: |
+          pnpm run typecheck
+          pnpm run lint
+          pnpm run test
+          pnpm run test:a11y
+
+      - name: 🧱 Build package
+        run: pnpm run build
+
+      - name: 🚀 Publish to NPM
+        run: |
+          echo "🪄 Publishing package using tag: $RELEASE_TAG"
+          npm publish --tag "$RELEASE_TAG" --access public
+          echo "✅ Successfully published with tag: $RELEASE_TAG"
