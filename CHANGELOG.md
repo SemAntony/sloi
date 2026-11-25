@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0-rc.0
+
+### Minor Changes
+
+- a97de48: Первый релиз через Changesets: подпути `@sloi/ui-kit/date-picker` и `@sloi/ui-kit/data-table-v2`, `Button` (`loading`, `danger`, слоты иконок), токены `interactive-danger-*`, тесты и исправления доступности. Корневые `DatePicker` и `DataTableV2` помечены `@deprecated` в пользу подпутей. Полный список накопленных до этого изменений: раздел `[Unreleased]` ниже в этом файле.
+
 ## [Unreleased] (до перехода на Changesets)
 
 > Записи ниже написаны вручную в формате [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) до перехода на
