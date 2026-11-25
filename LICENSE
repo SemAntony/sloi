@@ -1,0 +1,7 @@
+"license": "MIT",
+"repository": { "type": "git", "url": "git+https://github.com/SemAntony/sloi.git" },
+"homepage": "https://github.com/SemAntony/sloi.git#readme",
+"bugs": { "url": "https://github.com/SemAntony/sloi.git/issues" },
+"author": "Smbat Antonian",
+"keywords": ["react", "ui-kit", "design-system"],
+"publishConfig": { "access": "public", "provenance": true }
