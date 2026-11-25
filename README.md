@@ -64,6 +64,32 @@ pnpm build
 - `pnpm tokens:build` — сборка CSS/JSON/JS из DTCG-источника `packages/tokens/source/`
 - `pnpm tokens:contrast` — проверка контраста токенов по WCAG 2.2 (light и dark)
 - `pnpm adoption:metrics:ci` — локальный adoption-отчёт в `reports/adoption/latest.json`
+- `pnpm changeset` — добавить changeset (описание изменения для следующего релиза)
+- `pnpm version-packages` — собрать changeset'ы в версию и CHANGELOG (`changeset version`)
+- `pnpm release` — сборка и публикация (`changeset publish`)
+
+## Версии и релизы
+
+Версии и `CHANGELOG.md` ведёт [Changesets](https://github.com/changesets/changesets). Версионируется только `@sloi/ui-kit`:
+`@sloi/tokens` и `@sloi/headless-core` вшиваются в его бандл, поэтому они в `ignore` в `.changeset/config.json`,
+а `@sloi/lit-wrappers` и приложения из `consumers/*` приватные. Базовая ветка: `develop`.
+
+**Что делать в каждом PR с изменением, видимым потребителю** (код, стили, токены, публичные типы, поведение):
+
+1. `pnpm changeset`, выбрать `@sloi/ui-kit` и тип изменения: `patch` (исправление), `minor` (новая возможность, `@deprecated`),
+   `major` (ломающее изменение), и написать одну-две строки для потребителя.
+2. Закоммитить созданный файл `.changeset/*.md` вместе с кодом. Для чисто внутренних правок (тесты, CI, документация)
+   changeset не нужен; проверка в CI только напоминает и PR не блокирует.
+
+**Релиз:**
+
+1. `pnpm version-packages`: файлы `.changeset/*.md` удаляются, версия в `package.json` и `CHANGELOG.md` обновляются.
+2. Проверить дифф, прогнать `pnpm typecheck && pnpm lint && pnpm test && pnpm build`, закоммитить.
+3. `pnpm release` (нужен вход в npm: `npm login`).
+
+**Если позже понадобится публиковать `@sloi/tokens` или `@sloi/headless-core` отдельно:** убрать пакет из `ignore`
+в `.changeset/config.json`, подготовить его к публикации (сборка, `files`, README, `publishConfig`), после этого
+changeset'ы можно писать и для него, версии пакетов ведутся независимо.
 
 ## Публичное API
 

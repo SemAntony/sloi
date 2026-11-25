@@ -65,7 +65,10 @@
     "adoption:metrics": "node --experimental-strip-types scripts/adoption-metrics.ts",
     "adoption:metrics:ci": "node --experimental-strip-types scripts/adoption-metrics.ts --out reports/adoption/latest.json --consumers consumers/sloi-pilot consumers/sloi-analytics consumers/sloi-operations",
     "clean": "rm -rf dist",
-    "tokens:contrast": "pnpm --filter @sloi/tokens run contrast"
+    "tokens:contrast": "pnpm --filter @sloi/tokens run contrast",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "peerDependencies": {
     "react": "^18.2.0 || ^19.0.0",
@@ -77,6 +80,7 @@
     "react-day-picker": "^10.0.2"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@eslint/js": "^10.0.1",
     "@microsoft/api-extractor": "^7.60.1",
     "@sloi/headless-core": "workspace:*",

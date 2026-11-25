@@ -1,11 +1,11 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [Unreleased] (до перехода на Changesets)
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
+> Записи ниже написаны вручную в формате [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) до перехода на
+> [Changesets](https://github.com/changesets/changesets); проект следует [SemVer](https://semver.org/spec/v2.0.0.html).
+> Они войдут в первый релиз, собранный через Changesets (см. `.changeset/`). Новые записи генерируются выше этого
+> раздела командой `pnpm version-packages`, вручную их добавлять не нужно (см. «Версии и релизы» в `README.md`).
 
 ### Added
 - Подпути экспорта `@sloi/ui-kit/date-picker` и `@sloi/ui-kit/data-table-v2` (ESM/CJS и типы); тяжёлые компоненты подключаются отдельно от корня. Решение и критерии: `docs/architecture/EXPORT-SUBPATHS.md`.
