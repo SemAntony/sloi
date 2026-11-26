@@ -14,6 +14,6 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["vite/client", "node"]
   },
-  "include": ["src", "scripts", ".storybook", "vite.config.ts", "eslint.config.js"],
+  "include": ["src", "scripts", "visual", ".storybook", "vite.config.ts", "playwright.config.ts", "eslint.config.js"],
   "exclude": ["src/test/fixtures/**", "dist", "storybook-static"]
 }

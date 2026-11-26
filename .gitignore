@@ -7,3 +7,6 @@ coverage
 .idea
 storybook-static
 *.tgz
+
+test-results
+playwright-report
