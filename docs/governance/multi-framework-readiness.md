@@ -4,6 +4,11 @@
 
 Дата baseline: `2026-04-06`.
 
+> **Статус: multi-framework заморожен (исследование, D36).** Lit-обёрток нет, сравнивать parity не с чем (в манифесте все `lit` = `planned`).
+> На деле gate проверяет только React-сборку: бюджеты размера бандла (в том числе по входам, см. `docs/architecture/EXPORT-SUBPATHS.md`),
+> TypeScript smoke и наличие a11y-тестов у React-компонентов. Команда `pnpm run mf:validate` и CI job `multi-framework-readiness`
+> остаются как проверка бюджетов бандла; название историческое.
+
 ## 1) Команда запуска
 
 1. `pnpm run mf:validate`

@@ -35,7 +35,7 @@
 4. A11y coverage by components: `18 / 56`.
 5. Tokens total: `97`.
 6. Tokens used in UI: `80` (`0.825`).
-7. Consumers in CI-metrics: `3` (`2` pilot + `1` real track): `consumers/sloi-pilot`, `consumers/sloi-analytics`, `consumers/sloi-operations`.
+7. Consumers in CI-metrics: `3` демо-приложения внутри репозитория (`consumers/sloi-pilot`, `consumers/sloi-analytics`, `consumers/sloi-operations`); внешних потребителей нет.
 8. Unknown local token overrides in consumers: `0`.
 9. Curated icon exports baseline: `68`.
 
@@ -75,19 +75,19 @@ Verification commands:
 4. `pnpm run test:a11y`
 5. `pnpm run storybook:build`
 
-## 4) Stage B - Adoption-Proven (next priority)
+## 4) Stage B - Adoption (не достигнут)
 
-Цель: доказать, что система работает в реальном продукте, а не только внутри UI-kit.
+Цель: доказать, что система работает в реальном продукте, а не только внутри UI-kit. Статус на 2026-11-26: есть только внутренние демо-приложения, реального внешнего потребителя нет, поэтому ярлык «Adoption-Proven» не применяем.
 
 Definition of Done:
 
-1. Минимум `1` реальный consumer-проект подключен в adoption metrics.
+1. Минимум `1` реальный (внешний) consumer-проект подключен в adoption metrics. Пока не выполнено.
 2. Есть backlog pain points по API, styling и docs.
 3. Улучшения DX и docs подтверждены реальным use-case feedback.
 
 Execution checklist:
 
-- [x] `AD-01` Подключить `1` реальный consumer в `adoption:metrics` pipeline. Артефакты: [consumers/sloi-operations/src/app.tsx](/Users/sem/WebstormProjects/sloi-ui/consumers/sloi-operations/src/app.tsx), [`adoption:metrics:ci` script](/Users/sem/WebstormProjects/sloi-ui/package.json), [`reports/adoption/latest.json`](/Users/sem/WebstormProjects/sloi-ui/reports/adoption/latest.json).
+- [ ] `AD-01` (по факту: подключены только внутренние демо-приложения, внешнего consumer нет) Подключить `1` реальный consumer в `adoption:metrics` pipeline. Артефакты: [consumers/sloi-operations/src/app.tsx](/Users/sem/WebstormProjects/sloi-ui/consumers/sloi-operations/src/app.tsx), [`adoption:metrics:ci` script](/Users/sem/WebstormProjects/sloi-ui/package.json), [`reports/adoption/latest.json`](/Users/sem/WebstormProjects/sloi-ui/reports/adoption/latest.json).
 - [x] `AD-02` Добавить feedback-loop артефакт (таблица pain points + status + owner). Артефакт: [adoption/feedback-loop.md](../adoption/feedback-loop.md).
 - [x] `AD-03` Добавить docs recipes для топ-сценариев (`form`, `modal form`, `table + filters`). Артефакт: [adoption/recipes.md](../adoption/recipes.md).
 - [x] `AD-04` Проверить semver discipline для user-visible API changes. Артефакты: [semver-audit-2026-04-04.md](../release/semver-audit-2026-04-04.md), [versioning-policy.md](../release/versioning-policy.md), [release-checklist.md](../release/release-checklist.md).
@@ -118,7 +118,9 @@ Execution checklist:
 - [x] `DT-02` Закрыть для `DataTableV2` perf + a11y regression gates на enterprise-сценариях. Артефакты: [data-table-v2.perf.test.tsx](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/data-table-v2/data-table-v2.perf.test.tsx), [data-table-v2-perf-note-2026-04-04.md](./data-table-v2-perf-note-2026-04-04.md), [data-table-v2-checklist-virtualization.md](./data-table-v2-checklist-virtualization.md).
 - [x] `PT-01` Добавить patterns: `auth form`, `search + filters`, `table toolbar`, `modal workflow`. Артефакты: [product-patterns.stories.tsx](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/patterns/product-patterns.stories.tsx), [product-patterns.stories.module.scss](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/patterns/product-patterns.stories.module.scss), [adoption/recipes.md](../adoption/recipes.md).
 
-## 6) Multi-framework rollout gate (Lit + wrappers)
+## 6) Multi-framework rollout gate (Lit + wrappers): заморожено (исследование, D36)
+
+> Статус на 2026-11-26: Lit-обёрток нет (`@sloi/lit-wrappers` это заготовка со статусом `planned`), Go/No-Go критерий 2 ниже не выполнен (нет внешнего consumer). Отметки MF-01…MF-04 означают, что описан контракт и есть проверки для React-части; parity с Lit не измерялась, измерять нечего.
 
 Решение: multi-framework поддержка правильна как стратегическое направление, но только через staged rollout с жестким gate.
 
@@ -133,8 +135,8 @@ Execution checklist:
 
 - [x] `MF-01` Описать публичный API contract как semver-critical. Артефакты: [public-api-semver-contract.md](../governance/public-api-semver-contract.md), [release-checklist.md](../release/release-checklist.md).
 - [x] `MF-02` Выделить headless core-пакет с логикой сложных компонентов (`Dialog`, `Select`, `Tooltip`, `Tabs`, `Combobox`). Артефакты: [packages/headless-core/README.md](/Users/sem/WebstormProjects/sloi-ui/packages/headless-core/README.md), [headless-core boundary](../governance/headless-core-boundary.md), [dialog.tsx](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/dialog/dialog.tsx), [select.tsx](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/select/select.tsx), [tabs.tsx](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/tabs/tabs.tsx), [tooltip.tsx](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/tooltip/tooltip.tsx), [combobox.tsx](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/combobox/combobox.tsx).
-- [x] `MF-03` Держать `Lit` и `React` как thin wrappers без дублирования логики. Артефакты: [wrapper-thin-contract.md](../governance/wrapper-thin-contract.md), [multi-framework-thin-wrappers-contract.test.ts](/Users/sem/WebstormProjects/sloi-ui/src/test/multi-framework-thin-wrappers-contract.test.ts), [packages/lit-wrappers/README.md](/Users/sem/WebstormProjects/sloi-ui/packages/lit-wrappers/README.md), [packages/lit-wrappers/package.json](/Users/sem/WebstormProjects/sloi-ui/packages/lit-wrappers/package.json).
-- [x] `MF-04` Валидировать bundle size, TS DX и a11y parity между рантаймами. Артефакты: [multi-framework-readiness.md](../governance/multi-framework-readiness.md), [multi-framework-a11y-parity.json](../governance/multi-framework-a11y-parity.json), [multi-framework-readiness.ts](/Users/sem/WebstormProjects/sloi-ui/scripts/multi-framework-readiness.ts), [ts smoke fixture](/Users/sem/WebstormProjects/sloi-ui/src/test/fixtures/multi-framework/consumer.ts), [quality-gate workflow](/Users/sem/WebstormProjects/sloi-ui/.github/workflows/quality-gate.yml), [multi-framework report](/Users/sem/WebstormProjects/sloi-ui/reports/multi-framework/latest.json).
+- [x] `MF-03` (контракт и React-часть; Lit это заготовка) Держать `Lit` и `React` как thin wrappers без дублирования логики. Артефакты: [wrapper-thin-contract.md](../governance/wrapper-thin-contract.md), [multi-framework-thin-wrappers-contract.test.ts](/Users/sem/WebstormProjects/sloi-ui/src/test/multi-framework-thin-wrappers-contract.test.ts), [packages/lit-wrappers/README.md](/Users/sem/WebstormProjects/sloi-ui/packages/lit-wrappers/README.md), [packages/lit-wrappers/package.json](/Users/sem/WebstormProjects/sloi-ui/packages/lit-wrappers/package.json).
+- [x] `MF-04` (по факту: бюджеты бандла React, TS smoke, манифест; parity с Lit не измеряется) Валидировать bundle size, TS DX и a11y parity между рантаймами. Артефакты: [multi-framework-readiness.md](../governance/multi-framework-readiness.md), [multi-framework-a11y-parity.json](../governance/multi-framework-a11y-parity.json), [multi-framework-readiness.ts](/Users/sem/WebstormProjects/sloi-ui/scripts/multi-framework-readiness.ts), [ts smoke fixture](/Users/sem/WebstormProjects/sloi-ui/src/test/fixtures/multi-framework/consumer.ts), [quality-gate workflow](/Users/sem/WebstormProjects/sloi-ui/.github/workflows/quality-gate.yml), [multi-framework report](/Users/sem/WebstormProjects/sloi-ui/reports/multi-framework/latest.json).
 - [ ] `MF-05` Открывать `Vue` только после подтвержденного спроса.
 
 ## 7) Working rhythm (anti-chaos)

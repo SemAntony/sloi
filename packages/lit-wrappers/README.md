@@ -2,13 +2,15 @@
 
 Thin wrapper layer for Lit runtime in the Sloi multi-framework strategy.
 
+> **Status: frozen research scaffold (D36).** The package exports only scope and status constants (every component is `planned`); there are no Lit components. Resume only on confirmed demand (`MF-05`).
+
 ## Contract
 
 1. No duplicated domain logic in wrappers.
 2. Behavior/state contracts come from `@sloi/headless-core` design decisions.
 3. API parity with React wrappers is required before components are marked stable.
 
-## Scope for upcoming implementation
+## Planned scope (not implemented)
 
 1. `Dialog`
 2. `Select`
@@ -24,6 +26,6 @@ Thin wrapper layer for Lit runtime in the Sloi multi-framework strategy.
 
 ## Governance links
 
-1. [Thin wrappers contract](/Users/sem/WebstormProjects/sloi-ui/docs/governance/wrapper-thin-contract.md)
-2. [Headless core boundary](/Users/sem/WebstormProjects/sloi-ui/docs/governance/headless-core-boundary.md)
-3. [Public API semver contract](/Users/sem/WebstormProjects/sloi-ui/docs/governance/public-api-semver-contract.md)
+1. [Thin wrappers contract](../../docs/governance/wrapper-thin-contract.md)
+2. [Headless core boundary](../../docs/governance/headless-core-boundary.md)
+3. [Public API semver contract](../../docs/governance/public-api-semver-contract.md)

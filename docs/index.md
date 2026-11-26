@@ -26,13 +26,13 @@
 - [Icon accessibility contract](./governance/icon-a11y-contract.md)
 - [Public API semver contract](./governance/public-api-semver-contract.md)
 - [Headless core boundary](./governance/headless-core-boundary.md)
-- [Thin wrappers contract](./governance/wrapper-thin-contract.md)
-- [Multi-framework readiness gate](./governance/multi-framework-readiness.md)
+- [Thin wrappers contract](./governance/wrapper-thin-contract.md) (заморожено)
+- [Multi-framework readiness gate](./governance/multi-framework-readiness.md) (по факту бюджеты бандла; multi-framework заморожен)
 - [Icon/Token change request template](./governance/icon-token-change-request-template.md)
 - [Iconography + color tokens one-pager](./governance/iconography-color-token-one-pager.md)
 - [Tokens package README](../packages/tokens/README.md)
 - [Headless core package README](../packages/headless-core/README.md)
-- [Lit wrappers package README](../packages/lit-wrappers/README.md)
+- [Lit wrappers package README](../packages/lit-wrappers/README.md) (заготовка, заморожено)
 
 ## Release
 

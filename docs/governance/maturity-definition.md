@@ -10,7 +10,9 @@
 4. Tier-1 API не имеет незапланированных breaking-изменений.
 5. Quality gates в CI обязательны для merge.
 
-## Stage B: Adoption-Proven
+## Stage B: Adoption (in-repo consumers)
+
+> **Текущий статус: не достигнут.** Приложения в `consumers/*` (`sloi-pilot`, `sloi-analytics`, `sloi-operations`) живут внутри этого репозитория и служат интеграционными стендами, а не внешними production/pilot-потребителями. Название «Adoption-Proven» убрано: ничего не доказано до первого стороннего потребителя.
 
 1. Минимум 1 production/pilot consumer использует UI-kit.
 2. Есть регулярный feedback-loop по API, styling contract и docs gaps.

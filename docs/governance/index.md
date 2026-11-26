@@ -21,8 +21,8 @@
 - [Icon accessibility contract](./icon-a11y-contract.md)
 - [Public API semver contract](./public-api-semver-contract.md)
 - [Headless core boundary](./headless-core-boundary.md)
-- [Thin wrappers contract](./wrapper-thin-contract.md)
-- [Multi-framework readiness gate](./multi-framework-readiness.md)
+- [Thin wrappers contract](./wrapper-thin-contract.md) (заморожено)
+- [Multi-framework readiness gate](./multi-framework-readiness.md) (по факту бюджеты бандла; multi-framework заморожен)
 - [Icon/Token change request template](./icon-token-change-request-template.md)
 - [Iconography + color tokens one-pager](./iconography-color-token-one-pager.md)
 
