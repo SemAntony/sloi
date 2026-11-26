@@ -9,7 +9,6 @@
 ## Governance
 
 - [Governance overview](./governance/index.md)
-- [Owners matrix](./governance/owners.md)
 - [RFC template](./governance/rfc-template.md)
 - [Component DoD](./governance/component-dod.md)
 - [Controlled/uncontrolled contract](./governance/controlled-uncontrolled-contract.md)
@@ -34,7 +33,6 @@
 - [Tokens package README](../packages/tokens/README.md)
 - [Headless core package README](../packages/headless-core/README.md)
 - [Lit wrappers package README](../packages/lit-wrappers/README.md)
-- [CODEOWNERS enforcement](../.github/CODEOWNERS)
 
 ## Release
 

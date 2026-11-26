@@ -4,7 +4,6 @@
 
 ## Документы
 
-- [Owner matrix](./owners.md)
 - [RFC template](./rfc-template.md)
 - [Component Definition of Done](./component-dod.md)
 - [Controlled/uncontrolled contract](./controlled-uncontrolled-contract.md)
@@ -39,9 +38,8 @@ RFC нужен до реализации, если выполняется хот
 
 ## Кто утверждает RFC
 
-1. `Primary owner` по зоне из [owner matrix](./owners.md).
-2. `Backup owner` той же зоны.
-3. Для breaking-изменений дополнительно owner release-процесса.
+1. Мейнтейнер репозитория (сейчас Sem).
+2. Для breaking-изменений решение дополнительно фиксируется в RFC и в changeset типа `major`.
 
 ## Что считается blocking
 

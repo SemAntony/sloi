@@ -122,8 +122,8 @@
 
 ## 6) Ownership and approval
 
-1. Ownership и SLA берутся из [Owner matrix](./owners.md).
-2. Для foundation-изменений требуется подтверждение primary + backup owner соответствующей зоны.
+1. Решения по иконкам и токенам принимает мейнтейнер репозитория.
+2. Для foundation-изменений с кросс-компонентным эффектом изменение оформляется по [шаблону запроса](./icon-token-change-request-template.md) и попадает в changeset.
 
 ## 7) Definition of Done for icon/token changes
 

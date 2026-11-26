@@ -2,6 +2,7 @@
 
 Документ с правилами разработки UI-kit.  
 Это единый источник истины для рефакторинга и добавления новых компонентов.
+Процесс (ветки, проверки перед PR, semver, changeset) описан в [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Scope
 
@@ -53,10 +54,14 @@
 
 ## Tokens & Colors
 
-1. Source of truth для raw-палитры: `src/app/styles/palette.css`.
-2. Семантические токены: `src/app/styles/tokens.css`.
-3. Не дублировать HEX в компонентных стилях, использовать токены.
-4. Новые семантические токены добавлять в `tokens.css`, а не в компоненты.
+1. Source of truth для токенов: DTCG-файлы в `packages/tokens/source/` (палитра в `primitives/palette.json`,
+   `foundation.json` для `space`/`radius`/`size`/`font`/`motion`, семантика в `semantic/light.json` и `semantic/dark.json`).
+2. Файлы в `packages/tokens/src/` (кроме `styles.css` и `typography.css`) генерируются командой `pnpm tokens:build`; руками их не правим.
+   Подробности и соглашения по именам: [packages/tokens/README.md](./packages/tokens/README.md).
+3. `src/app/styles/*` это тонкий слой совместимости, реэкспортирующий `@sloi/tokens`; новые токены туда не добавляем.
+4. Не дублировать HEX в компонентных стилях, использовать токены (`--sloi-*`).
+5. Новые семантические токены добавлять в `source/semantic/` (обе темы, dark только переопределения), а не в компоненты.
+   Контраст проверяет `pnpm tokens:contrast`, отставание `src/` от `source/` ловит `pnpm test`.
 
 ## TypeScript & API Contract
 
@@ -86,8 +91,11 @@
 Для каждого компонента минимум:
 
 1. `Default` сценарий.
-2. Минимум один edge-case сценарий (например, controlled, custom container, multi-part composition).
-3. Демонстрация корректного использования API (без анти-паттернов относительно Radix).
+2. `States` сценарий для компонентов с визуальными состояниями.
+3. Минимум один edge-case сценарий (например, controlled, custom container, multi-part composition).
+4. Демонстрация корректного использования API (без анти-паттернов относительно Radix).
+
+Полный чек-лист нового компонента: [docs/governance/component-dod.md](./docs/governance/component-dod.md).
 
 ## Component Checklist (before merge)
 
@@ -96,7 +104,8 @@
 3. `data-*` состояния используются в стилях.
 4. Поведение Radix не сломано.
 5. Есть Storybook-истории для основных и edge-case сценариев.
-6. Проходят `typecheck`, `lint`, `build`, `storybook:build`.
+6. Проходят `typecheck`, `lint`, `test`, `test:a11y`, `build`, `storybook:build` (набор как в CI, см. CONTRIBUTING.md).
+7. Изменение видно потребителю: добавлен changeset (`pnpm changeset`).
 
 ## Rule Updates
 
@@ -108,3 +117,9 @@
 - Добавлены правила анимации для enter/exit и делегирования unmount через `forceMount`.
 - Добавлены правила композиции через `asChild` (props spread, `forwardRef`, a11y, deep composition).
 - Добавлены правила SSR (React 18+, гидрация id, a11y-ограничения до гидрации).
+
+### 2026-11-26
+
+- Источник токенов теперь `packages/tokens/source/` (DTCG), а не `src/app/styles/*`; `src/app/styles` оставлен как слой совместимости.
+- В Storybook Standards добавлен `States`, в чек-лист перед merge добавлены `test`, `test:a11y` и changeset.
+- Убраны ссылки на матрицу владельцев и `CODEOWNERS` (там были команды-плейсхолдеры `@sloi/*`); решения принимает мейнтейнер репозитория.

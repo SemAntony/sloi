@@ -77,10 +77,8 @@
 
 ## 5) Ownership и approval flow
 
-1. Primary approval: Design System Core owner.
-2. Secondary approval: Release owner.
-3. Для multi-framework API изменений добавляется согласование Frontend Platform owner.
-4. Любой потенциальный breaking change без RFC считается blocking для merge.
+1. Утверждает изменение мейнтейнер репозитория (сейчас Sem).
+2. Любой потенциальный breaking change без RFC считается blocking для merge.
 
 ## 6) Связанные документы
 
