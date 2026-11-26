@@ -38,6 +38,7 @@
 
 ## Stable Core Docs
 
+- Как вносить изменения: `CONTRIBUTING.md`
 - Карта документов: `docs/index.md`
 - Governance: `docs/governance/*`
 - Release: `docs/release/*`

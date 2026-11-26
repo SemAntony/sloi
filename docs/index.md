@@ -1,5 +1,7 @@
 # Stable Core Docs Map
 
+Начать с [CONTRIBUTING.md](../CONTRIBUTING.md): единая точка входа для разработки, проверок, semver и changeset.
+
 ## Architecture
 
 - [Vision & Principles (draft)](./architecture/VISION.md)
