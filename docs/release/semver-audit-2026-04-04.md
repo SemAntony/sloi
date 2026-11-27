@@ -13,10 +13,10 @@
 1. [Versioning policy](./versioning-policy.md)
 2. [Breaking changes policy](./breaking-changes-policy.md)
 3. [Release checklist](./release-checklist.md)
-4. [CHANGELOG](/Users/sem/WebstormProjects/sloi-ui/CHANGELOG.md)
-5. [UI-kit public exports](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/index.ts)
-6. [UI-kit package exports](/Users/sem/WebstormProjects/sloi-ui/package.json)
-7. [Tokens package exports](/Users/sem/WebstormProjects/sloi-ui/packages/tokens/package.json)
+4. [CHANGELOG](../../CHANGELOG.md)
+5. [UI-kit public exports](../../src/shared/ui/index.ts)
+6. [UI-kit package exports](../../package.json)
+7. [Tokens package exports](../../packages/tokens/package.json)
 
 ## User-visible changes and semver class
 

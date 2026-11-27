@@ -20,11 +20,11 @@
 
 Целевые wrappers:
 
-1. [Dialog](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/dialog/dialog.tsx)
-2. [Select](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/select/select.tsx)
-3. [Tabs](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/tabs/tabs.tsx)
-4. [Tooltip](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/tooltip/tooltip.tsx)
-5. [Combobox](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/combobox/combobox.tsx)
+1. [Dialog](../../src/shared/ui/primitives/dialog/dialog.tsx)
+2. [Select](../../src/shared/ui/primitives/select/select.tsx)
+3. [Tabs](../../src/shared/ui/primitives/tabs/tabs.tsx)
+4. [Tooltip](../../src/shared/ui/tooltip/tooltip.tsx)
+5. [Combobox](../../src/shared/ui/combobox/combobox.tsx)
 
 Ограничения:
 
@@ -34,7 +34,7 @@
 
 ## 3) Lit wrappers contract
 
-Пакет: [packages/lit-wrappers/README.md](/Users/sem/WebstormProjects/sloi-ui/packages/lit-wrappers/README.md)
+Пакет: [packages/lit-wrappers/README.md](../../packages/lit-wrappers/README.md)
 
 Ограничения:
 
@@ -44,7 +44,7 @@
 
 ## 4) Verification artifacts
 
-1. Static contract test: [multi-framework-thin-wrappers-contract.test.ts](/Users/sem/WebstormProjects/sloi-ui/src/test/multi-framework-thin-wrappers-contract.test.ts).
+1. Static contract test: [multi-framework-thin-wrappers-contract.test.ts](../../src/test/multi-framework-thin-wrappers-contract.test.ts).
 2. Headless boundary: [headless-core-boundary.md](./headless-core-boundary.md).
 3. Public API semver gate: [public-api-semver-contract.md](./public-api-semver-contract.md).
 4. Multi-framework readiness gate: [multi-framework-readiness.md](./multi-framework-readiness.md).

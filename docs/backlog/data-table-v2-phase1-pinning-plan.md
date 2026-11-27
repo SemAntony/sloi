@@ -12,7 +12,7 @@
 
 ## Guardrails
 
-1. Не добавлять pinning props в [`src/shared/ui/data-table/data-table.tsx`](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/data-table/data-table.tsx).
+1. Не добавлять pinning props в [`src/shared/ui/data-table/data-table.tsx`](../../src/shared/ui/data-table/data-table.tsx).
 2. Не менять экспорт `DataTable` как `V1` контракта.
 3. Все новые API и stories вести в отдельном `V2` скоупе.
 
@@ -30,8 +30,8 @@
 
 Файлы для интеграции:
 
-1. [`src/shared/ui/index.ts`](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/index.ts) (экспорт `data-table-v2` после готовности фичи).
-2. [`CHANGELOG.md`](/Users/sem/WebstormProjects/sloi-ui/CHANGELOG.md) (migration notes при релизе фазы).
+1. [`src/shared/ui/index.ts`](../../src/shared/ui/index.ts) (экспорт `data-table-v2` после готовности фичи).
+2. [`CHANGELOG.md`](../../CHANGELOG.md) (migration notes при релизе фазы).
 
 ## PR-by-PR Breakdown
 
@@ -125,9 +125,9 @@ Scope:
 
 Files:
 
-1. [`src/shared/ui/index.ts`](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/index.ts)
-2. [`docs/backlog/data-table-v2-rfc-column-pinning.md`](/Users/sem/WebstormProjects/sloi-ui/docs/backlog/data-table-v2-rfc-column-pinning.md)
-3. [`CHANGELOG.md`](/Users/sem/WebstormProjects/sloi-ui/CHANGELOG.md)
+1. [`src/shared/ui/index.ts`](../../src/shared/ui/index.ts)
+2. [`docs/backlog/data-table-v2-rfc-column-pinning.md`](./data-table-v2-rfc-column-pinning.md)
+3. [`CHANGELOG.md`](../../CHANGELOG.md)
 
 Acceptance:
 

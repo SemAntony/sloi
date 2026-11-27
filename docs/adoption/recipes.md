@@ -6,15 +6,15 @@
 
 ## Sources
 
-1. [Form examples story](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/patterns/form-examples.stories.tsx)
-2. [Data examples story](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/patterns/data-examples.stories.tsx)
-3. [Modal story](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/modal/modal.stories.tsx)
-4. [FilterBar story](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/filter-bar/filter-bar.stories.tsx)
-5. [Product patterns story](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/patterns/product-patterns.stories.tsx)
+1. [Form examples story](../../src/shared/ui/patterns/form-examples.stories.tsx)
+2. [Data examples story](../../src/shared/ui/patterns/data-examples.stories.tsx)
+3. [Modal story](../../src/shared/ui/modal/modal.stories.tsx)
+4. [FilterBar story](../../src/shared/ui/filter-bar/filter-bar.stories.tsx)
+5. [Product patterns story](../../src/shared/ui/patterns/product-patterns.stories.tsx)
 
 ## Product Patterns (PT-01)
 
-Каноничные product-level паттерны для Stage C доступны в [Product patterns story](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/patterns/product-patterns.stories.tsx):
+Каноничные product-level паттерны для Stage C доступны в [Product patterns story](../../src/shared/ui/patterns/product-patterns.stories.tsx):
 
 1. `AuthForm`
 2. `SearchAndFilters`

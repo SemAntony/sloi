@@ -10,11 +10,11 @@
    - `consumers/sloi-pilot`
    - `consumers/sloi-analytics`
    - `consumers/sloi-operations`
-2. Adoption report: [`reports/adoption/latest.json`](/Users/sem/WebstormProjects/sloi-ui/reports/adoption/latest.json).
+2. Adoption report: [`reports/adoption/latest.json`](../../reports/adoption/latest.json).
 3. Consumer screens:
-   - [sloi-pilot app](/Users/sem/WebstormProjects/sloi-ui/consumers/sloi-pilot/src/app.tsx)
-   - [sloi-analytics app](/Users/sem/WebstormProjects/sloi-ui/consumers/sloi-analytics/src/app.tsx)
-   - [sloi-operations app](/Users/sem/WebstormProjects/sloi-ui/consumers/sloi-operations/src/app.tsx)
+   - [sloi-pilot app](../../consumers/sloi-pilot/src/app.tsx)
+   - [sloi-analytics app](../../consumers/sloi-analytics/src/app.tsx)
+   - [sloi-operations app](../../consumers/sloi-operations/src/app.tsx)
 
 ## Status Dictionary
 

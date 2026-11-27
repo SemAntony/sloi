@@ -42,8 +42,8 @@ Budget проверяется для текущего runtime scope:
    - `packages/lit-wrappers/src/index.ts`.
 2. Пакеты `@sloi/headless-core` и `@sloi/lit-wrappers` экспонируют `types` entry.
 3. TypeScript smoke scenario:
-   - [consumer.ts](/Users/sem/WebstormProjects/sloi-ui/src/test/fixtures/multi-framework/consumer.ts)
-   - [tsconfig.json](/Users/sem/WebstormProjects/sloi-ui/src/test/fixtures/multi-framework/tsconfig.json)
+   - [consumer.ts](../../src/test/fixtures/multi-framework/consumer.ts)
+   - [tsconfig.json](../../src/test/fixtures/multi-framework/tsconfig.json)
 
 Smoke-check должен компилироваться без ошибок: это базовый сигнал DX для import surface через package names.
 
@@ -61,7 +61,7 @@ Parity manifest:
 
 ## 5) Артефакты и ownership
 
-1. Скрипт: [multi-framework-readiness.ts](/Users/sem/WebstormProjects/sloi-ui/scripts/multi-framework-readiness.ts)
+1. Скрипт: [multi-framework-readiness.ts](../../scripts/multi-framework-readiness.ts)
 2. CI job: `.github/workflows/quality-gate.yml` (`multi-framework-readiness`)
-3. Отчет: [reports/multi-framework/latest.json](/Users/sem/WebstormProjects/sloi-ui/reports/multi-framework/latest.json)
+3. Отчет: [reports/multi-framework/latest.json](../../reports/multi-framework/latest.json)
 4. Связанный contract: [public-api-semver-contract.md](./public-api-semver-contract.md)

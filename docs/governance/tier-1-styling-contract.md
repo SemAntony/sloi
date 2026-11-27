@@ -36,6 +36,6 @@
 
 ## 4) Verification artifacts
 
-1. Styling regression suite: [tier-1-styling-contract.test.tsx](/Users/sem/WebstormProjects/sloi-ui/src/test/tier-1-styling-contract.test.tsx).
+1. Styling regression suite: [tier-1-styling-contract.test.tsx](../../src/test/tier-1-styling-contract.test.tsx).
 2. Общая политика стилизации: [styling-contract.md](./styling-contract.md).
 3. Stage tracking: [design-system-execution-plan.md](../backlog/design-system-execution-plan.md).

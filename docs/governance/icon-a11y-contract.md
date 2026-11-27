@@ -4,10 +4,10 @@
 
 Связанные артефакты:
 
-1. [Icon component API](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/icon/icon.tsx)
-2. [Icon stories](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/icon/icon.stories.tsx)
-3. [Icon unit tests](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/icon/icon.test.tsx)
-4. [Icon a11y tests](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/icon/icon.a11y.test.tsx)
+1. [Icon component API](../../src/shared/ui/icon/icon.tsx)
+2. [Icon stories](../../src/shared/ui/icon/icon.stories.tsx)
+3. [Icon unit tests](../../src/shared/ui/icon/icon.test.tsx)
+4. [Icon a11y tests](../../src/shared/ui/icon/icon.a11y.test.tsx)
 5. [Iconography and color token policy](./iconography-color-token-policy.md)
 
 ## 1) Decorative vs informative

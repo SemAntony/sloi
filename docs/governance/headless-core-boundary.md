@@ -12,7 +12,7 @@
 
 ## 2) Что вынесено в `@sloi/headless-core`
 
-Пакет: [packages/headless-core](/Users/sem/WebstormProjects/sloi-ui/packages/headless-core/README.md)
+Пакет: [packages/headless-core](../../packages/headless-core/README.md)
 
 Экспортируемые контроллеры:
 
@@ -27,11 +27,11 @@
 
 | UI wrapper | Headless controller |
 | --- | --- |
-| [Dialog](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/dialog/dialog.tsx) | `useDialogController` |
-| [Select](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/select/select.tsx) | `useSelectController` |
-| [Tabs](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/primitives/tabs/tabs.tsx) | `useTabsController` |
-| [Tooltip](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/tooltip/tooltip.tsx) | `useTooltipController` |
-| [Combobox](/Users/sem/WebstormProjects/sloi-ui/src/shared/ui/combobox/combobox.tsx) | `useComboboxController` |
+| [Dialog](../../src/shared/ui/primitives/dialog/dialog.tsx) | `useDialogController` |
+| [Select](../../src/shared/ui/primitives/select/select.tsx) | `useSelectController` |
+| [Tabs](../../src/shared/ui/primitives/tabs/tabs.tsx) | `useTabsController` |
+| [Tooltip](../../src/shared/ui/tooltip/tooltip.tsx) | `useTooltipController` |
+| [Combobox](../../src/shared/ui/combobox/combobox.tsx) | `useComboboxController` |
 
 ## 4) Rules for future changes
 
@@ -50,5 +50,5 @@
 3. `pnpm run test`
 4. `pnpm run test:a11y`
 5. `pnpm run storybook:build`
-6. Thin wrapper static checks: [multi-framework-thin-wrappers-contract.test.ts](/Users/sem/WebstormProjects/sloi-ui/src/test/multi-framework-thin-wrappers-contract.test.ts)
+6. Thin wrapper static checks: [multi-framework-thin-wrappers-contract.test.ts](../../src/test/multi-framework-thin-wrappers-contract.test.ts)
 7. Multi-framework readiness gate: `pnpm run mf:validate` ([multi-framework-readiness.md](./multi-framework-readiness.md))

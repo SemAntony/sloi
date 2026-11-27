@@ -48,6 +48,6 @@
 
 ## 4) Verification artifacts
 
-1. Contract regression suite: [tier-1-controlled-uncontrolled-contract.test.tsx](/Users/sem/WebstormProjects/sloi-ui/src/test/tier-1-controlled-uncontrolled-contract.test.tsx).
+1. Contract regression suite: [tier-1-controlled-uncontrolled-contract.test.tsx](../../src/test/tier-1-controlled-uncontrolled-contract.test.tsx).
 2. Tier-1 depth matrix: [tier-1-test-coverage-matrix.md](./tier-1-test-coverage-matrix.md).
 3. Stage execution tracking: [design-system-execution-plan.md](../backlog/design-system-execution-plan.md).
