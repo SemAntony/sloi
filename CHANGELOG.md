@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0-rc.1
+
+### Patch Changes
+
+- ceddc12: Метаданные пакета: полный текст лицензии MIT в `LICENSE`, поля `license`, `author`, `repository`, `homepage`, `bugs` и `keywords` в `package.json`, публикация с provenance через npm Trusted Publishing. Код компонентов не менялся.
+
 ## 1.1.0-rc.0
 
 ### Minor Changes
