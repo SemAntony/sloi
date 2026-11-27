@@ -1,5 +1,9 @@
 # @sloi/ui-kit
 
+[![npm](https://img.shields.io/npm/v/@sloi/ui-kit?logo=npm)](https://www.npmjs.com/package/@sloi/ui-kit)
+[![CI](https://github.com/SemAntony/sloi/actions/workflows/quality-gate.yml/badge.svg)](https://github.com/SemAntony/sloi/actions/workflows/quality-gate.yml)
+[![License: MIT](https://img.shields.io/npm/l/@sloi/ui-kit)](./LICENSE)
+
 Базовая библиотека UI-компонентов для проектов Sloi.
 
 ## Что уже есть
