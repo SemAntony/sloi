@@ -119,15 +119,21 @@ export const useComboboxController = ({
     });
   }, [options, resolvedSearchValue]);
 
-  useEffect(() => {
-    if (!resolvedOpen) {
-      setActiveIndex(-1);
-      return;
-    }
-
-    const firstEnabledIndex = filteredOptions.findIndex((option) => !option.disabled);
-    setActiveIndex(firstEnabledIndex);
-  }, [filteredOptions, resolvedOpen]);
+  // Сброс активного индекса при смене списка или открытия/закрытия: вычисляем во время рендера
+  // (паттерн «adjust state on prop change»), без эффекта и лишнего рендера со старым индексом.
+  // Начальное значение null: при первом рендере индекс тоже выставляется (например, при defaultOpen).
+  const [activeBasis, setActiveBasis] = useState<{
+    filteredOptions: ComboboxOption[];
+    resolvedOpen: boolean;
+  } | null>(null);
+  if (
+    activeBasis === null ||
+    activeBasis.filteredOptions !== filteredOptions ||
+    activeBasis.resolvedOpen !== resolvedOpen
+  ) {
+    setActiveBasis({ filteredOptions, resolvedOpen });
+    setActiveIndex(resolvedOpen ? filteredOptions.findIndex((option) => !option.disabled) : -1);
+  }
 
   const commitValue = useCallback(
     (nextValue: string | undefined) => {

@@ -35,16 +35,11 @@ export default tseslint.config(
     }
   },
   {
-    // Новые правила react-hooks 7 (React Compiler): паттерны ниже работают и покрыты тестами,
-    // но требуют рефакторинга (derived state / key-reset). Задача: ROADMAP D10e.
-    files: [
-      'src/shared/ui/data-table-v2/data-table-v2.tsx',
-      'src/shared/ui/data-table/data-table.tsx',
-      'packages/headless-core/src/combobox.ts'
-    ],
+    // Остаток ROADMAP D10e: восстановление состояния из localStorage и нормализация pinned/column sizes
+    // делают setState в эффекте (react-hooks 7). `refs` и combobox уже исправлены, override сужен.
+    files: ['src/shared/ui/data-table-v2/data-table-v2.tsx', 'src/shared/ui/data-table/data-table.tsx'],
     rules: {
-      'react-hooks/set-state-in-effect': 'warn',
-      'react-hooks/refs': 'warn'
+      'react-hooks/set-state-in-effect': 'warn'
     }
   },
   {

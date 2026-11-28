@@ -499,7 +499,7 @@ function DataTableInner<T extends object>(
   const resizePointerMoveListenerRef = useRef<((event: PointerEvent) => void) | null>(null);
   const resizePointerUpListenerRef = useRef<(() => void) | null>(null);
   const virtualViewportRef = useRef<HTMLDivElement | null>(null);
-  const focusedVirtualRowKeyRef = useRef<DataTableSelectionKey | null>(null);
+  const [focusedVirtualRowKey, setFocusedVirtualRowKey] = useState<DataTableSelectionKey | null>(null);
   const [virtualScrollTop, setVirtualScrollTop] = useState(0);
   const [virtualViewportHeight, setVirtualViewportHeight] = useState(DEFAULT_VIRTUAL_VIEWPORT_HEIGHT_PX);
 
@@ -810,18 +810,28 @@ function DataTableInner<T extends object>(
   const displayRowIndexByKey = useMemo(() => {
     return new Map(displayRows.map((rowItem, index) => [rowItem.key, index]));
   }, [displayRows]);
+  // Сброс виртуализации (скролл, высота вьюпорта, фокус) при её отключении и очистка фокуса, если строки
+  // уже нет в выдаче: вычисляется во время рендера, без эффекта и лишнего кадра со старыми значениями.
+  if (!shouldVirtualizeRows) {
+    if (virtualScrollTop !== 0) {
+      setVirtualScrollTop(0);
+    }
+    if (virtualViewportHeight !== DEFAULT_VIRTUAL_VIEWPORT_HEIGHT_PX) {
+      setVirtualViewportHeight(DEFAULT_VIRTUAL_VIEWPORT_HEIGHT_PX);
+    }
+    if (focusedVirtualRowKey !== null) {
+      setFocusedVirtualRowKey(null);
+    }
+  } else if (focusedVirtualRowKey !== null && !displayRowIndexByKey.has(focusedVirtualRowKey)) {
+    setFocusedVirtualRowKey(null);
+  }
   const focusedVirtualRowIndex = useMemo(() => {
-    if (!shouldVirtualizeRows) {
+    if (!shouldVirtualizeRows || focusedVirtualRowKey === null) {
       return undefined;
     }
 
-    const focusedKey = focusedVirtualRowKeyRef.current;
-    if (!focusedKey) {
-      return undefined;
-    }
-
-    return displayRowIndexByKey.get(focusedKey);
-  }, [displayRowIndexByKey, shouldVirtualizeRows]);
+    return displayRowIndexByKey.get(focusedVirtualRowKey);
+  }, [displayRowIndexByKey, focusedVirtualRowKey, shouldVirtualizeRows]);
   const virtualWindow = useMemo(() => {
     if (!shouldVirtualizeRows) {
       return null;
@@ -863,7 +873,7 @@ function DataTableInner<T extends object>(
       return;
     }
 
-    focusedVirtualRowKeyRef.current = rowSelectionKey;
+    setFocusedVirtualRowKey(rowSelectionKey);
   };
 
   const selectableDisplayKeys = useMemo(() => {
@@ -1175,9 +1185,6 @@ function DataTableInner<T extends object>(
 
   useEffect(() => {
     if (!shouldVirtualizeRows) {
-      setVirtualScrollTop(0);
-      setVirtualViewportHeight(DEFAULT_VIRTUAL_VIEWPORT_HEIGHT_PX);
-      focusedVirtualRowKeyRef.current = null;
       return;
     }
 
@@ -1205,18 +1212,6 @@ function DataTableInner<T extends object>(
       setVirtualScrollTop(maxScrollTop);
     }
   }, [displayRows.length, normalizedVirtualRowHeight, shouldVirtualizeRows]);
-
-  useEffect(() => {
-    if (!focusedVirtualRowKeyRef.current) {
-      return;
-    }
-
-    if (displayRowIndexByKey.has(focusedVirtualRowKeyRef.current)) {
-      return;
-    }
-
-    focusedVirtualRowKeyRef.current = null;
-  }, [displayRowIndexByKey]);
 
   useEffect(() => {
     if (isPinnedColumnsControlled) {
